@@ -19,6 +19,7 @@ chrome-user-data
 *.sublime-project
 *.sublime-workspace
 .idea
+package-lock.json
 *.iml
 .vscode
 *.swp
