@@ -9,10 +9,10 @@ type propsType = {
 const Topic = (props: propsType) => {
     return(
         <Card>
-            <Card.Header>{props.topic.tile} | {props.topic.subject}</Card.Header>
+            <Card.Header>{props.topic.title} | {props.topic.subject}</Card.Header>
             <Card.Body>
                 <div>{props.topic.description}</div>
-                <Button>asd</Button>
+                <Button>Create Session</Button>
             </Card.Body>
         </Card>
     )
