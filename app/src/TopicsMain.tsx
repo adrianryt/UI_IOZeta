@@ -4,7 +4,7 @@ import TopicsList from "./TopicsList";
 const TopicsMain = () => {
     return(
         <div>
-            <h2>Topics main</h2>
+            <h2>Topics</h2>
             <TopicsList />
         </div>
     )
