@@ -5,6 +5,7 @@ import React from "react";
 import Home from "./Home.tsx"
 import TopicsMain from "./TopicsMain";
 import TopicForm from "./TopicForm";
+import StudentSide from "./StudentSide"
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />}>
             <Route path="topics" element={<TopicsMain />} />
             <Route path="topics/new" element={<TopicForm />} />
+            <Route path='student' element={<StudentSide/>} />
             {/*  <Route path=":teamId" element={<Team />} />*/}
             {/*  <Route path="new" element={<NewTeamForm />} />*/}
             {/*  <Route index element={<LeagueStandings />} />*/}
