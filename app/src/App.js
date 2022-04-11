@@ -8,11 +8,13 @@ import TopicForm from "./TopicForm";
 import SubjectList from "./components/subjects/subject_list/SubjectList";
 import TopicSingle from "./TopicSingle";
 import SubjectForm from "./components/subjects/subject_form/SubjectForm";
+import NavMenu from "./NavMenu.tsx";
 
 
 function App() {
   return (
       <BrowserRouter>
+          <NavMenu />
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="topics" element={<TopicsMain />} />

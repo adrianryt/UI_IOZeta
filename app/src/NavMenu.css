@@ -1,0 +1,13 @@
+#login-button-wrapper{
+    margin-right: 40px;
+}
+
+nav > div > div > button > a {
+    color: white;
+    text-decoration: none;
+}
+
+nav > div > div > button > a:hover {
+    color: white;
+    text-decoration: none;
+}
