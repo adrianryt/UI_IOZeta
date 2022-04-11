@@ -4,16 +4,15 @@ import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 const NavMenu = () => {
+
     return(
         <nav className="mt-3">
             <div className="d-flex flex-row justify-content-between">
                 <div>
-                    <Button className="btn btn-primary ms-3">
-                        <Link className="link" to={"/"}>Home</Link>
-                    </Button>
+                        <Link className="btn btn-primary ms-3 d-block" to={"/"}>Home</Link>
                 </div>
                 <div id="login-button-wrapper">
-                    <Button className="btn btn-secondary">Login</Button>
+                        <Link className="btn btn-secondary d-block" to={"/login"}>Login</Link>
                 </div>
             </div>
         </nav>
