@@ -3,12 +3,13 @@ import {BrowserRouter} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import React from "react";
 import Home from "./Home.tsx"
+import NavMenu from "./NavMenu.tsx";
 
 
 function App() {
   return (
       <BrowserRouter>
-          dasda
+          <NavMenu />
         <Routes>
           <Route path="/" element={<Home />}>
             {/*<Route index element={<Home />} />*/}
