@@ -5,6 +5,7 @@ import React from "react";
 import Home from "./Home.tsx"
 import NavMenu from "./NavMenu.tsx";
 import Login from "./Login.tsx";
+import Teacher from "./Teacher.tsx";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <NavMenu />
         <Routes>
             <Route path="/login" element={<Login/>} />
+            <Route path="/teacher" element={<Teacher/>} />
             <Route path="/" element={<Home />} >
 
             {/*<Route index element={<Home />} />*/}
