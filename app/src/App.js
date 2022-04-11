@@ -9,6 +9,7 @@ import SubjectList from "./components/subjects/subject_list/SubjectList";
 import TopicSingle from "./TopicSingle";
 import SubjectForm from "./components/subjects/subject_form/SubjectForm";
 import NavMenu from "./NavMenu.tsx";
+import Login from "./Login.tsx";
 
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
               <Route path="subjects/new" element={<SubjectForm />} />
             <Route path="topic/:topicID" element={<TopicSingle />} />
           </Route>
+            <Route path="/login" element={<Login/>} />
+            <Route path="/" element={<Home />} >
+
+            </Route>
         </Routes>
       </BrowserRouter>
   );
