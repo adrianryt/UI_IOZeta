@@ -10,6 +10,7 @@ import TopicSingle from "./TopicSingle";
 import SubjectForm from "./components/subjects/subject_form/SubjectForm";
 import NavMenu from "./NavMenu.tsx";
 import Login from "./Login.tsx";
+import Teacher from "./Teacher.tsx";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="topic/:topicID" element={<TopicSingle />} />
           </Route>
             <Route path="/login" element={<Login/>} />
+            <Route path="/teacher" element={<Teacher/>} />
             <Route path="/" element={<Home />} >
 
             </Route>
