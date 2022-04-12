@@ -9,6 +9,15 @@ const Teacher = () => {
             <li>
                 Add topic
             </li>
+            <li>
+                Subjects
+            </li>
+            <li>
+                Add subject
+            </li>
+            <li>
+                Sessions
+            </li>
         </ul>
     );
 }
