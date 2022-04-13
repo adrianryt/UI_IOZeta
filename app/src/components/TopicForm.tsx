@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Alert, Badge, FormControl, FormGroup, FormText, Card} from "react-bootstrap";
 import {useState} from "react";
-import TopicValidator from "./objects/validators/TopicValidator";
+import TopicValidator from ".././objects/validators/TopicValidator";
 
 const TopicForm = () => {
 

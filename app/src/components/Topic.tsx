@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Button, Card} from "react-bootstrap";
-import TopicObject from "./objects/TopicObject";
+import TopicObject from ".././objects/TopicObject";
 
 type propsType = {
     topic: TopicObject

@@ -1,0 +1,15 @@
+{
+    "checkpoints": [
+        {
+            "title": "rozgrzewka",
+            "description": "zaimplementuj rozwiązanie problemu plecakowego w języku perl",
+            "command": "git push checkpoint1"
+        },
+        {
+            "title": "zadanie 1",
+            "description": "napisz esej o roli przyjaźni we współczesnym świecie (300-400 słów)",
+            "command": "git push checkpoint2"
+        }
+    ],
+    "readmeUrl": "https://api.github.com/repos/adafruit/Adafruit_CircuitPython_CharLCD/contents/README.rst"
+}
