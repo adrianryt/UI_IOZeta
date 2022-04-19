@@ -6,6 +6,7 @@ export default class Subject{
     private _repoName: string;
     private _lecturer: Lecturer;
     private _topics: TopicObject[];
+    private _id: number;
 
     constructor(name: string, repoName: string, lecturer: Lecturer, topics: TopicObject[]) {
         this._name = name;
@@ -14,6 +15,14 @@ export default class Subject{
         this._topics = topics;
     }
 
+
+    get id(): number {
+        return this._id;
+    }
+
+    set id(value: number) {
+        this._id = value;
+    }
 
     get topics(): TopicObject[] {
         return this._topics;

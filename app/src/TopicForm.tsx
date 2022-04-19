@@ -1,9 +1,22 @@
 import * as React from "react";
-import {Alert, Badge, FormControl, FormGroup, FormText, Card} from "react-bootstrap";
-import {useState} from "react";
+import {Alert, Badge, FormControl, FormGroup, FormText, Card, Form} from "react-bootstrap";
+import {useEffect, useState} from "react";
 import TopicValidator from "./objects/validators/TopicValidator";
+import axios from "axios";
+import Subject from "./objects/Subject";
 
 const TopicForm = () => {
+
+    useEffect(() => {
+        axios.get("/mocked_subjects.json").then((response) => {
+            setSubjects(response.data)
+        }).catch((e) => {
+            console.error("cannot fetch topics: "+e);
+        })
+    }, [])
+
+    const [subjects, setSubjects] = useState<Subject[]>([]);
+    const subjectOptions = subjects.map((subject) => <option key={"key-option-topic"+subject.name} value={subject.id}>{subject.name}</option>)
 
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
@@ -14,7 +27,7 @@ const TopicForm = () => {
 
     const handleTitleChange = (e:React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
     const handleDescriptionChange = (e:React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value);
-    const handleSubjectChange = (e:React.ChangeEvent<HTMLInputElement>) => setSubject(e.target.value);
+    const handleSubjectChange = (e:React.ChangeEvent<HTMLSelectElement>) => setSubject(e.target.value);
 
     const handleRequestSucceed = () => {
         setShowSuccessAlert(true);
@@ -48,8 +61,6 @@ const TopicForm = () => {
         setDescriptionError(topicValidator.descriptionError);
     }
 
-
-
     const [titleError, setTitleError] = useState("");
     const [descriptionError, setDescriptionError] = useState("");
     const [subjectError, setSubjectError] = useState("");
@@ -72,7 +83,9 @@ const TopicForm = () => {
                 </FormGroup>
                 <FormGroup>
                     <label htmlFor="subjectTopicForm">Subject</label>
-                    <FormControl id="subjectTopicForm" placeholder="Enter subject" value={subject} onChange={handleSubjectChange} />
+                    <Form.Select value={subject} onChange={handleSubjectChange}>
+                        {subjectOptions}
+                    </Form.Select>
                     <FormText className="text-danger me-5">{subjectError}</FormText>
                 </FormGroup>
                 <input className="btn btn-primary" type="submit" value="Create" />
