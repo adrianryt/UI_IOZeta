@@ -14,7 +14,7 @@ const TopicsList = () => {
         }).catch((e) => {
             console.error("cannot fetch topics: "+e);
         })
-    })
+    }, [])
 
     const topicsComponents = topics.map(topic => <Topic key={topic.title+topic.description+topic.subject} topic={topic}/>)
 
