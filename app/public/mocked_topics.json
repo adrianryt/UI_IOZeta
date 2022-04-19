@@ -10,5 +10,17 @@
     "subject": "ASD",
     "title": "Graf tablic haszujących grafów sortujących tablice haszujące",
     "description": "Chyba też trudne"
+  },
+  {
+    "id": 3,
+    "subject": "Unix",
+    "title": "Pętla w bashu razy 3",
+    "description": "To już nie takie trudne"
+  },
+  {
+    "id": 4,
+    "subject": "Kompetencje Interpersonalne",
+    "title": "Czy wytrzymamy to psychicznie?",
+    "description": "A to już raczej trudniejsze niestety"
   }
 ]

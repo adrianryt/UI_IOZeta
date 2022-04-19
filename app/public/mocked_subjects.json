@@ -12,11 +12,15 @@
     "topics": [
       {
         "id": 1,
-        "title": "Jakiś tam temat"
+        "subject": "WDI",
+        "title": "Szachy Zaśśś",
+        "description": "Bardzo trudny temat do zrobienia"
       },
       {
         "id": 2,
-        "title": "Jakiś inny temat"
+        "subject": "ASD",
+        "title": "Graf tablic haszujących grafów sortujących tablice haszujące",
+        "description": "Chyba też trudne"
       }
     ]
   },
@@ -33,11 +37,15 @@
     "topics": [
       {
         "id": 3,
-        "title": "Jeszcze inny temat"
+        "subject": "Unix",
+        "title": "Pętla w bashu razy 3",
+        "description": "To już nie takie trudne"
       },
       {
         "id": 4,
-        "title": "Coś o grafach"
+        "subject": "Kompetencje Interpersonalne",
+        "title": "Czy wytrzymamy to psychicznie?",
+        "description": "A to już raczej trudniejsze niestety"
       }
     ]
   }
