@@ -9,14 +9,14 @@ const SubjectList = () => {
     const [subjects, setSubjects] = useState<Subject[]>([]);
 
     useEffect(() => {
-        axios.get("/mocked_subjects").then((response) => {
+        axios.get("/mocked_subjects.json").then((response) => {
             setSubjects(response.data);
         }).catch((e) => {
             console.error("cannot fetch subjects: "+e);
         })
     }, [])
 
-    const subjectComponents = subjects.map((subject) => <SubjectComponent subject={subject} />)
+    const subjectComponents = subjects.map((subject) => <SubjectComponent subject={subject} key={subject.name+""+subject.lecturer.name+""+subject.lecturer.surname+""+subject.repoName} />)
 
     return(
         <div>

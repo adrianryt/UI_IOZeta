@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Przedmiot bardzo łatwy",
+    "repoName": "jakies_tam_repo",
+    "lecturer": {
+      "name": "Marian",
+      "surname": "Kowalski",
+      "gitNick": "kowal123321",
+      "gitToken": "[FILTERED]"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Przedmiot trochę trudniejszy",
+    "repoName": "jakies_inne_repo",
+    "lecturer": {
+      "name": "Janusz",
+      "surname": "Nowak",
+      "gitNick": "nowaczek321",
+      "gitToken": "[FILTERED]"
+    }
+  }
+]
