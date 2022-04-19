@@ -1,0 +1,25 @@
+{
+    "id": 1,
+    "name": "Przedmiot bardzo łatwy",
+    "repoName": "jakies_tam_repo",
+    "lecturer": {
+      "name": "Marian",
+      "surname": "Kowalski",
+      "gitNick": "kowal123321",
+      "gitToken": "[FILTERED]"
+    },
+    "topics": [
+      {
+        "id": 1,
+        "subject": "WDI",
+        "title": "Szachy Zaśśś",
+        "description": "Bardzo trudny temat do zrobienia"
+      },
+      {
+        "id": 2,
+        "subject": "ASD",
+        "title": "Graf tablic haszujących grafów sortujących tablice haszujące",
+        "description": "Chyba też trudne"
+      }
+    ]
+  }

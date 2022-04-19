@@ -23,6 +23,10 @@ const SubjectComponent = ({subject}: propsType) => {
                     <h4>List of topics:</h4>
                     {topicList}
                 </div>
+                <hr />
+               <div>
+                   <Link to={"/topics/new?chosen_subject="+subject.id} className="btn btn-primary">Add new topic</Link>
+               </div>
             </Card.Body>
         </Card>
     )

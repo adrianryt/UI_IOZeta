@@ -4,15 +4,30 @@ import {useEffect, useState} from "react";
 import TopicValidator from "./objects/validators/TopicValidator";
 import axios from "axios";
 import Subject from "./objects/Subject";
+import {useSearchParams} from "react-router-dom";
 
 const TopicForm = () => {
 
+    const [searchParams] = useSearchParams();
+
     useEffect(() => {
-        axios.get("/mocked_subjects.json").then((response) => {
-            setSubjects(response.data)
-        }).catch((e) => {
-            console.error("cannot fetch topics: "+e);
-        })
+        if(searchParams.get("chosen_subject") !== null){
+            axios.get("/subjects/"+searchParams.get("chosen_subject")).then((response) => {
+                setSubjects([response.data])
+                setSubject(response.data.id.toString())
+            }).catch((e) => {
+                console.error("cannot fetch subject: "+e);
+            })
+        }
+        else{
+            axios.get("/mocked_subjects.json").then((response) => {
+                setSubjects(response.data)
+                response.data.length > 0 ? setSubject(response.data[0].id.toString()) : setSubject("")
+            }).catch((e) => {
+                console.error("cannot fetch subject: "+e);
+            })
+        }
+
     }, [])
 
     const [subjects, setSubjects] = useState<Subject[]>([]);
@@ -36,7 +51,7 @@ const TopicForm = () => {
         }, 3000)
         setTitle("");
         setDescription("");
-        setSubject("");
+        setSubject(subjects.length > 0 ? subjects[0].id.toString() : "");
     }
 
     const handleRequestFailed = () => {

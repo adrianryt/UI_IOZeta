@@ -18,8 +18,6 @@ function App() {
             <Route path="topics/new" element={<TopicForm />} />
             <Route path="subjects" element={<SubjectList />} />
             <Route path="topic/:topicID" element={<TopicSingle />} />
-            {/*  <Route index element={<LeagueStandings />} />*/}
-            {/*</Route>*/}
           </Route>
         </Routes>
       </BrowserRouter>
