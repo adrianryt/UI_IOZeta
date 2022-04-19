@@ -8,7 +8,17 @@
       "surname": "Kowalski",
       "gitNick": "kowal123321",
       "gitToken": "[FILTERED]"
-    }
+    },
+    "topics": [
+      {
+        "id": 1,
+        "title": "Jakiś tam temat"
+      },
+      {
+        "id": 2,
+        "title": "Jakiś inny temat"
+      }
+    ]
   },
   {
     "id": 2,
@@ -19,6 +29,16 @@
       "surname": "Nowak",
       "gitNick": "nowaczek321",
       "gitToken": "[FILTERED]"
-    }
+    },
+    "topics": [
+      {
+        "id": 3,
+        "title": "Jeszcze inny temat"
+      },
+      {
+        "id": 4,
+        "title": "Coś o grafach"
+      }
+    ]
   }
 ]

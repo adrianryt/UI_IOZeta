@@ -1,12 +1,18 @@
 import * as React from "react";
 import {Card} from "react-bootstrap";
 import Subject from "../../../objects/Subject";
+import {Link} from "react-router-dom";
 
 type propsType = {
     subject: Subject
 }
 
 const SubjectComponent = ({subject}: propsType) => {
+
+    const topicList = subject.topics.map((topic) => <div key={topic.subject+""+topic.description+""+topic.title+"in_div"}>
+       <Link to={"/topic/"+topic.id}>{topic.title}</Link>
+    </div>)
+
     return(
         <Card>
             <Card.Header>
@@ -15,6 +21,7 @@ const SubjectComponent = ({subject}: propsType) => {
             <Card.Body>
                 <div>
                     <h4>List of topics:</h4>
+                    {topicList}
                 </div>
             </Card.Body>
         </Card>

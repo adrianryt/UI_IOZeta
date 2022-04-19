@@ -1,15 +1,26 @@
 import Lecturer from "./Lecturer";
+import TopicObject from "./TopicObject";
 
 export default class Subject{
     private _name: string;
     private _repoName: string;
     private _lecturer: Lecturer;
+    private _topics: TopicObject[];
 
-
-    constructor(name: string, repoName: string, lecturer: Lecturer) {
+    constructor(name: string, repoName: string, lecturer: Lecturer, topics: TopicObject[]) {
         this._name = name;
         this._repoName = repoName;
         this._lecturer = lecturer;
+        this._topics = topics;
+    }
+
+
+    get topics(): TopicObject[] {
+        return this._topics;
+    }
+
+    set topics(value: TopicObject[]) {
+        this._topics = value;
     }
 
     get name(): string {
