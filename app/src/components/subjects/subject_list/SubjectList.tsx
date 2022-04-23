@@ -21,7 +21,10 @@ const SubjectList = () => {
 
     return(
         <div>
-            <Link to="/subjects/new" className="btn btn-secondary ms-2 mt-2 mb-5">Add new Subject</Link>
+            <div className="ms-2 mt-2 mb-5 d-flex gap-3">
+                <Link to="/subjects/new" className="btn btn-secondary">Add new Subject</Link>
+                <Link to="/topics" className="btn btn-secondary">Show all topics</Link>
+            </div>
             {subjectComponents}
         </div>
     )
