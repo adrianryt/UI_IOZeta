@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Przedmiot bardzo łatwy",
+    "name": "WDI",
     "repoName": "jakies_tam_repo",
     "lecturer": {
       "name": "Marian",
@@ -18,7 +18,7 @@
       },
       {
         "id": 2,
-        "subject": "ASD",
+        "subject": "WDI",
         "title": "Graf tablic haszujących grafów sortujących tablice haszujące",
         "description": "Chyba też trudne"
       }
@@ -26,7 +26,7 @@
   },
   {
     "id": 2,
-    "name": "Przedmiot trochę trudniejszy",
+    "name": "ASD",
     "repoName": "jakies_inne_repo",
     "lecturer": {
       "name": "Janusz",
@@ -37,13 +37,13 @@
     "topics": [
       {
         "id": 3,
-        "subject": "Unix",
+        "subject": "ASD",
         "title": "Pętla w bashu razy 3",
         "description": "To już nie takie trudne"
       },
       {
         "id": 4,
-        "subject": "Kompetencje Interpersonalne",
+        "subject": "ASD",
         "title": "Czy wytrzymamy to psychicznie?",
         "description": "A to już raczej trudniejsze niestety"
       }
