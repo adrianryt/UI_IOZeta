@@ -14,8 +14,8 @@ const SubjectComponent = ({subject}: propsType) => {
     </div>)
 
     return(
-        <Card>
-            <Card.Header>
+        <Card className="ms-2 mb-5 border-3 col-sm-10 col-md-8 col-lg-6 col-11">
+            <Card.Header className="bg bg-info">
                 {subject.name} | {subject.lecturer.name} {subject.lecturer.surname}
             </Card.Header>
             <Card.Body>

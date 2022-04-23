@@ -81,7 +81,7 @@ const TopicForm = () => {
     const [subjectError, setSubjectError] = useState("");
 
     return(
-        <Card className="w-50 ms-5 p-3 bg-light">
+        <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 p-3 bg-light">
             <h2>Topics  <Badge bg="secondary">New</Badge> </h2>
             {showSuccessAlert ? <Alert variant="success">Topic Added Successfully</Alert> : null }
             {showFailAlert ? <Alert variant="danger">An error occurred while adding topic</Alert> : null }

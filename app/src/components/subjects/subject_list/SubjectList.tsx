@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Subject from "../../../objects/Subject";
 import SubjectComponent from "../subject/SubjectComponent";
+import {Link} from "react-router-dom";
 
 const SubjectList = () => {
 
@@ -20,6 +21,7 @@ const SubjectList = () => {
 
     return(
         <div>
+            <Link to="/subjects/new" className="btn btn-secondary ms-2 mt-2 mb-5">Add new Subject</Link>
             {subjectComponents}
         </div>
     )
