@@ -1,7 +1,21 @@
 import * as React from "react";
 import {Badge, Card, Form, FormControl, FormGroup, FormText} from "react-bootstrap";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import Lecturer from "../../../objects/Lecturer";
 
 const SubjectForm = () => {
+
+    const [lecturers, setLecturers] = useState<Lecturer[]>([]);
+    const lecturersOptions = lecturers.map((lecturer) => <option key={"key-option-topic"+lecturer.name} value={lecturer.name+" "+lecturer.surname+" "+lecturer.gitNick}>{lecturer.name} {lecturer.surname} ({lecturer.gitNick})</option>)
+
+    useEffect(() => {
+        axios.get("/mocked_lecturers.json").then((response) => {
+            setLecturers(response.data);
+        }).catch((e) => {
+            console.error("cannot fetch lecturers: "+ e);
+        })
+    }, [])
 
     return(
         <Card className="w-50 ms-5 p-3 bg-light">
@@ -22,7 +36,7 @@ const SubjectForm = () => {
                 <FormGroup>
                     <label htmlFor="LecturerSubjectForm">Lecturer</label>
                     <Form.Select>
-
+                        {lecturersOptions}
                     </Form.Select>
                     <FormText className="text-danger me-5"></FormText>
                 </FormGroup>
