@@ -1,4 +1,5 @@
 export default class{
+    private _id: number;
     private _name: string;
     private _surname: string;
     private _gitNick: string;
@@ -9,6 +10,11 @@ export default class{
         this._surname = surname;
         this._gitNick = gitNick;
         this._gitToken = gitToken;
+    }
+
+
+    get id(): number {
+        return this._id;
     }
 
     get name(): string {
