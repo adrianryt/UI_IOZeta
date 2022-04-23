@@ -4,7 +4,6 @@ import {Outlet} from "react-router-dom";
 const Home = () => {
     return (
         <>
-            <div> SIEMANO</div>
             <Outlet/>
         </>
 
