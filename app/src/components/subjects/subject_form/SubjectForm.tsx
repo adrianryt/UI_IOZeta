@@ -1,38 +1,20 @@
 import * as React from "react";
 import {Alert, Badge, Card, Form, FormControl, FormGroup, FormText} from "react-bootstrap";
-import {useEffect, useState} from "react";
-import axios from "axios";
-import Lecturer from "../../../objects/Lecturer";
+import {useState} from "react";
 import SubjectValidator from "../../../objects/validators/SubjectValidator";
 
 const SubjectForm = () => {
-
-    const [lecturers, setLecturers] = useState<Lecturer[]>([]);
-    const lecturersOptions = lecturers.map((lecturer) => <option key={"key-option-topic"+lecturer.name} value={lecturer.id}>{lecturer.name} {lecturer.surname} ({lecturer.gitNick})</option>)
-
-    useEffect(() => {
-        axios.get("/mocked_lecturers.json").then((response) => {
-            setLecturers(response.data);
-            setLecturer(response.data[0].id)
-        }).catch((e) => {
-            console.error("cannot fetch lecturers: "+ e);
-        })
-    }, [])
-
     const [name, setName] = useState<string>("");
     const [repoName, setRepoName] = useState<string>("");
-    const [lecturer, setLecturer] = useState<string>("");
 
     const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
     const [showFailAlert, setShowFailAlert] = useState<boolean>(false);
 
     const handleNameChange = (e:React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const handleRepoNameChange = (e:React.ChangeEvent<HTMLInputElement>) => setRepoName(e.target.value);
-    const handleLecturerChange = (e:React.ChangeEvent<HTMLSelectElement>) => setLecturer(e.target.value);
 
     const [nameError, setNameError] = useState("");
     const [repoNameError, setRepoNameError] = useState("");
-    const [lecturerError, setLecturerError] = useState("");
 
     const handleRequestSucceed = () => {
         setShowSuccessAlert(true);
@@ -41,7 +23,6 @@ const SubjectForm = () => {
         }, 3000)
         setName("");
         setRepoName("");
-        setLecturer(lecturers.length > 0 ? lecturers[0].id.toString() : "");
     }
 
     const handleRequestFailed = () => {
@@ -54,7 +35,7 @@ const SubjectForm = () => {
     const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const subjectValidator = new SubjectValidator();
-        if(subjectValidator.validateName(name) && subjectValidator.validateRepoName(repoName) && subjectValidator.validateLecturer(lecturer)){
+        if(subjectValidator.validateName(name) && subjectValidator.validateRepoName(repoName)){
             // TODO make POST/PUT request to add Subject to database
             handleRequestSucceed();
         }
@@ -63,7 +44,6 @@ const SubjectForm = () => {
         }
         setNameError(subjectValidator.nameError);
         setRepoNameError(subjectValidator.repoNameError);
-        setLecturerError(subjectValidator.lecturerError);
     }
 
     return(
@@ -81,13 +61,6 @@ const SubjectForm = () => {
                     <label htmlFor="RepositoryNameSubjectForm">Repository Name</label>
                     <FormControl id="RepositoryNameSubjectForm" placeholder="Enter Repository Name" value={repoName} onChange={handleRepoNameChange} />
                     <FormText className="text-danger me-5">{repoNameError}</FormText>
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="LecturerSubjectForm">Lecturer</label>
-                    <Form.Select value={lecturer} onChange={handleLecturerChange}>
-                        {lecturersOptions}
-                    </Form.Select>
-                    <FormText className="text-danger me-5">{lecturerError}</FormText>
                 </FormGroup>
                 <input className="btn btn-primary" type="submit" value="Create" />
             </form>
