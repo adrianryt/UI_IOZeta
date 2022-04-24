@@ -34,13 +34,4 @@ export default class SubjectValidator extends Validator{
         this._repoNameError = "";
         return true;
     }
-
-    public validateLecturer(lecturer: string){
-        if(!this.stringNotEmpty(lecturer)){
-            this._lecturerError = "Lecturer cannot be empty";
-            return false;
-        }
-        this._lecturerError = "";
-        return true;
-    }
 }
