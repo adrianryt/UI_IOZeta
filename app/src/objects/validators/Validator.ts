@@ -1,19 +1,9 @@
 export default class Validator{
     protected stringNotEmpty(data: string){
-        if(data.length != 0){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return data !== undefined && data !== null && data.length != 0;
     }
 
     protected stringContainsOnlyAlphaNumeric(data: string){
-        if(data.match(/^[a-z0-9]+$/i)){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return !!data.match(/^[a-z0-9]+$/i);
     }
 }

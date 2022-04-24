@@ -5,6 +5,9 @@ import React from "react";
 import Home from "./Home.tsx"
 import TopicsMain from "./TopicsMain";
 import TopicForm from "./TopicForm";
+import SubjectList from "./components/subjects/subject_list/SubjectList";
+import TopicSingle from "./TopicSingle";
+import SubjectForm from "./components/subjects/subject_form/SubjectForm";
 
 
 function App() {
@@ -14,10 +17,9 @@ function App() {
           <Route path="/" element={<Home />}>
             <Route path="topics" element={<TopicsMain />} />
             <Route path="topics/new" element={<TopicForm />} />
-            {/*  <Route path=":teamId" element={<Team />} />*/}
-            {/*  <Route path="new" element={<NewTeamForm />} />*/}
-            {/*  <Route index element={<LeagueStandings />} />*/}
-            {/*</Route>*/}
+            <Route path="subjects" element={<SubjectList />} />
+              <Route path="subjects/new" element={<SubjectForm />} />
+            <Route path="topic/:topicID" element={<TopicSingle />} />
           </Route>
         </Routes>
       </BrowserRouter>

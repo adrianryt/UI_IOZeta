@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Janusz",
+    "surname": "Nowak",
+    "gitNick": "nowaczek321",
+    "gitToken": "[FILTERED]"
+  },
+  {
+    "id": "2",
+    "name": "Marian",
+    "surname": "Kowalski",
+    "gitNick": "kowal123321",
+    "gitToken": "[FILTERED]"
+  },
+  {
+    "id": "3",
+    "name": "Andrzej",
+    "surname": "Wiśniewski",
+    "gitNick": "wisniaa061",
+    "gitToken": "[FILTERED]"
+  }
+]
