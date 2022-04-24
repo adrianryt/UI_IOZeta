@@ -1,6 +1,6 @@
 {
     "id": 1,
-    "name": "Przedmiot bardzo łatwy",
+    "name": "WDI",
     "repoName": "jakies_tam_repo",
     "lecturer": {
       "name": "Marian",
@@ -17,7 +17,7 @@
       },
       {
         "id": 2,
-        "subject": "ASD",
+        "subject": "WDI",
         "title": "Graf tablic haszujących grafów sortujących tablice haszujące",
         "description": "Chyba też trudne"
       }
