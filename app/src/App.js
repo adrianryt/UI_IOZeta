@@ -12,6 +12,7 @@ import NavMenu from "./components/nav_menu/NavMenu.tsx";
 import Login from "./components/login/Login.tsx";
 import Teacher from "./components/teacher/Teacher.tsx";
 import Sessions from "./components/sessions/Sessions.tsx";
+import StudentSide from './components/student/StudentSide';
 
 function App() {
   return (

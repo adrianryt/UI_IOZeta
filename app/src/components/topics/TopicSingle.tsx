@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 
 const TopicSingle = () => {
 
-    const [topic, setTopic] = useState<TopicObject>(undefined);
+    const [topic, setTopic] = useState<TopicObject>();
     const params = useParams();
 
     useEffect(() => {

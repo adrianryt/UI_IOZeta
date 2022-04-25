@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button } from "react-bootstrap";
-import CheckpointObject from "../objects/CheckpointObject";
+import CheckpointObject from "../../objects/CheckpointObject";
 
 type propsType = {
     checkpoints: CheckpointObject[],

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Card } from "react-bootstrap";
 type propsType = {
     readmeUrl: string
 }
@@ -19,11 +20,17 @@ const Readme = (props: propsType) => {
     }, [props.readmeUrl])
 
     return (
-        <div id="readme">
-            <pre>{readmeText}</pre> 
-            {/* TODO - formatowanie */}
-        </div>
+        <Card id="readme" className="w-80 m-auto">
+            <Card.Header>
+                Nazwa tematu
+            </Card.Header>
+            <Card.Body>
+                <pre>{readmeText}</pre>
+                {/* TODO - formatowanie */}
+            </Card.Body>
+        </Card>
     )
+
 
 
 }

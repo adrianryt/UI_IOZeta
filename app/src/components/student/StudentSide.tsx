@@ -23,18 +23,15 @@ const StudentSide = (props: any) => {
 
 
     return (
-
         <div >
-            <div id="checkpoints">
+            <div id="checkpoints" className='d-flex justify-content-center'>
                 <Checkpoints checkpoints={checkpoints} />
             </div>
-            <div id="readme">
+            <div id="readme" className='d-flex justify-content-center'>
                 <Readme readmeUrl={readmeUrl} />
             </div>
         </div >
-
-    );
-
+    )
 
 }
 export default StudentSide
