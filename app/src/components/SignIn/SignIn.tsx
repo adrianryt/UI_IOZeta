@@ -6,7 +6,7 @@ import {FormEvent} from "react";
 
 
 
-const SignIn = () =>{
+const SignUp = () =>{
 
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const SignIn = () =>{
     return(
         <div className=" d-flex justify-content-center">
             <Card className="mt-5">
-                <Card.Header>Sign in as lecturer</Card.Header>
+                <Card.Header>Sign up as lecturer</Card.Header>
                 <Card.Body>
                     <form className="" onSubmit={handleFormSubmit}>
                         <FormGroup>
@@ -59,4 +59,4 @@ const SignIn = () =>{
     );
 }
 
-export default SignIn;
+export default SignUp;

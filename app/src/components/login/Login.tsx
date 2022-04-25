@@ -18,7 +18,7 @@ const Login = () =>{
     return(
         <div className=" d-flex justify-content-center">
             <Card className="mt-5">
-                <Card.Header>Login in as lecturer</Card.Header>
+                <Card.Header>Sign in as lecturer</Card.Header>
                 <Card.Body>
                     <form className="" onSubmit={handleFormSubmit}>
                         <FormGroup>
