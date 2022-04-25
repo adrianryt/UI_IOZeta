@@ -47,7 +47,7 @@ const SubjectForm = () => {
     }
 
     return(
-        <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 p-3 bg-light">
+        <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 m-lg-3 p-3 bg-light">
             <h2>Subjects  <Badge bg="secondary">New</Badge> </h2>
             {showSuccessAlert ? <Alert variant="success">Subject Added Successfully</Alert> : null }
             {showFailAlert ? <Alert variant="danger">An error occurred while adding subject</Alert> : null }
