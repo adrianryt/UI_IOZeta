@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Alert, Badge, FormControl, FormGroup, FormText, Card, Form} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import TopicValidator from "./objects/validators/TopicValidator";
+import TopicValidator from "../../objects/validators/TopicValidator";
 import axios from "axios";
-import Subject from "./objects/Subject";
+import Subject from "../../objects/Subject";
 import {useSearchParams} from "react-router-dom";
 
 const TopicForm = () => {

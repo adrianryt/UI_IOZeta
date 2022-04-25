@@ -2,16 +2,16 @@ import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import React from "react";
-import Home from "./Home.tsx"
-import TopicsMain from "./TopicsMain";
-import TopicForm from "./TopicForm";
+import Home from "./components/home/Home.tsx"
+import TopicsMain from "./components/topics/TopicsMain";
+import TopicForm from "./components/topics/TopicForm";
 import SubjectList from "./components/subjects/subject_list/SubjectList";
-import TopicSingle from "./TopicSingle";
+import TopicSingle from "./components/topics/TopicSingle";
 import SubjectForm from "./components/subjects/subject_form/SubjectForm";
-import NavMenu from "./NavMenu.tsx";
-import Login from "./Login.tsx";
-import Teacher from "./Teacher.tsx";
-import Sessions from "./Sessions.tsx";
+import NavMenu from "./components/nav_menu/NavMenu.tsx";
+import Login from "./components/login/Login.tsx";
+import Teacher from "./components/teacher/Teacher.tsx";
+import Sessions from "./components/sessions/Sessions.tsx";
 
 function App() {
   return (

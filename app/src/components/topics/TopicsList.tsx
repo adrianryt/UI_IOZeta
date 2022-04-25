@@ -1,5 +1,5 @@
 import * as React from "react";
-import TopicObject from "./objects/TopicObject";
+import TopicObject from "../../objects/TopicObject";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Topic from "./Topic";

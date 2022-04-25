@@ -1,5 +1,5 @@
 import * as React from "react";
-import './NavMenu.css'
+import '../nav_menu/NavMenu.css'
 import {Button, Card, FormGroup} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 import {FormEvent} from "react";

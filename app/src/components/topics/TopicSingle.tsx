@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import TopicObject from "./objects/TopicObject";
+import TopicObject from "../../objects/TopicObject";
 import Topic from "./Topic";
 import {useParams} from "react-router-dom";
 
