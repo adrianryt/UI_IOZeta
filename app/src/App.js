@@ -23,9 +23,7 @@ function App() {
           </Route>
             <Route path="/login" element={<Login/>} />
             <Route path="/teacher" element={<Teacher/>} />
-            <Route path="/" element={<Home />} >
-
-            </Route>
+            <Route path="/" element={<Home />} />
             <Route path="/topics" element={<TopicsMain />} />
             <Route path="/topics/new" element={<TopicForm />} />
             <Route path="/subjects" element={<SubjectList />} />
