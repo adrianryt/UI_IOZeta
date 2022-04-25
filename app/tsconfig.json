@@ -6,6 +6,17 @@
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "moduleResolution": "Node"
-  }
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "lib": ["ES5","ES6", "DOM"]
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "build"
+  ]
 }
