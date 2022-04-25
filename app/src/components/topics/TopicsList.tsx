@@ -8,7 +8,7 @@ import {Dropdown, DropdownButton} from "react-bootstrap";
 const TopicsList = () => {
 
     const [allTopics, setAllTopics] = useState<TopicObject[]>([]);
-    const [topicsComponents, setTopicsComponent] = useState([]);
+    const [topicsComponents, setTopicsComponent] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
         axios.get("/mocked_topics.json").then((response) => {
@@ -41,7 +41,7 @@ const TopicsList = () => {
 
     return(
         <div className="m-lg-2">
-            <DropdownButton className="m-2" id="dropdown-basic-button" title="Select topic">
+            <DropdownButton className="m-2" id="dropdown-basic-button" title="Select subject">
                 {dropdownItems}
             </DropdownButton>
             {topicsComponents}
