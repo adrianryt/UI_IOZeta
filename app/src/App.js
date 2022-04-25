@@ -13,7 +13,7 @@ import Login from "./components/login/Login.tsx";
 import Teacher from "./components/teacher/Teacher.tsx";
 import Sessions from "./components/sessions/Sessions.tsx";
 import StudentSide from './components/student/StudentSide';
-
+import AssignmentProgress from "./components/sessions/AssignmentProgress"
 
 function App() {
   return (
@@ -33,6 +33,7 @@ function App() {
             <Route path="/topic/:topicID" element={<TopicSingle />} />
             <Route path="/sessions" element={<Sessions />} />
             <Route path='student' element={<StudentSide />} />
+            <Route path='dashboard' element={<AssignmentProgress />} />
         </Routes>
       </BrowserRouter>
 
