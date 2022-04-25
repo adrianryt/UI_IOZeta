@@ -13,7 +13,6 @@ import Login from "./Login.tsx";
 import Teacher from "./Teacher.tsx";
 import Sessions from "./Sessions.tsx";
 
-
 function App() {
   return (
       <BrowserRouter>
