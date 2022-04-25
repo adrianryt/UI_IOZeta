@@ -1,0 +1,25 @@
+{
+    "id": 2,
+    "name": "ASD",
+    "repoName": "jakies_inne_repo",
+    "lecturer": {
+      "name": "Janusz",
+      "surname": "Nowak",
+      "gitNick": "nowaczek321",
+      "gitToken": "[FILTERED]"
+    },
+    "topics": [
+      {
+        "id": 3,
+        "subject": "ASD",
+        "title": "Pętla w bashu razy 3",
+        "description": "To już nie takie trudne"
+      },
+      {
+        "id": 4,
+        "subject": "ASD",
+        "title": "Czy wytrzymamy to psychicznie?",
+        "description": "A to już raczej trudniejsze niestety"
+      }
+    ]
+  }

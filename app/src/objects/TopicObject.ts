@@ -2,7 +2,15 @@ export default class TopicObject {
     private _title: string;
     private _description: string;
     private _subject: string;
+    private _id: number;
 
+    get id(): number {
+        return this._id;
+    }
+
+    set id(value: number) {
+        this._id = value;
+    }
 
     get title(): string {
         return this._title;
