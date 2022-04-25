@@ -8,19 +8,28 @@ import TopicForm from "./TopicForm";
 import SubjectList from "./components/subjects/subject_list/SubjectList";
 import TopicSingle from "./TopicSingle";
 import SubjectForm from "./components/subjects/subject_form/SubjectForm";
-
+import NavMenu from "./NavMenu.tsx";
+import Login from "./Login.tsx";
+import Teacher from "./Teacher.tsx";
+import Sessions from "./Sessions.tsx";
 
 function App() {
   return (
       <BrowserRouter>
+          <NavMenu />
         <Routes>
           <Route path="/" element={<Home />}>
-            <Route path="topics" element={<TopicsMain />} />
-            <Route path="topics/new" element={<TopicForm />} />
-            <Route path="subjects" element={<SubjectList />} />
-              <Route path="subjects/new" element={<SubjectForm />} />
-            <Route path="topic/:topicID" element={<TopicSingle />} />
+
           </Route>
+            <Route path="/login" element={<Login/>} />
+            <Route path="/teacher" element={<Teacher/>} />
+            <Route path="/" element={<Home />} />
+            <Route path="/topics" element={<TopicsMain />} />
+            <Route path="/topics/new" element={<TopicForm />} />
+            <Route path="/subjects" element={<SubjectList />} />
+            <Route path="/subjects/new" element={<SubjectForm />} />
+            <Route path="/topic/:topicID" element={<TopicSingle />} />
+            <Route path="/sessions" element={<Sessions />} />
         </Routes>
       </BrowserRouter>
   );

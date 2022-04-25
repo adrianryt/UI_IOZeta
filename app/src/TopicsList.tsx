@@ -19,7 +19,7 @@ const TopicsList = () => {
     const topicsComponents = topics.map(topic => <Topic key={topic.title+topic.description+topic.subject} topic={topic}/>)
 
     return(
-        <div>
+        <div className="m-lg-2">
             {topicsComponents}
         </div>
     )
