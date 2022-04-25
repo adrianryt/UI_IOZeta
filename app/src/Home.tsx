@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
     const navigate = useNavigate();
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        console.log("DUPA");
+        console.log("student");
         // request na endpoint sprawdzający kod
         // request na enpoint do bazy
         // w responsie dostaje dane z bazy: checkpoint, adress gh, readme - opis zadania
