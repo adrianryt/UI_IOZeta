@@ -14,6 +14,8 @@ import Teacher from "./components/teacher/Teacher.tsx";
 import Sessions from "./components/sessions/Sessions.tsx";
 import StudentSide from './components/student/StudentSide';
 
+import SignIn from "./components/SignIn/SignUp";
+import SignUp from "./components/SignIn/SignUp";
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
 
           </Route>
             <Route path="/login" element={<Login/>} />
+            <Route path="/signup" element={<SignUp/>} />
             <Route path="/teacher" element={<Teacher/>} />
             <Route path="/" element={<Home />} />
             <Route path="/topics" element={<TopicsMain />} />
