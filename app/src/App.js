@@ -32,8 +32,8 @@ function App() {
             <Route path="/subjects/new" element={<SubjectForm />} />
             <Route path="/topic/:topicID" element={<TopicSingle />} />
             <Route path="/sessions" element={<Sessions />} />
-            <Route path='student' element={<StudentSide />} />
-            <Route path='dashboard' element={<AssignmentProgress />} />
+            <Route path='/student' element={<StudentSide />} />
+            <Route path='/dashboard/:sessionID' element={<AssignmentProgress />} />
         </Routes>
       </BrowserRouter>
 

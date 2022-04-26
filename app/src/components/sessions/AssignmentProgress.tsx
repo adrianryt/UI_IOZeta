@@ -3,11 +3,8 @@ import { Table } from "react-bootstrap";
 import CheckpointObject from "../../objects/CheckpointObject";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-type propsType = {
-    checkpoints: CheckpointObject[]
-}
-let n = ["rozgrzewka", "zadanie1", "zadanie2"]
+import { useParams } from "react-router-dom";
+import SessionDataObject from "../../objects/SessionDataObject";
 
 function translate(status: number) {
     switch (status) {
@@ -24,12 +21,13 @@ function translate(status: number) {
     }
 
 }
-const AssignmentProgress = (props: propsType) => {
-
-    const [progress, setProgress] = useState([])
+const AssignmentProgress = () => {
+    const params = useParams();
+    const [progress, setProgress] = useState(new SessionDataObject([], []));
     useEffect(() => {
+        //axios.get("/session/"+params.sessionID)  //TODO: get session info by session id
         axios.get("/mocked_progress.json")
-            .then((response: any) => { 
+            .then((response: any) => {
                 setProgress(response.data)
             }).catch((e) => {
                 console.error("cannot fetch progress data: " + e);
@@ -41,7 +39,7 @@ const AssignmentProgress = (props: propsType) => {
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    {n.map(
+                    {progress.checkpointNames.map(
                         (name: String) =>
                             <th scope="col" >{name}</th>
                     )}
@@ -51,7 +49,7 @@ const AssignmentProgress = (props: propsType) => {
             <tbody>
 
 
-                {progress.map(
+                {progress.students.map(
                     (checkpoint: any) =>
                         <tr>
                             <th scope="row" >{checkpoint.name}</th>

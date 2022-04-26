@@ -10,7 +10,7 @@ type propsType = {
 
 const SubjectComponent = ({ session }: propsType) => {
 
-    function translateStatus(status: Number) {
+    function translateStatus(status: Number) {  //there should be an enum for checkpoint status
         if (status == 0) return "closed"
         if (status == 1) return "open"
         return "-"
@@ -24,9 +24,9 @@ const SubjectComponent = ({ session }: propsType) => {
             <Card.Body>
                 <div>
 
-                    {session.status == 0 && <Link to={"/dashboard"} className="btn btn-primary">Open session</Link>}
+                    {session.status == 0 && <Link to={"/dashboard/" + session.id} className="btn btn-primary">Open session</Link>}
                     {session.status == 1 && <Button className="btn btn-primary">Close session</Button>}
-                    {session.status == 1 && <Link to={"/dashboard"} className="btn btn-primary">Resume session</Link>}
+                    {session.status == 1 && <Link to={"/dashboard/" + session.id} className="btn btn-primary">Resume session</Link>}
                     {/* <Link to={"/dashboard/" + session.id} className="btn btn-primary">Open session</Link> */}
                     {/* ^getting certain session data */}
                 </div>

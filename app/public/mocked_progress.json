@@ -1,104 +1,111 @@
-[
-    {
-        "name": "Michał",
-        "commits": [
-            {
-                "stat": 1,
-                "url": ""
-            },
-            {
-                "stat": 1,
-                "url": ""
-            },
-            {
-                "stat": 2,
-                "url": ""
-            }
-        ]
-    },
-    {
-        "name": "Adrian",
-        "commits": [
-            {
-                "stat": 2,
-                "url": ""
-            },
-            {
-                "stat": 0,
-                "url": ""
-            },
-            {
-                "stat": 2,
-                "url": ""
-            }
-        ]
-    },
-    {
-        "name": "Krzysztof",
-        "commits": [
-            {
-                "stat": 0,
-                "url": ""
-            },
-            {
-                "stat": 3,
-                "url": ""
-            },
-            {
-                "stat": 1,
-                "url": ""
-            }
-        ]
-    },
-    {
-        "name": "Marcin",
-        "commits": [
-            {
-                "stat": 0,
-                "url": ""
-            },
-            {
-                "stat": 2,
-                "url": ""
-            },
-            {
-                "stat": 2,
-                "url": ""
-            }
-        ]
-    },
-    {
-        "name": "Kuba",
-        "commits": [
-            {
-                "stat": 2,
-                "url": ""
-            },
-            {
-                "stat": 1,
-                "url": ""
-            },
-            {
-                "stat": 1,
-                "url": ""
-            }
-        ]
-    },
-    {
-        "name": "Adam",
-        "commits": [
-            {
-                "stat": 1,
-                "url": ""
-            },
-            {
-                "stat": 3,
-                "url": ""
-            },
-            {
-                "stat": 0,
-                "url": ""
-            }
-        ]
-    }
-]
+{
+    "checkpointNames": [
+        "rozgrzewka",
+        "zadanie1",
+        "zadanie2"
+    ],
+    "students": [
+        {
+            "name": "Michał",
+            "commits": [
+                {
+                    "stat": 1,
+                    "url": ""
+                },
+                {
+                    "stat": 1,
+                    "url": ""
+                },
+                {
+                    "stat": 2,
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "name": "Adrian",
+            "commits": [
+                {
+                    "stat": 2,
+                    "url": ""
+                },
+                {
+                    "stat": 0,
+                    "url": ""
+                },
+                {
+                    "stat": 2,
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "name": "Krzysztof",
+            "commits": [
+                {
+                    "stat": 0,
+                    "url": ""
+                },
+                {
+                    "stat": 3,
+                    "url": ""
+                },
+                {
+                    "stat": 1,
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "name": "Marcin",
+            "commits": [
+                {
+                    "stat": 0,
+                    "url": ""
+                },
+                {
+                    "stat": 2,
+                    "url": ""
+                },
+                {
+                    "stat": 2,
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "name": "Kuba",
+            "commits": [
+                {
+                    "stat": 2,
+                    "url": ""
+                },
+                {
+                    "stat": 1,
+                    "url": ""
+                },
+                {
+                    "stat": 1,
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "name": "Adam",
+            "commits": [
+                {
+                    "stat": 1,
+                    "url": ""
+                },
+                {
+                    "stat": 3,
+                    "url": ""
+                },
+                {
+                    "stat": 0,
+                    "url": ""
+                }
+            ]
+        }
+    ]
+}
