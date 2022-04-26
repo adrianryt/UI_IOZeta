@@ -1,6 +1,6 @@
 import './App.css';
-import {BrowserRouter} from "react-router-dom";
-import {Route, Routes} from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import React from "react";
 import Home from "./components/home/Home.tsx"
 import TopicsMain from "./components/topics/TopicsMain";
@@ -12,6 +12,8 @@ import NavMenu from "./components/nav_menu/NavMenu.tsx";
 import Login from "./components/login/Login.tsx";
 import Teacher from "./components/teacher/Teacher.tsx";
 import Sessions from "./components/sessions/Sessions.tsx";
+import StudentSide from './components/student/StudentSide';
+
 import SignIn from "./components/SignIn/SignUp";
 import SignUp from "./components/SignIn/SignUp";
 
@@ -33,8 +35,10 @@ function App() {
             <Route path="/subjects/new" element={<SubjectForm />} />
             <Route path="/topic/:topicID" element={<TopicSingle />} />
             <Route path="/sessions" element={<Sessions />} />
+            <Route path='student' element={<StudentSide />} />
         </Routes>
       </BrowserRouter>
+
   );
 }
 
