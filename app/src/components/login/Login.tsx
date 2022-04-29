@@ -33,8 +33,9 @@ const Login = () =>{
                                 <input name="password" className="form-control mb-3" type="password"/>
                             </label>
                         </FormGroup>
+                        <input className="btn btn-primary w-100" type="submit" value="Login"/>
+                        <Link className="btn btn-secondary d-block mt-4" to={"/signup"}>Sign up</Link>
 
-                        <input className="btn btn-outline-dark" type="submit" value="Login"/>
                     </form>
                 </Card.Body>
             </Card>
