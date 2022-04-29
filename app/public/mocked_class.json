@@ -9,6 +9,16 @@
             "title": "zadanie 1",
             "description": "napisz esej o roli przyjaźni we współczesnym świecie (300-400 słów)",
             "command": "git push checkpoint2"
+        },
+        {
+            "title": "zadanie 2",
+            "description": "Poprowadź przedmiot przez cały semestr nie zadając studentom więcej niż jednego projektu",
+            "command": "git push checkpoint3"
+        },
+        {
+            "title": "zadanie 3",
+            "description": "Napisz program liczący ciąg fibonacciego w dowolnym języku programowania",
+            "command": "git push checkpoint4"
         }
     ],
     "readmeUrl": "https://api.github.com/repos/adafruit/Adafruit_CircuitPython_CharLCD/contents/README.rst"
