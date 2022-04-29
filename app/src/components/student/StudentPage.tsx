@@ -4,7 +4,7 @@ import Readme from './Readme';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const StudentSide = (props: any) => {
+const StudentPage = (props: any) => {
 
     const [checkpoints, setCheckpoints] = useState([]);
     const [readmeUrl, setReadmeUrl] = useState("")
@@ -34,4 +34,4 @@ const StudentSide = (props: any) => {
     )
 
 }
-export default StudentSide
+export default StudentPage

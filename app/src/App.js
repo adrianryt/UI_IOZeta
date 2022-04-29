@@ -12,9 +12,10 @@ import NavMenu from "./components/nav_menu/NavMenu.tsx";
 import Login from "./components/login/Login.tsx";
 import Teacher from "./components/teacher/Teacher.tsx";
 import Sessions from "./components/sessions/Sessions.tsx";
-import StudentSide from './components/student/StudentSide';
-
+import StudentPage from './components/student/StudentPage';
+import AssignmentProgress from "./components/sessions/AssignmentProgress"
 import SignUp from "./components/SignIn/SignUp";
+
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
             <Route path="/subjects/new" element={<SubjectForm />} />
             <Route path="/topic/:topicID" element={<TopicSingle />} />
             <Route path="/sessions" element={<Sessions />} />
-            <Route path='student' element={<StudentSide />} />
+            <Route path='/student' element={<StudentPage />} />
+            <Route path='/dashboard/:sessionID' element={<AssignmentProgress />} />
         </Routes>
       </BrowserRouter>
 
