@@ -1,7 +1,6 @@
 {
     "id": 2,
     "name": "ASD",
-    "repoName": "jakies_inne_repo",
     "lecturer": {
       "name": "Janusz",
       "surname": "Nowak",

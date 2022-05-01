@@ -2,7 +2,6 @@
   {
     "id": 1,
     "name": "WDI",
-    "repoName": "jakies_tam_repo",
     "lecturer": {
       "name": "Marian",
       "surname": "Kowalski",
@@ -27,7 +26,6 @@
   {
     "id": 2,
     "name": "ASD",
-    "repoName": "jakies_inne_repo",
     "lecturer": {
       "name": "Janusz",
       "surname": "Nowak",

@@ -2,6 +2,7 @@ export default class TopicObject {
     private _title: string;
     private _description: string;
     private _subject: string;
+    private _repoName: string;
     private _id: number;
 
     get id(): number {
@@ -36,9 +37,18 @@ export default class TopicObject {
         this._subject = value;
     }
 
-    constructor(tile: string, description: string, subject: string) {
+    get repoName(): string {
+        return this._repoName;
+    }
+
+    set repoName(value: string) {
+        this._repoName = value;
+    }
+
+    constructor(tile: string, description: string, subject: string, repoName: string) {
         this._title = tile;
         this._description = description;
         this._subject = subject;
+        this._repoName = repoName
     }
 }

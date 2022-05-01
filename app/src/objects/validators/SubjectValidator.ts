@@ -25,13 +25,4 @@ export default class SubjectValidator extends Validator{
         this._nameError = "";
         return true;
     }
-
-    public validateRepoName(repoName: string){
-        if(!this.stringNotEmpty(repoName)){
-            this._repoNameError = "Repository name cannot be empty";
-            return false;
-        }
-        this._repoNameError = "";
-        return true;
-    }
 }
