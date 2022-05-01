@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./StudentPage.css"
 
-const StudentSide = (props: any) => {
+const StudentPage = (props: any) => {
 
     const [checkpoints, setCheckpoints] = useState([]);
     const [readmeUrl, setReadmeUrl] = useState("")
@@ -35,4 +35,4 @@ const StudentSide = (props: any) => {
     )
 
 }
-export default StudentSide
+export default StudentPage

@@ -13,7 +13,7 @@ const Checkpoints = (props: propsType) => {
         < ol >
             {
                 props.checkpoints.map((checkpoint: CheckpointObject) =>
-                    <Card className="checkpoint w-80 m-auto" key={checkpoint.title}>
+                    <Card className="checkpoint w-80 m-auto" key={checkpoint.title + ':' + checkpoint.description}>
                         <Card.Header>
                             {checkpoint.title}
                         </Card.Header>
