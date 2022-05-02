@@ -7,7 +7,6 @@ type propsType = {
 }
 
 const Checkpoints = (props: propsType) => {
-
     return (
 
         < ol >
@@ -19,11 +18,11 @@ const Checkpoints = (props: propsType) => {
                         </Card.Header>
                         <Card.Body>
                             <p>{checkpoint.description}</p>
-                            <input type="text" readOnly
-                                value={checkpoint.command}>
-                            </input><br />
+                            <textarea readOnly rows={checkpoint.command.length}
+                                value={checkpoint.command.join("\n")}>
+                            </textarea><br />
                             <Button onClick={() => {
-                                navigator.clipboard.writeText(checkpoint.command);  //copy git command
+                                navigator.clipboard.writeText(checkpoint.command.join(" & "));  //copy git command
                             }
                             }>Skopiuj</Button>
                         </Card.Body>

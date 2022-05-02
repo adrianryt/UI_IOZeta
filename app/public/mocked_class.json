@@ -3,22 +3,27 @@
         {
             "title": "rozgrzewka",
             "description": "zaimplementuj rozwiązanie problemu plecakowego w języku perl",
-            "command": "git push checkpoint1"
+            "command": ["git push checkpoint1","git gud"]
         },
         {
             "title": "zadanie 1",
             "description": "napisz esej o roli przyjaźni we współczesnym świecie (300-400 słów)",
-            "command": "git push checkpoint2"
+            "command": [
+                "git add .",
+                "git push checkpoint2",
+                "git commit",
+                "git branch -dr"
+            ]
         },
         {
             "title": "zadanie 2",
             "description": "Poprowadź przedmiot przez cały semestr nie zadając studentom więcej niż jednego projektu",
-            "command": "git push checkpoint3"
+            "command": ["git push checkpoint3"]
         },
         {
             "title": "zadanie 3",
             "description": "Napisz program liczący ciąg fibonacciego w dowolnym języku programowania",
-            "command": "git push checkpoint4"
+            "command": ["git push checkpoint4"]
         }
     ],
     "readmeUrl": "https://api.github.com/repos/antlr/antlr4/contents/README.md"

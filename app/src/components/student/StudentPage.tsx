@@ -4,10 +4,11 @@ import Readme from './Readme';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./StudentPage.css"
+import CheckpointObject from '../../objects/CheckpointObject';
 
 const StudentPage = (props: any) => {
 
-    const [checkpoints, setCheckpoints] = useState([]);
+    const [checkpoints, setCheckpoints] = useState([new CheckpointObject("", "", [])]);
     const [readmeUrl, setReadmeUrl] = useState("")
 
     useEffect(() => {

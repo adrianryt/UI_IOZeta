@@ -17,10 +17,10 @@
     margin: 8px auto;
 }
 
-#checkpoints input[type=text] {
+#checkpoints textarea {
     font-family: 'Courier New', Courier, monospace;
 }
 
-#checkpoints input[type=text], .btn {
+#checkpoints textarea, .btn {
     width: 100%;
 }
