@@ -7,10 +7,8 @@ import "./StudentPage.css"
 import CheckpointObject from '../../objects/CheckpointObject';
 
 const StudentPage = (props: any) => {
-
     const [checkpoints, setCheckpoints] = useState([new CheckpointObject("", "", [])]);
     const [readmeUrl, setReadmeUrl] = useState("")
-
     useEffect(() => {
         axios.get("/mocked_class.json")
             .then((response: any) => {   //TODO: endpoint z danymi sesji
@@ -31,7 +29,6 @@ const StudentPage = (props: any) => {
             <div id="checkpoints" className='d-flex justify-content-center col-lg-3'>
                 <Checkpoints checkpoints={checkpoints} />
             </div>
-
         </div >
     )
 
