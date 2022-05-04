@@ -1,0 +1,26 @@
+.row>#readme, #checkpoints {
+    padding: 48px;
+}
+
+#readme, #checkpoints>ol {
+    max-height: 80vh;
+}
+
+
+
+#checkpoints ol, #readme .card-body {
+    height: 100%;
+    overflow: auto;
+}
+
+#checkpoints .checkpoint .card-body :not(p) {
+    margin: 8px auto;
+}
+
+#checkpoints textarea {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#checkpoints textarea, .btn {
+    width: 100%;
+}

@@ -1,7 +1,7 @@
 export default class CheckpointObject {
     private _title: string;
     private _description: string;
-    private _command: string;
+    private _command: string[];
 
 
     get title(): string {
@@ -20,15 +20,15 @@ export default class CheckpointObject {
         this._description = value;
     }
 
-    get command(): string {
+    get command(): string[] {
         return this._command;
     }
 
-    set command(value: string) {
+    set command(value: string[]) {
         this._command = value;
     }
 
-    constructor(tile: string, description: string, command: string) {
+    constructor(tile: string, description: string, command: string[]) {
         this._title = tile;
         this._description = description;
         this._command = command;
