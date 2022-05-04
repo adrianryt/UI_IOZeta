@@ -36,6 +36,7 @@ const TopicForm = () => {
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [subject, setSubject] = useState<string>("");
+    const [repoName, setRepoName] = useState<string>("");
 
     const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
     const [showFailAlert, setShowFailAlert] = useState<boolean>(false);
@@ -43,6 +44,7 @@ const TopicForm = () => {
     const handleTitleChange = (e:React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
     const handleDescriptionChange = (e:React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value);
     const handleSubjectChange = (e:React.ChangeEvent<HTMLSelectElement>) => setSubject(e.target.value);
+    const handleRepoNameChange = (e:React.ChangeEvent<HTMLInputElement>) => setRepoName(e.target.value);
 
     const handleRequestSucceed = () => {
         setShowSuccessAlert(true);
@@ -52,6 +54,7 @@ const TopicForm = () => {
         setTitle("");
         setDescription("");
         setSubject(subjects.length > 0 ? subjects[0].id.toString() : "");
+        setRepoName("");
     }
 
     const handleRequestFailed = () => {
@@ -64,7 +67,7 @@ const TopicForm = () => {
     const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const topicValidator: TopicValidator = new TopicValidator();
-        if(topicValidator.validateTitle(title) && topicValidator.validateDescription(description) && topicValidator.validateSubject(subject)){
+        if(topicValidator.validateTitle(title) && topicValidator.validateDescription(description) && topicValidator.validateSubject(subject) && topicValidator.validateRepoName(repoName)){
             // TODO make POST/PUT request to add Topic to database
             handleRequestSucceed();
         }
@@ -74,11 +77,13 @@ const TopicForm = () => {
         setSubjectError(topicValidator.subjectError);
         setTitleError(topicValidator.titleError);
         setDescriptionError(topicValidator.descriptionError);
+        setRepoNameError(topicValidator.repoNameError);
     }
 
-    const [titleError, setTitleError] = useState("");
-    const [descriptionError, setDescriptionError] = useState("");
-    const [subjectError, setSubjectError] = useState("");
+    const [titleError, setTitleError] = useState<string>("");
+    const [descriptionError, setDescriptionError] = useState<string>("");
+    const [subjectError, setSubjectError] = useState<string>("");
+    const [repoNameError, setRepoNameError] = useState<string>("");
 
     return(
         <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 m-lg-3 p-3 bg-light">
@@ -95,6 +100,11 @@ const TopicForm = () => {
                     <label htmlFor="descriptionTopicForm">Description</label>
                     <FormControl id="descriptionTopicForm" placeholder="Enter description" value={description} onChange={handleDescriptionChange} />
                     <FormText className="text-danger me-5">{descriptionError}</FormText>
+                </FormGroup>
+                <FormGroup>
+                    <label htmlFor="descriptionTopicForm">Repository Name</label>
+                    <FormControl id="descriptionTopicForm" placeholder="Enter repository name" value={repoName} onChange={handleRepoNameChange} />
+                    <FormText className="text-danger me-5">{repoNameError}</FormText>
                 </FormGroup>
                 <FormGroup>
                     <label htmlFor="subjectTopicForm">Subject</label>

@@ -13,7 +13,7 @@ const TopicsList = () => {
     useEffect(() => {
         axios.get("/mocked_topics.json").then((response) => {
             setAllTopics(response.data);
-            setTopicsComponent(response.data.map((topic: TopicObject) => <Topic key={topic.title+topic.description+topic.subject} topic={topic}/>));
+            setTopicsComponent(response.data.map((topic: TopicObject) => <Topic key={topic.title+topic.description+topic.subject+topic.repoName} topic={topic}/>));
         }).catch((e) => {
             console.error("cannot fetch topics: "+e);
         });

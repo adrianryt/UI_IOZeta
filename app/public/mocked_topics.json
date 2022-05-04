@@ -3,17 +3,20 @@
     "id": 1,
     "subject": "WDI",
     "title": "Szachy Zaśśś",
+    "repoName": "some_repo_name_1",
     "description": "Bardzo trudny temat do zrobienia"
   },
   {
     "id": 2,
     "subject": "ASD",
+    "repoName": "some_repo_name_2",
     "title": "Graf tablic haszujących grafów sortujących tablice haszujące",
     "description": "Chyba też trudne"
   },
   {
     "id": 3,
     "subject": "WDI",
+    "repoName": "some_repo_name_3",
     "title": "MIG MANO SIE WY... wrociło pół roku UJE...mne punkty dostało",
     "description": "Tricky takie"
   },
@@ -21,10 +24,12 @@
     "id": 4,
     "subject": "Unix",
     "title": "Pętla w bashu razy 3",
+    "repoName": "some_repo_name_4",
     "description": "To już nie takie trudne"
   },
   {
     "id": 5,
+    "repoName": "some_repo_name_5",
     "subject": "Kompetencje Interpersonalne",
     "title": "Czy wytrzymamy to psychicznie?",
     "description": "A to już raczej trudniejsze niestety"

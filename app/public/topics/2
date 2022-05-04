@@ -1,6 +1,7 @@
 {
     "id": 2,
     "subject": "WDI",
+    "repoName": "some_repo_name_2",
     "title": "Graf tablic haszujących grafów sortujących tablice haszujące",
     "description": "Chyba też trudne"
 }

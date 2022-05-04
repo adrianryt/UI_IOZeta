@@ -4,7 +4,11 @@ export default class TopicValidator extends Validator{
     private _titleError: string = "";
     private _subjectError: string = "";
     private _descriptionError: string = "";
+    private _repoNameError: string = "";
 
+    get repoNameError(): string{
+        return this._repoNameError;
+    }
 
     get titleError(): string {
         return this._titleError;
@@ -42,6 +46,15 @@ export default class TopicValidator extends Validator{
             return false;
         }
         this._titleError = "";
+        return true;
+    }
+
+    public validateRepoName(repoName: string){
+        if(!this.stringNotEmpty(repoName)){
+            this._repoNameError = "Repository name cannot be empty";
+            return false;
+        }
+        this._repoNameError = "";
         return true;
     }
 }

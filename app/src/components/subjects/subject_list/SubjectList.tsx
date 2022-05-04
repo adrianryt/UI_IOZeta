@@ -17,7 +17,7 @@ const SubjectList = () => {
         })
     }, [])
 
-    const subjectComponents = subjects.map((subject) => <SubjectComponent subject={subject} key={subject.name+""+subject.lecturer.name+""+subject.lecturer.surname+""+subject.repoName} />)
+    const subjectComponents = subjects.map((subject) => <SubjectComponent subject={subject} key={subject.name+""+subject.lecturer.name+""+subject.lecturer.surname} />)
 
     return(
         <div>

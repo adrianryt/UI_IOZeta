@@ -12,6 +12,7 @@ const Topic = (props: propsType) => {
             <Card.Header className="bg bg-info">{props.topic.title} | {props.topic.subject}</Card.Header>
             <Card.Body>
                 <div className="mb-3">{props.topic.description}</div>
+                <div className="mb-3">repository name: {props.topic.repoName}</div>
                 <Button>Create Session</Button>
             </Card.Body>
         </Card>
