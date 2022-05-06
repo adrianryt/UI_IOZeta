@@ -25,6 +25,7 @@
 @media(min-height: 501px) {
     .teacher-main-menu > div{
         top: 0px;
+        z-index: -1;
     }
 }
 
