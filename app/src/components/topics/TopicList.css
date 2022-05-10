@@ -1,0 +1,10 @@
+@media(max-width: 500px) {
+    .topic-list-flex{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.topic-list-flex > *{
+    max-width: 150px;
+}

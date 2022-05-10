@@ -4,6 +4,8 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Topic from "./Topic";
 import {Dropdown, DropdownButton} from "react-bootstrap";
+import {Link} from "react-router-dom";
+import "./TopicList.css"
 
 const TopicsList = () => {
 
@@ -40,12 +42,18 @@ const TopicsList = () => {
     const allTopicsComponents = allTopics.map(topic => <Topic key={topic.title+topic.description+topic.subject} topic={topic}/>);
 
     return(
-        <div className="m-lg-2">
-            <DropdownButton className="m-2" id="dropdown-basic-button" title="Select subject">
-                {dropdownItems}
-            </DropdownButton>
-            {topicsComponents}
-        </div>
+        <>
+            <div className="topic-list-flex d-flex gap-3 mb-4 mt-2 m-lg-3">
+                <h2>Topics</h2>
+                <Link to="/topics/new" className="btn btn-secondary">Add new Topic</Link>
+                <DropdownButton className="m-2" id="dropdown-basic-button" title="Select subject">
+                    {dropdownItems}
+                </DropdownButton>
+            </div>
+            <div className="m-lg-2">
+                {topicsComponents}
+            </div>
+        </>
     )
 }
 

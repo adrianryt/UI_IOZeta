@@ -26,7 +26,7 @@ const SubjectComponent = ({ session }: propsType) => {
 
                     {session.status == 0 && <Link to={"/dashboard/" + session.id} className="btn btn-primary">Open session</Link>}
                     {session.status == 1 && <Button className="btn btn-primary">Close session</Button>}
-                    {session.status == 1 && <Link to={"/dashboard/" + session.id} className="btn btn-primary">Resume session</Link>}
+                    {session.status == 1 && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-3">Resume session</Link>}
                     {/* <Link to={"/dashboard/" + session.id} className="btn btn-primary">Open session</Link> */}
                     {/* ^getting certain session data */}
                 </div>

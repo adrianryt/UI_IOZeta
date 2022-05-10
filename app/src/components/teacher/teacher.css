@@ -1,0 +1,34 @@
+@media(max-height: 200px) {
+    .teacher-main-menu > div{
+        top: 170px;
+    }
+}
+
+@media(max-height: 300px) and (min-height: 201px) {
+    .teacher-main-menu > div{
+        top: 120px;
+    }
+}
+
+@media(max-height: 400px) and (min-height: 301px) {
+    .teacher-main-menu > div{
+        top: 70px;
+    }
+}
+
+@media(max-height: 500px) and (min-height: 401px) {
+    .teacher-main-menu > div{
+        top: 30px;
+    }
+}
+
+@media(min-height: 501px) {
+    .teacher-main-menu > div{
+        top: 0px;
+        z-index: -1;
+    }
+}
+
+.teacher-main-menu a{
+    background-color: #e8f6fa;
+}
