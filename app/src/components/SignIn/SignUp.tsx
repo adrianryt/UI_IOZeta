@@ -42,6 +42,9 @@ const SignUp = () =>{
                 },
                 data: loginParams
             }).then((response) => {
+                document.cookie = `access_token=${response.data.access_token}; Max-Age=${60 * 60}; Path=/; Secure=true`
+                document.cookie = `refresh_token=${response.data.refresh_token}; Max-Age=${24 * 60 * 60}; Path=/; Secure=true`
+                document.cookie = `username=${nickname}; Max-Age=${60 * 60}; Path=/; Secure=true`
                 navigate("/teacher");
             }).catch((e) => {
                 console.error("cannot login user: "+e);
