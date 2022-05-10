@@ -3,6 +3,7 @@ import '../nav_menu/NavMenu.css'
 import {Card, FormGroup} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import axios, {AxiosResponse} from "axios";
 
 
 
@@ -23,7 +24,33 @@ const SignUp = () =>{
 
     const handleFormSubmit = (e: React.FormEvent) =>{
         e.preventDefault();
-        navigate("/teacher");
+        axios({
+            url: "http://localhost:8080/api/lecturer/save",
+            method: "POST",
+            data: {
+                password, surname, name: firstName, gitNick: nickname, gitToken: token
+            }
+        }).then((response: AxiosResponse<any>) => {
+            const loginParams = new URLSearchParams()
+            loginParams.append('username', nickname)
+            loginParams.append('password', password)
+            axios({
+                url: "http://localhost:8080/api/login",
+                method: "POST",
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded"
+                },
+                data: loginParams
+            }).then((response) => {
+                navigate("/teacher");
+            }).catch((e) => {
+                console.error("cannot login user: "+e);
+            })
+
+        }).catch((e) => {
+            console.error("cannot register user: "+e);
+        })
+
     }
 
     return(
