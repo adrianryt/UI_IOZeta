@@ -45,7 +45,7 @@ const TopicsList = () => {
         <>
             <div className="topic-list-flex d-flex gap-3 mb-4 mt-2 m-lg-3">
                 <h2>Topics</h2>
-                <Link to="/topics/new" className="btn btn-secondary m-0 p-0">Add new Topic</Link>
+                <Link to="/topics/new" className="btn btn-secondary">Add new Topic</Link>
                 <DropdownButton className="m-2" id="dropdown-basic-button" title="Select subject">
                     {dropdownItems}
                 </DropdownButton>
