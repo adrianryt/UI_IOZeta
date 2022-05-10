@@ -1,14 +1,25 @@
 import * as React from "react";
 import '../nav_menu/NavMenu.css'
-import {Button, Card, FormGroup} from "react-bootstrap";
-import {Link, useNavigate} from "react-router-dom";
-import {FormEvent} from "react";
+import {Card, FormGroup} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 
 
 const SignUp = () =>{
-
     const navigate = useNavigate();
+
+    const [firstName, setFirstName] = useState<string>("");
+    const [surname, setSurname] = useState<string>("");
+    const [nickname, setNickname] = useState<string>("");
+    const [token, setToken] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+    const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)
+    const handleSurnameChange = (e: React.ChangeEvent<HTMLInputElement>) => setSurname(e.target.value)
+    const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => setNickname(e.target.value)
+    const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => setToken(e.target.value)
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
 
     const handleFormSubmit = (e: React.FormEvent) =>{
         e.preventDefault();
@@ -24,31 +35,31 @@ const SignUp = () =>{
                         <FormGroup>
                             <label>
                                 First name:
-                                <input name="firstName" className="form-control" type="text"/>
+                                <input name="firstName" className="form-control" type="text" value={firstName} onChange={handleFirstNameChange}/>
                             </label>
                         </FormGroup>
                         <FormGroup>
                             <label>
                                 Surname:
-                                <input name="surname" className="form-control" type="text"/>
+                                <input name="surname" className="form-control" type="text" value={surname} onChange={handleSurnameChange}/>
                             </label>
                         </FormGroup>
                         <FormGroup>
                             <label>
                                 Github nickname:
-                                <input name="nickname" className="form-control" type="text"/>
+                                <input name="nickname" className="form-control" type="text" value={nickname} onChange={handleNicknameChange}/>
                             </label>
                         </FormGroup>
                         <FormGroup>
                             <label>
                                 Github token:
-                                <input name="token" className="form-control" type="text"/>
+                                <input name="token" className="form-control" type="text" value={token} onChange={handleTokenChange}/>
                             </label>
                         </FormGroup>
                         <FormGroup>
                             <label>
                                 Password:
-                                <input name="password" className="form-control mb-3" type="password"/>
+                                <input name="password" className="form-control mb-3" type="password" value={password} onChange={handlePasswordChange}/>
                             </label>
                         </FormGroup>
                         <input className="btn btn-outline-dark" type="submit" value="Create account"/>
