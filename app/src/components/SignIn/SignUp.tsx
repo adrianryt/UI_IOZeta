@@ -46,7 +46,12 @@ const SignUp = () =>{
                 setCookie("access_token", response.data.access_token, {maxAge: 60*60, path: "/", secure: true});
                 setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: true});
                 setCookie("username", nickname, {maxAge: 60*60, path: "/", secure: true});
-                navigate("/teacher");
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve(navigate("/teacher"))
+                    }, 500)
+                })
+
             }).catch((e) => {
                 console.error("cannot login user: "+e);
             })
