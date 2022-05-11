@@ -4,11 +4,12 @@ import {Card, FormGroup} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios, {AxiosResponse} from "axios";
-
+import {useCookies} from "react-cookie";
 
 
 const SignUp = () =>{
     const navigate = useNavigate();
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username']);
 
     const [firstName, setFirstName] = useState<string>("");
     const [surname, setSurname] = useState<string>("");
@@ -42,9 +43,9 @@ const SignUp = () =>{
                 },
                 data: loginParams
             }).then((response) => {
-                document.cookie = `access_token=${response.data.access_token}; Max-Age=${60 * 60}; Path=/; Secure=true`
-                document.cookie = `refresh_token=${response.data.refresh_token}; Max-Age=${24 * 60 * 60}; Path=/; Secure=true`
-                document.cookie = `username=${nickname}; Max-Age=${60 * 60}; Path=/; Secure=true`
+                setCookie("access_token", response.data.access_token, {maxAge: 60*60, path: "/", secure: true});
+                setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: true});
+                setCookie("username", nickname, {maxAge: 60*60, path: "/", secure: true});
                 navigate("/teacher");
             }).catch((e) => {
                 console.error("cannot login user: "+e);
