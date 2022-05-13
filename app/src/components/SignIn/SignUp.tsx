@@ -1,12 +1,32 @@
 import * as React from "react";
 import '../nav_menu/NavMenu.css'
-import {Button, Card, FormGroup} from "react-bootstrap";
-import {Link, useNavigate} from "react-router-dom";
-import {FormEvent} from "react";
+import {Card, FormGroup, OverlayTrigger, Popover} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
+import { BsFillInfoSquareFill } from "react-icons/bs";
 
+const SignUp = () => {
 
+    const usernamePopover = (
+        <Popover id="popover-basic">
+            <Popover.Body className="text-light bg-dark">
+                Put your github username here
+            </Popover.Body>
+        </Popover>
+    );
 
-const SignUp = () =>{
+    const tokenPopover = (
+        <Popover id="popover-basic">
+            <Popover.Body className="text-light bg-dark">
+                <p>
+                    You can create token <a href="https://github.com/settings/tokens">here</a>. Permits needed:
+                    <ul>
+                        <li>first</li>
+                        <li>second</li>
+                    </ul>
+                </p>
+            </Popover.Body>
+        </Popover>
+    );
 
     const navigate = useNavigate();
 
@@ -38,12 +58,24 @@ const SignUp = () =>{
                                 Github nickname:
                                 <input name="nickname" className="form-control" type="text"/>
                             </label>
+                            <OverlayTrigger
+                                placement="right"
+                                overlay={usernamePopover}
+                            >
+                                <div className="d-inline ms-2"><BsFillInfoSquareFill className="fs-4"/></div>
+                            </OverlayTrigger>
                         </FormGroup>
                         <FormGroup>
                             <label>
                                 Github token:
                                 <input name="token" className="form-control" type="text"/>
                             </label>
+                            <OverlayTrigger
+                                placement="right"
+                                overlay={tokenPopover}
+                            >
+                                <div className="d-inline ms-2"><BsFillInfoSquareFill className="fs-4"/></div>
+                            </OverlayTrigger>
                         </FormGroup>
                         <FormGroup>
                             <label>
