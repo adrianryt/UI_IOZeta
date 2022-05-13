@@ -6,7 +6,7 @@ const NavMenu = () => {
 
     return(
         <nav className="mt-3">
-            <div className="d-flex flex-row justify-content-between px-3">
+            <div className="d-flex flex-row flex-wrap justify-content-between px-3">
                 <div>
                         <Link className="btn btn-primary d-block" to={"/"}>Home</Link>
                 </div>

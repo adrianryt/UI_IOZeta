@@ -21,9 +21,9 @@ const SubjectList = () => {
 
     return(
         <div>
-            <div className="ms-2 mt-2 mb-5 m-lg-3 d-flex gap-3">
-                <Link to="/subjects/new" className="btn btn-secondary">Add new Subject</Link>
-                <Link to="/topics" className="btn btn-secondary">Show all topics</Link>
+            <div className="row mx-2 my-3 m-lg-3 d-flex p-3">
+                <Link to="/subjects/new" className="btn btn-secondary col-sm-6">Add new Subject</Link>
+                <Link to="/topics" className="btn btn-secondary col-sm-6">Show all topics</Link>
             </div>
             <h1 className="mx-auto text-center">Subjects</h1>
             <div id="subjectsContainer">
