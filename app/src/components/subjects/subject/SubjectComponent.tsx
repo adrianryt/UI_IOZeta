@@ -14,14 +14,14 @@ const SubjectComponent = ({subject}: propsType) => {
     </div>)
 
     return(
-        <Card className="mx-auto my-3 border-3 col-sm-10 col-md-8 col-lg-6 col-11">
+        <Card className="mx-auto my-3 border-3 col-sm-10 col-md-8 col-lg-6 col-11 text-center">
             <Card.Header className="bg bg-info">
                 <h4 className="m-auto">{subject.name} </h4>
                 {/* | {subject.lecturer.name} {subject.lecturer.surname} */}
             </Card.Header>
             <Card.Body>
                 <div>
-                    <h6>List of topics:</h6>
+                    <h5>List of topics:</h5>
                     {topicList}
                 </div>
                 <hr />
