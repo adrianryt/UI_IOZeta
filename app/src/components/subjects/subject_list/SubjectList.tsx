@@ -25,7 +25,10 @@ const SubjectList = () => {
                 <Link to="/subjects/new" className="btn btn-secondary">Add new Subject</Link>
                 <Link to="/topics" className="btn btn-secondary">Show all topics</Link>
             </div>
-            {subjectComponents}
+            <h1 className="mx-auto text-center">Subjects</h1>
+            <div id="subjectsContainer">
+                {subjectComponents}
+            </div>
         </div>
     )
 }
