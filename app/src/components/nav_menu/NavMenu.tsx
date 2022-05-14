@@ -11,6 +11,7 @@ const NavMenu = (props: {loggedUserName: string | null, setLoggedUser: (name: st
         removeCookie("username");
         removeCookie("refresh_token");
         removeCookie("access_token");
+        props.setLoggedUser("");
     }
 
     const handleLoginState = () => {

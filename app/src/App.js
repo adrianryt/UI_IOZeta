@@ -21,21 +21,9 @@ import CookieService from "./objects/services/CookieService";
 function App() {
     const [loggedUserName, setLoggedUserName] = useState(null);
 
-    useEffect(async () => {
-        while(true){
-            const readUsername = await new Promise(resolve => {
-                setTimeout(() => {
-                    resolve(CookieService.getCookie("username"))
-                }, 100)
-            });
-            if(readUsername !== loggedUserName){
-                setLoggedUserName(readUsername);
-                if(readUsername !== null){
-                    break;
-                }
-            }
-        }
-    }, [loggedUserName])
+    useEffect(() => {
+        setLoggedUserName(CookieService.getCookie("username"));
+    }, [])
 
     const userShouldBeLoggedIn = (component) => {
         if(loggedUserName !== "" && loggedUserName !== undefined){
@@ -52,16 +40,13 @@ function App() {
     }
 
   return (
-      <BrowserRouter>
-          <NavMenu loggedUserName={loggedUserName} setLoggedUser={setLoggedUserName}/>
+    <BrowserRouter>
+        <NavMenu loggedUserName={loggedUserName} setLoggedUser={setLoggedUserName}/>
         <Routes>
-          <Route path="/" element={<Home />}>
-
-          </Route>
-            <Route path="/login" element={userShouldNotBeLoggedIn(<Login/>)} />
-            <Route path="/signup" element={userShouldNotBeLoggedIn(<SignUp/>)} />
-            <Route path="/teacher" element={loggedUserName !== null ? userShouldBeLoggedIn(<Teacher/>) : null} />
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={userShouldNotBeLoggedIn(<Login setUserLogin={setLoggedUserName} />)} />
+            <Route path="/signup" element={userShouldNotBeLoggedIn(<SignUp setUserLogin={setLoggedUserName} />)} />
+            <Route path="/teacher" element={loggedUserName !== null ? userShouldBeLoggedIn(<Teacher/>) : null} />
             <Route path="/topics" element={loggedUserName !== null ? userShouldBeLoggedIn(<TopicsMain/>) : null} />
             <Route path="/topics/new" element={loggedUserName !== null ? userShouldBeLoggedIn(<TopicForm />) : null} />
             <Route path="/subjects" element={loggedUserName !== null ? userShouldBeLoggedIn(<SubjectList />) : null} />
@@ -71,7 +56,7 @@ function App() {
             <Route path='/student' element={<StudentPage />} />
             <Route path='/dashboard/:sessionID' element={<AssignmentProgress />} />
         </Routes>
-      </BrowserRouter>
+    </BrowserRouter>
 
   );
 }

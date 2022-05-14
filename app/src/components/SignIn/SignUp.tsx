@@ -8,7 +8,7 @@ import {useCookies} from "react-cookie";
 import SignUpValidator from "../../objects/validators/SignUpValidator";
 
 
-const SignUp = () =>{
+const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
     const navigate = useNavigate();
     const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username']);
 
@@ -61,11 +61,8 @@ const SignUp = () =>{
                     setCookie("access_token", response.data.access_token, {maxAge: 60*60, path: "/", secure: true});
                     setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: true});
                     setCookie("username", nickname, {maxAge: 60*60, path: "/", secure: true});
-                    return new Promise(resolve => {
-                        setTimeout(() => {
-                            resolve(navigate("/teacher"))
-                        }, 500)
-                    })
+                    props.setUserLogin(nickname);
+                    navigate("/teacher")
 
                 }).catch((e) => {
                     console.error("cannot login user: "+e);

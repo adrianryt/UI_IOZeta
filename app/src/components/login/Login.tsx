@@ -1,15 +1,15 @@
 import * as React from "react";
 import '../nav_menu/NavMenu.css'
-import {Button, Card, FormGroup, FormText} from "react-bootstrap";
+import {Card, FormGroup, FormText} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
-import {FormEvent, useState} from "react";
+import {useState} from "react";
 import LoginValidator from "../../objects/validators/LoginValidator";
 import axios from "axios";
 import {useCookies} from "react-cookie";
 
 
 
-const Login = () =>{
+const Login = (props: {setUserLogin: (name: string) => string}) =>{
     const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username']);
 
     const [loginError, setLoginError] = useState<string>("");
@@ -43,12 +43,8 @@ const Login = () =>{
                 setCookie("access_token", response.data.access_token, {maxAge: 60*60, path: "/", secure: true});
                 setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: true});
                 setCookie("username", login, {maxAge: 60*60, path: "/", secure: true});
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        resolve(navigate("/teacher"))
-                    }, 500)
-                })
-
+                props.setUserLogin(login);
+                navigate("/teacher");
             }).catch((e) => {
                 setPasswordError("login or password is incorrect")
             })
