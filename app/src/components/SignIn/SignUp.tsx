@@ -1,12 +1,12 @@
 import * as React from "react";
 import '../nav_menu/NavMenu.css'
-import {Card, FormGroup, FormText} from "react-bootstrap";
+import {Card, FormGroup, FormText, OverlayTrigger, Popover} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios, {AxiosResponse} from "axios";
 import {useCookies} from "react-cookie";
 import SignUpValidator from "../../objects/validators/SignUpValidator";
-
+import { BsFillInfoSquareFill } from "react-icons/bs";
 
 const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
     const navigate = useNavigate();
@@ -17,6 +17,27 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
     const [nickname, setNickname] = useState<string>("");
     const [token, setToken] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const usernamePopover = (
+        <Popover id="popover-basic">
+            <Popover.Body className="text-light bg-dark">
+                Put your github username here
+            </Popover.Body>
+        </Popover>
+    );
+
+    const tokenPopover = (
+        <Popover id="popover-basic">
+            <Popover.Body className="text-light bg-dark">
+                <p>
+                    You can create token <a href="https://github.com/settings/tokens">here</a>. Permits needed:
+                    <ul>
+                        <li>first</li>
+                        <li>second</li>
+                    </ul>
+                </p>
+            </Popover.Body>
+        </Popover>
+    );
 
     const [firstNameError, setFirstNameError] = useState<string>("");
     const [surnameError, setSurnameError] = useState<string>("");
@@ -108,6 +129,12 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                                 <input name="nickname" className="form-control" type="text" value={nickname} onChange={handleNicknameChange}/>
                             </label>
                             <FormText className="text-danger mb-4 row">{nicknameError}</FormText>
+                            <OverlayTrigger
+                                placement="right"
+                                overlay={usernamePopover}
+                            >
+                                <div className="d-inline ms-2"><BsFillInfoSquareFill className="fs-4"/></div>
+                            </OverlayTrigger>
                         </FormGroup>
                         <FormGroup>
                             <label>
@@ -115,6 +142,12 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                                 <input name="token" className="form-control" type="text" value={token} onChange={handleTokenChange}/>
                             </label>
                             <FormText className="text-danger mb-4 row">{tokenError}</FormText>
+                            <OverlayTrigger
+                                placement="right"
+                                overlay={tokenPopover}
+                            >
+                                <div className="d-inline ms-2"><BsFillInfoSquareFill className="fs-4"/></div>
+                            </OverlayTrigger>
                         </FormGroup>
                         <FormGroup>
                             <label>
