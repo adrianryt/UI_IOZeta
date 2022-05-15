@@ -4,6 +4,7 @@ import axios from "axios";
 import TopicObject from "../../objects/TopicObject";
 import Topic from "./Topic";
 import {useParams} from "react-router-dom";
+import CookieService from "../../objects/services/CookieService";
 
 const TopicSingle = () => {
 
@@ -12,7 +13,11 @@ const TopicSingle = () => {
     const params = useParams();
 
     useEffect(() => {
-        axios.get("/topics/"+params.topicID).then((response) => {
+        axios.get("http://localhost:8080/topics/"+params.topicID, {
+            headers: {
+                "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
+            }
+        }).then((response) => {
             setTopic(response.data)
         }).catch((e) => {
             console.error("error while fetching topic: "+e);
