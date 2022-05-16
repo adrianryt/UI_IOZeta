@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import '../nav_menu/NavMenu.css'
 import {Card, FormGroup, FormText, OverlayTrigger, Popover, Button} from "react-bootstrap";
 import {useNavigate, Link} from "react-router-dom";
 import {useState, FormEvent} from "react";
