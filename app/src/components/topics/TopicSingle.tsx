@@ -12,7 +12,7 @@ const TopicSingle = () => {
     const params = useParams();
 
     useEffect(() => {
-        axios.get("/topics/"+params.topicID).then((response) => {
+        axios.get("/task/"+params.topicID).then((response) => {
             setTopic(response.data)
         }).catch((e) => {
             console.error("error while fetching topic: "+e);

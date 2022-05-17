@@ -5,12 +5,12 @@ import TopicValidator from "../../objects/validators/TopicValidator";
 import axios from "axios";
 import Subject from "../../objects/Subject";
 import {useSearchParams} from "react-router-dom";
+import CookieService from "../../objects/services/CookieService";
 
 
 type Checkpoint = {
     title?: string,
     description?: string,
-    commands?: string[],
 }
 
 const TopicForm = () => {
@@ -46,7 +46,7 @@ const TopicForm = () => {
     const [githubUsername, setGithubUsername] = useState<string>("");
     const [subject, setSubject] = useState<string>("");
     const [repoName, setRepoName] = useState<string>("");
-    const [repoLink, setRepoLink] = useState<string>("");
+    const [readmeLink, setReadmeLink] = useState<string>("");
 
     const [checkpointsNumber, setCheckpointsNumber] = useState<undefined | number>(undefined)
     const [checkpoints, setCheckpoints] = useState<(Checkpoint | undefined)[]>([]);
@@ -58,7 +58,7 @@ const TopicForm = () => {
     const handleGithubUsernameChange= (e:React.ChangeEvent<HTMLInputElement>) => setGithubUsername(e.target.value);
     const handleSubjectChange = (e:React.ChangeEvent<HTMLSelectElement>) => setSubject(e.target.value);
     const handleRepoNameChange = (e:React.ChangeEvent<HTMLInputElement>) => setRepoName(e.target.value);
-    const handleRepoLinkChange = (e:React.ChangeEvent<HTMLInputElement>) => setRepoLink(e.target.value);
+    const handleReadmeLinkChange = (e:React.ChangeEvent<HTMLInputElement>) => setReadmeLink(e.target.value);
 
     const handleCheckpointNumberChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         let currentValue = parseInt(e.target.value, 10);
@@ -95,7 +95,7 @@ const TopicForm = () => {
             topicValidator.validateSubject(subject) &&
             topicValidator.validateRepoName(repoName) &&
             topicValidator.validateGithubUsername(githubUsername) &&
-            topicValidator.validateRepoLink(repoLink)){
+            topicValidator.validateReadmeLink(readmeLink)){
             // TODO make POST/PUT request to add Topic to database
 
             const data = {
@@ -103,11 +103,16 @@ const TopicForm = () => {
                 lecturerGitNick: githubUsername,
                 repositoryName: repoName,
                 subject,
-                repositoryLink: repoLink,
+                readmeLink: readmeLink,
                 checkpointsContent: checkpoints,
             }
             axios
-                .post("http://localhost:8080/task/add", data)
+                .post("http://localhost:8080/task/add",
+                    data, {
+                        headers: {
+                            "authorization": `Bearer ${CookieService.getCookie("access_token")}`
+                        }
+                    })
                 .then((response) => {
                     if (response.status === 200) {
                         setMessage("Topic added");
@@ -126,15 +131,14 @@ const TopicForm = () => {
         setTitleError(topicValidator.titleError);
         setGithubUsernameError(topicValidator.githubUsernameError)
         setRepoNameError(topicValidator.repoNameError);
-        setRepoLinkError(topicValidator.repoLinkError);
+        setReadmeLinkError(topicValidator.readmeLinkError);
     }
 
     const [titleError, setTitleError] = useState<string>("");
     const [githubUsernameError, setGithubUsernameError] = useState<string>("");
     const [subjectError, setSubjectError] = useState<string>("");
     const [repoNameError, setRepoNameError] = useState<string>("");
-    const [repoLinkError, setRepoLinkError] = useState<string>("");
-
+    const [readmeLinkError, setReadmeLinkError] = useState<string>("");
 
     return(
         <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 m-lg-3 p-3 bg-light">
@@ -159,9 +163,9 @@ const TopicForm = () => {
                     <FormText className="text-danger me-5">{repoNameError}</FormText>
                 </FormGroup>
                 <FormGroup>
-                    <label htmlFor="repoLinkForm">Repository Link</label>
-                    <FormControl id="repoLinkForm" placeholder="Enter repository link" value={repoLink} onChange={handleRepoLinkChange} />
-                    <FormText className="text-danger me-5">{repoLinkError}</FormText>
+                    <label htmlFor="ReadMeLinkForm">README Link</label>
+                    <FormControl id="ReamMeLinkForm" placeholder="Enter README link" value={readmeLink} onChange={handleReadmeLinkChange} />
+                    <FormText className="text-danger me-5">{readmeLinkError}</FormText>
                 </FormGroup>
                 <FormGroup>
                     <label htmlFor="subjectTopicForm">Subject</label>
@@ -173,7 +177,6 @@ const TopicForm = () => {
                 <FormGroup>
                     <label htmlFor="checkpointsNumber">Number of checkpoints</label>
                     <FormControl id="checkpointsNumber" placeholder="Enter number of checkpoints" value={checkpointsNumber} onChange={handleCheckpointNumberChange} />
-                    <FormText className="text-danger me-5">{repoLinkError}</FormText>
                 </FormGroup>
                 {!!checkpointsNumber &&
                     checkpoints.slice(0, checkpointsNumber).map((el, id) => (
@@ -201,18 +204,6 @@ const TopicForm = () => {
                                                  arr[id] = {
                                                      ...arr[id],
                                                      description: e.target.value,
-                                                 }
-                                                 setCheckpoints(arr);
-                                             }}/>
-                                <FormControl id="checkpointsDescription"
-                                             className="mb-2"
-                                             placeholder="Enter checkpoint commands separated with ':'"
-                                             value={el?.commands?.join('&')}
-                                             onChange={(e) => {
-                                                 const arr = [...checkpoints];
-                                                 arr[id] = {
-                                                     ...arr[id],
-                                                     commands: e.target.value.split('&'),
                                                  }
                                                  setCheckpoints(arr);
                                              }}/>

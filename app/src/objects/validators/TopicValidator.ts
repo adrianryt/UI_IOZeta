@@ -11,7 +11,7 @@ export default class TopicValidator extends Validator{
         return this._repoNameError;
     }
 
-    get repoLinkError(): string {
+    get readmeLinkError(): string {
         return this._repoLinkError;
     }
 
@@ -54,7 +54,7 @@ export default class TopicValidator extends Validator{
         return true;
     }
 
-    public validateRepoLink(repoName: string){
+    public validateReadmeLink(repoName: string){
         if(!this.stringNotEmpty(repoName)){
             this._repoNameError = "Repository link cannot be empty";
             return false;
