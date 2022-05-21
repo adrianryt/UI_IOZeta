@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import SessionDataObject from "../../objects/SessionDataObject";
+import CookieService from "../../objects/services/CookieService";
 
 function translate(status: number) {
     switch (status) {
@@ -21,13 +22,26 @@ function translate(status: number) {
     }
 
 }
+
+function orderCommits(sData: SessionDataObject) {
+    sData.students.forEach(element => {
+        element.commits.sort((a, b) => sData.checkpointNames.indexOf(a.checkpointName) < sData.checkpointNames.indexOf(b.checkpointName) ? -1 : 1)
+    });
+}
+
 const AssignmentProgress = () => {
     const params = useParams();
     const [progress, setProgress] = useState(new SessionDataObject([], []));
     useEffect(() => {
-        //axios.get("/session/"+params.sessionID)  //TODO: get session info by session id
-        axios.get("/mocked_progress.json")
+        axios.get("http://localhost:8080/session/session-details&session_id=" + params.sessionID, {
+            headers: {
+                "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
+            }
+        })
+
+            //axios.get("/mocked_progress.json")
             .then((response: any) => {
+                orderCommits(response.data)
                 setProgress(response.data)
             }).catch((e) => {
                 console.error("cannot fetch progress data: " + e);

@@ -4,8 +4,9 @@ type StudentType = {
     name: string,
     commits: {
         url: string,
-        status: number
-    }
+        status: number,
+        checkpointName:string
+    }[]
 }
 
 export default class SessionObject {
