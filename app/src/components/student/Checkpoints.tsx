@@ -18,11 +18,11 @@ const Checkpoints = (props: propsType) => {
                         </Card.Header>
                         <Card.Body>
                             <p>{checkpoint.description}</p>
-                            <textarea readOnly rows={checkpoint.command.length}
-                                value={checkpoint.command.join("\n")}>
+                            <textarea readOnly rows={checkpoint.commands.length}
+                                value={checkpoint.commands.join("\n")}>
                             </textarea><br />
                             <Button onClick={() => {
-                                navigator.clipboard.writeText(checkpoint.command.join(" & "));  //copy git command
+                                navigator.clipboard.writeText(checkpoint.commands.join(" & "));  //copy git command
                             }
                             }>Skopiuj</Button>
                         </Card.Body>
