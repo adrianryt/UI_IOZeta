@@ -1,5 +1,4 @@
 import * as React from "react";
-import './NavMenu.css'
 import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useCookies} from "react-cookie";
@@ -24,12 +23,12 @@ const NavMenu = (props: {loggedUserName: string | null, setLoggedUser: (name: st
     }
 
     return(
-        <nav className="mt-3">
-            <div className="d-flex flex-row justify-content-between">
-                <div>
-                    <Link className="btn btn-primary ms-3 d-block" to={"/"}>Home</Link>
+        <nav className="my-3">
+            <div className="d-flex flex-row flex-wrap justify-content-between px-3">
+                <div className="col-12 col-md-1">
+                        <Link className="btn btn-primary d-block" to={"/"}>Home</Link>
                 </div>
-                <div id="login-button-wrapper">
+                <div id="login-button-wrapper" className="col-12 col-md-1">
                     {handleLoginState()}
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import * as React from "react";
-import '../nav_menu/NavMenu.css'
-import {Card, FormGroup, FormText} from "react-bootstrap";
+import {Button, Card, FormGroup, FormText} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import LoginValidator from "../../objects/validators/LoginValidator";

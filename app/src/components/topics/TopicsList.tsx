@@ -1,12 +1,13 @@
 import * as React from "react";
 import TopicObject from "../../objects/TopicObject";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Topic from "./Topic";
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import "./TopicList.css"
 import CookieService from "../../objects/services/CookieService";
+
 
 const TopicsList = () => {
 
@@ -20,14 +21,14 @@ const TopicsList = () => {
             }
         }).then((response) => {
             setAllTopics(response.data);
-            setTopicsComponent(response.data.map((topic: TopicObject) => <Topic key={topic.title+topic.description+topic.subject+topic.repoName} topic={topic}/>));
+            setTopicsComponent(response.data.map((topic: TopicObject) => <Topic key={topic.title + topic.description + topic.subject + topic.repoName} topic={topic} />));
         }).catch((e) => {
-            console.error("cannot fetch topics: "+e);
+            console.error("cannot fetch topics: " + e);
         });
-    },[]);
+    }, []);
 
     const filterTopics = (subject: string) => {
-        if(subject === 'all') {
+        if (subject === 'all') {
             setTopicsComponent(allTopicsComponents);
             return;
         }
@@ -44,17 +45,23 @@ const TopicsList = () => {
     dropdownItems.unshift(<Dropdown.Item id="All" onClick={() => filterTopics('all')}>All</Dropdown.Item>);
 
     // I dont like this line :/
-    const allTopicsComponents = allTopics.map(topic => <Topic key={topic.title+topic.description+topic.subject} topic={topic}/>);
+    const allTopicsComponents = allTopics.map(topic => <Topic key={topic.title + topic.description + topic.subject} topic={topic} />);
 
-    return(
+    return (
         <>
-            <div className="topic-list-flex d-flex gap-3 mb-4 mt-2 m-lg-3">
-                <h2>Topics</h2>
-                <Link to="/topics/new" className="btn btn-secondary">Add new Topic</Link>
-                <DropdownButton className="m-2" id="dropdown-basic-button" title="Select subject">
-                    {dropdownItems}
-                </DropdownButton>
+            <div className="topic-list-flex px-3 my-3 d-flex row align-items-stretch">
+                <div className="col-12 col-md-2">
+                    <Link to="/topics/new" className="btn btn-secondary h-100 ">Add new Topic</Link>
+
+                </div>
+                <div className="col-12 col-md-2">
+                    <DropdownButton id="dropdown-basic-button" title="Select subject" className="h-100 d-flex align-items-stretch">
+                        {dropdownItems}
+                    </DropdownButton>
+                </div>
+
             </div>
+            <h2 className="mx-auto text-center">Topics</h2>
             <div className="m-lg-2">
                 {topicsComponents}
             </div>

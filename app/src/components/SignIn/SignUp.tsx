@@ -1,8 +1,8 @@
 import * as React from "react";
-import '../nav_menu/NavMenu.css'
-import {Card, FormGroup, FormText, OverlayTrigger, Popover} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+
+import {Card, FormGroup, FormText, OverlayTrigger, Popover, Button} from "react-bootstrap";
+import {useNavigate, Link} from "react-router-dom";
+import {useState, FormEvent} from "react";
 import axios, {AxiosResponse} from "axios";
 import {useCookies} from "react-cookie";
 import SignUpValidator from "../../objects/validators/SignUpValidator";
