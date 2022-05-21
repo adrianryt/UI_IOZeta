@@ -5,6 +5,7 @@ import TopicValidator from "../../objects/validators/TopicValidator";
 import axios from "axios";
 import Subject from "../../objects/Subject";
 import {useSearchParams} from "react-router-dom";
+import CookieService from "../../objects/services/CookieService";
 
 const TopicForm = () => {
 
@@ -12,7 +13,11 @@ const TopicForm = () => {
 
     useEffect(() => {
         if(searchParams.get("chosen_subject") !== null){
-            axios.get("/subjects/"+searchParams.get("chosen_subject")).then((response) => {
+            axios.get("http://localhost:8080/subjects/"+searchParams.get("chosen_subject"), {
+                headers: {
+                    "authorization": `Bearer ${CookieService.getCookie("access_token")}`
+                }
+            }).then((response) => {
                 setSubjects([response.data])
                 setSubject(response.data.id.toString())
             }).catch((e) => {
@@ -20,7 +25,11 @@ const TopicForm = () => {
             })
         }
         else{
-            axios.get("/mocked_subjects.json").then((response) => {
+            axios.get("http://localhost:8080/subjects/all", {
+                headers: {
+                    "authorization": `Bearer ${CookieService.getCookie("access_token")}`
+                }
+            }).then((response) => {
                 setSubjects(response.data)
                 response.data.length > 0 ? setSubject(response.data[0].id.toString()) : setSubject("")
             }).catch((e) => {
