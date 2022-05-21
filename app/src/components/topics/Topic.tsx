@@ -8,10 +8,10 @@ type propsType = {
 
 const Topic = (props: propsType) => {
     return(
+
         <Card className="my-3 mx-auto border-3 col-sm-10 col-md-8 col-lg-6 col-11">
             <Card.Header className="bg bg-info">{props.topic.title} | {props.topic.subject}</Card.Header>
             <Card.Body>
-                <div className="mb-3">{props.topic.description}</div>
                 <div className="mb-3">repository name: {props.topic.repoName}</div>
                 <Button>Create Session</Button>
             </Card.Body>

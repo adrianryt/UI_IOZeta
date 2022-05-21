@@ -21,7 +21,7 @@ const TopicsList = () => {
             }
         }).then((response) => {
             setAllTopics(response.data);
-            setTopicsComponent(response.data.map((topic: TopicObject) => <Topic key={topic.title + topic.description + topic.subject + topic.repoName} topic={topic} />));
+            setTopicsComponent(response.data.map((topic: TopicObject) => <Topic key={topic.title + topic.subject + topic.repoName} topic={topic} />));
         }).catch((e) => {
             console.error("cannot fetch topics: " + e);
         });
@@ -45,7 +45,7 @@ const TopicsList = () => {
     dropdownItems.unshift(<Dropdown.Item id="All" onClick={() => filterTopics('all')}>All</Dropdown.Item>);
 
     // I dont like this line :/
-    const allTopicsComponents = allTopics.map(topic => <Topic key={topic.title + topic.description + topic.subject} topic={topic} />);
+    const allTopicsComponents = allTopics.map(topic => <Topic key={topic.title + topic.repoName + topic.subject} topic={topic} />);
 
     return (
         <>

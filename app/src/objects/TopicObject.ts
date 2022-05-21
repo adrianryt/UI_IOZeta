@@ -1,6 +1,5 @@
 export default class TopicObject {
     private _title: string;
-    private _description: string;
     private _subject: string;
     private _repoName: string;
     private _id: number;
@@ -21,13 +20,6 @@ export default class TopicObject {
         this._title = value;
     }
 
-    get description(): string {
-        return this._description;
-    }
-
-    set description(value: string) {
-        this._description = value;
-    }
 
     get subject(): string {
         return this._subject;
@@ -45,9 +37,8 @@ export default class TopicObject {
         this._repoName = value;
     }
 
-    constructor(tile: string, description: string, subject: string, repoName: string) {
+    constructor(tile: string, subject: string, repoName: string) {
         this._title = tile;
-        this._description = description;
         this._subject = subject;
         this._repoName = repoName
     }

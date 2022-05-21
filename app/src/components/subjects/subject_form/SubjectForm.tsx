@@ -2,6 +2,9 @@ import * as React from "react";
 import {Alert, Badge, Card, FormControl, FormGroup, FormText} from "react-bootstrap";
 import {useState} from "react";
 import SubjectValidator from "../../../objects/validators/SubjectValidator";
+import axios from "axios";
+import CookieService from "../../../objects/services/CookieService";
+import {useCookies} from "react-cookie";
 
 const SubjectForm = () => {
     const [name, setName] = useState<string>("");
@@ -32,7 +35,24 @@ const SubjectForm = () => {
         event.preventDefault();
         const subjectValidator = new SubjectValidator();
         if(subjectValidator.validateName(name)){
-            // TODO make POST/PUT request to add Subject to database
+
+            axios({
+                url: "http://localhost:8080/subjects/save",
+                method: "post",
+                headers: {
+                    "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
+                },
+                data: {
+                    'name': name,
+                    'lecturer': {
+                        'id': CookieService.getCookie("lecturer_id")
+                    }
+                }
+            }).then((response) =>{
+
+            }).catch((e) => {
+                // TODO wezcie jakos error obsluzcie 🥺
+            })
             handleRequestSucceed();
         }
         else{

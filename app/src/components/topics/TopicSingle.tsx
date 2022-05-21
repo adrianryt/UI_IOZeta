@@ -13,11 +13,12 @@ const TopicSingle = () => {
     const params = useParams();
 
     useEffect(() => {
-        axios.get("http://localhost:8080/topics/"+params.topicID, {
+        axios.get("http://localhost:8080/task/id?task_id="+params.topicID, {
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
             }
         }).then((response) => {
+            console.log(response.data)
             setTopic(response.data)
         }).catch((e) => {
             console.error("error while fetching topic: "+e);

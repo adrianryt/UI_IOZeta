@@ -4,20 +4,32 @@ import axios from "axios";
 import Subject from "../../../objects/Subject";
 import SubjectComponent from "../subject/SubjectComponent";
 import { Link } from "react-router-dom";
+import {useCookies} from "react-cookie";
+import CookieService from "../../../objects/services/CookieService";
 
 const SubjectList = () => {
 
     const [subjects, setSubjects] = useState<Subject[]>([]);
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username', 'lecturer_id']);
 
-    useEffect(() => {
-        axios.get("/mocked_subjects.json").then((response) => {
-            setSubjects(response.data);
-        }).catch((e) => {
-            console.error("cannot fetch subjects: " + e);
-        })
+    useEffect( () => {
+         axios({
+            url: "http://localhost:8080/subjects/all?username=" + cookies['username'],
+            method: "get",
+            headers: {
+                "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
+            }
+        }).then((response) => {
+             setSubjects(response.data);
+
+         }).catch((e) => {
+                console.error("cannot fetch subjects: " + e);
+            })
+
     }, [])
 
-    const subjectComponents = subjects.map((subject) => <SubjectComponent subject={subject} key={subject.name + "" + subject.lecturer.name + "" + subject.lecturer.surname} />)
+
+    const subjectComponents = subjects.map((subject) => <SubjectComponent subject={subject} key={subject.name + "" + subject.lecturer.name + "" + subject.lecturer.surname} />);
 
     return (
         <div>

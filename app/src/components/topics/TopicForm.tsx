@@ -31,7 +31,8 @@ const TopicForm = () => {
             })
         }
         else{
-            axios.get("http://localhost:8080/subjects/all", {
+            axios.get("http://localhost:8080/subjects/all?username=" + CookieService.getCookie("username"),
+                {
                 headers: {
                     "authorization": `Bearer ${CookieService.getCookie("access_token")}`
                 }
@@ -102,48 +103,45 @@ const TopicForm = () => {
         if(topicValidator.validateTitle(title) &&
             topicValidator.validateSubject(subject) &&
             topicValidator.validateRepoName(repoName) &&
-            topicValidator.validateGithubUsername(githubUsername) &&
             topicValidator.validateReadmeLink(readmeLink)){
-            // TODO make POST/PUT request to add Topic to database
 
-            const data = {
-                taskName: title,
-                lecturerGitNick: githubUsername,
-                repositoryName: repoName,
-                subject,
-                readmeLink: readmeLink,
-                checkpointsContent: checkpoints,
-            }
-            axios
-                .post("http://localhost:8080/task/add",
-                    data, {
-                        headers: {
-                            "authorization": `Bearer ${CookieService.getCookie("access_token")}`
-                        }
-                    })
-                .then((response) => {
-                    if (response.status === 200) {
-                        setMessage("Topic added");
-                        handleRequestSucceed();
-                    } else {
-                        setMessage("Error while adding topic");
-                        handleRequestFailed();
-                    }
-                })
+            axios({
+                url: "http://localhost:8080/task/add",
+                method: "post",
+                headers: {
+                    "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
+                },
+                data: {
+                    'taskName': title,
+                    'readmeLink': readmeLink,
+                    'subject': subject,
+                    'repositoryName': repoName,
+                    'lecturerGitNick': CookieService.getCookie('username'),
+                    'checkpointsContent': checkpoints
+                }
+            }).then((response) => {
+                if (response.status === 200) {
+                    setMessage("Topic added");
+                    handleRequestSucceed();
+                } else {
+                    setMessage("Error while adding topic");
+                    handleRequestFailed();
+                }
+            })
                 .catch(() => setMessage("Error while adding topic"));
+
+
         }
         else{
             handleRequestFailed();
         }
         setSubjectError(topicValidator.subjectError);
         setTitleError(topicValidator.titleError);
-        setGithubUsernameError(topicValidator.githubUsernameError)
         setRepoNameError(topicValidator.repoNameError);
         setReadmeLinkError(topicValidator.readmeLinkError);
     }
 
     const [titleError, setTitleError] = useState<string>("");
-    const [githubUsernameError, setGithubUsernameError] = useState<string>("");
     const [subjectError, setSubjectError] = useState<string>("");
     const [repoNameError, setRepoNameError] = useState<string>("");
     const [readmeLinkError, setReadmeLinkError] = useState<string>("");
@@ -159,11 +157,6 @@ const TopicForm = () => {
                     <label htmlFor="titleTopicForm">Title</label>
                     <FormControl id="titleTopicForm" placeholder="Enter title" value={title} onChange={handleTitleChange} />
                     <FormText className="text-danger me-5">{titleError}</FormText>
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="githubUsernameForm">Github Username</label>
-                    <FormControl id="githubUsernameForm" placeholder="Enter github username" value={githubUsername} onChange={handleGithubUsernameChange} />
-                    <FormText className="text-danger me-5">{githubUsernameError}</FormText>
                 </FormGroup>
                 <FormGroup>
                     <label htmlFor="repoNameForm">Repository Name</label>
