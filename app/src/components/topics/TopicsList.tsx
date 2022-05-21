@@ -3,8 +3,11 @@ import TopicObject from "../../objects/TopicObject";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Topic from "./Topic";
-import { Dropdown, DropdownButton } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {Dropdown, DropdownButton} from "react-bootstrap";
+import {Link} from "react-router-dom";
+import "./TopicList.css"
+import CookieService from "../../objects/services/CookieService";
+
 
 const TopicsList = () => {
 
@@ -12,7 +15,11 @@ const TopicsList = () => {
     const [topicsComponents, setTopicsComponent] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
-        axios.get("/mocked_topics.json").then((response) => {
+        axios.get("http://localhost:8080/topics", {
+            headers: {
+                "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
+            }
+        }).then((response) => {
             setAllTopics(response.data);
             setTopicsComponent(response.data.map((topic: TopicObject) => <Topic key={topic.title + topic.description + topic.subject + topic.repoName} topic={topic} />));
         }).catch((e) => {
