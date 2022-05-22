@@ -22,7 +22,9 @@ const SubjectComponent = ({ session }: propsType) => {
                 headers: {
                     "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
                 }
-            })
+            }).then((response) => {
+               setStudents(response.data);
+            });
         }
 
     }, [session])
@@ -52,10 +54,12 @@ const SubjectComponent = ({ session }: propsType) => {
             <Card.Body>
                 <div>
                     <p>Join code: {session.accessCode}</p>
-                    <div>
+                    <div className="mb-2">
                         Students joined:
                     </div>
-                    {studentsShow}
+                    <div className="mb-2">
+                        {studentsShow}
+                    </div>
                     {!sessionActive && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-2">Open session</Link>}
                     {sessionActive && <Button className="btn btn-primary" onClick={handleCloseSession}>Close session</Button>}
                     {sessionActive && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-3">Resume session</Link>}
