@@ -6,27 +6,18 @@ type propsType = {
     session: any
 }
 
-
-
 const SubjectComponent = ({ session }: propsType) => {
-
-    function translateStatus(status: Number) {  //there should be an enum for checkpoint status
-        if (status == 0) return "closed"
-        if (status == 1) return "open"
-        return "-"
-    }
-
     return (
-        <Card className="ms-2 mb-5 m-lg-3 border-3 col-sm-10 col-md-8 col-lg-6 col-11">
-            <Card.Header className="bg bg-info">
-                {session.id} | {session.displayName} | {translateStatus(session.status)}
+        <Card className="ms-2 mb-5 mt-5 m-lg-3 border-3 col-sm-10 col-md-8 col-lg-6 col-11">
+            <Card.Header className="bg bg-info fs-5">
+                {session.name} | {session.active ? "active" : "closed"}
             </Card.Header>
             <Card.Body>
                 <div>
-
-                    {session.status == 0 && <Link to={"/dashboard/" + session.id} className="btn btn-primary">Open session</Link>}
-                    {session.status == 1 && <Button className="btn btn-primary">Close session</Button>}
-                    {session.status == 1 && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-3">Resume session</Link>}
+                    <p>Join code: {session.accessCode}</p>
+                    {!session.active && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-2">Open session</Link>}
+                    {session.active && <Button className="btn btn-primary">Close session</Button>}
+                    {session.active && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-3">Resume session</Link>}
                     {/* <Link to={"/dashboard/" + session.id} className="btn btn-primary">Open session</Link> */}
                     {/* ^getting certain session data */}
                 </div>
