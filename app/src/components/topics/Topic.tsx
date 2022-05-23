@@ -31,8 +31,9 @@ const Topic = (props: propsType) => {
                         id: props.topic.id
                     }
                 }
-            }).then((response) => {
-                navigate("/sessions")
+            })
+                .then((response) => {
+                navigate("/sessions");
             })
         }
         else{

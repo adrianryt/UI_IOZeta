@@ -9,6 +9,12 @@ type propsType = {
     readmeUrl: string
 }
 
+function b64DecodeUnicode(str: any) {
+    return decodeURIComponent(Array.prototype.map.call(window.atob(str), function(c: any) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    }).join(''))
+}
+
 const Readme = (props: propsType) => {
 
     const [readmeText, setReadmeText] = useState("");
@@ -16,10 +22,13 @@ const Readme = (props: propsType) => {
 
     useEffect(() => {
         setTopicName(props.topicName);
-        axios.get(props.readmeUrl).then((response: any) => {
+        axios({
+            url: props.readmeUrl,
+            method: "get"
+            }).then((response: any) => {
             return response.data.content
         }).then((res) => {
-            setReadmeText(window.atob(res))
+            setReadmeText(b64DecodeUnicode(res))
         }).catch((e) => {
             console.error("cannot fetch readme: " + e);
         })

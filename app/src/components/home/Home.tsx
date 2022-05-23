@@ -22,8 +22,28 @@ const Home = () => {
     const handleUsernameChange = (e:React.ChangeEvent<HTMLInputElement>) => setGithubUsername(e.target.value);
     const handleCodeChange = (e:React.ChangeEvent<HTMLInputElement>) => setCode(e.target.value);
 
-    const handleFormSubmit = (event: React.FormEvent) => {
+    const handleFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+
+        let isUsernameValid = true;
+
+        await axios({
+            url: "https://api.github.com/users/" + githubUsername,
+            method: "get"
+
+        }).then((response) => {
+            console.log(response)
+            if (response.status === 404) {
+                setMessage("This github username doesn't exist");
+                return;
+            }
+        }).catch(() =>{
+            setMessage("This github username doesn't exist"); isUsernameValid = false})
+
+        if(! isUsernameValid){
+            return;
+        }
+
         const data = {
             githubUsername,
             code
@@ -31,10 +51,10 @@ const Home = () => {
         axios
             .post(ADD_STUDENT_URL, data)
             .then((response) => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     //set cookie                                                          2h v - can be changed
-                    setCookie("session_id", response.data.session_id, {maxAge: 60*60*2, path: "/", secure: true});
-                    setCookie("student_id", response.data.student_id, {maxAge: 60*60*2, path: "/", secure: true});
+                    setCookie("session_id", response.data.session_id, {maxAge: 60 * 60 * 2, path: "/", secure: false});
+                    setCookie("student_id", response.data.student_id, {maxAge: 60 * 60 * 2, path: "/", secure: false});
                     navigate("/student");
                 } else {
                     setMessage("Error while joining session")

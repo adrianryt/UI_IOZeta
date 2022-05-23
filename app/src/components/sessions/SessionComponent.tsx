@@ -9,7 +9,7 @@ type propsType = {
     session: any
 }
 
-const SubjectComponent = ({ session }: propsType) => {
+const SessionComponent = ({ session }: propsType) => {
     const [sessionActive, setSessionActive] = useState<boolean>(false);
     const [students, setStudents] = useState<any[]>([]);
 
@@ -52,8 +52,12 @@ const SubjectComponent = ({ session }: propsType) => {
                 {session.name} | {sessionActive ? "active" : "closed"}
             </Card.Header>
             <Card.Body>
-                <div>
-                    <p>Join code: {session.accessCode}</p>
+                <div >
+                    <p>Join code:</p>
+                    <div className="d-flex justify-content-center">
+                        <div className= {sessionActive ? "fs-1" : "fs-6" } > {session.accessCode}</div>
+                    </div>
+                    <br/>
                     <div className="mb-2">
                         Students joined:
                     </div>
@@ -71,4 +75,4 @@ const SubjectComponent = ({ session }: propsType) => {
     )
 }
 
-export default SubjectComponent;
+export default SessionComponent;

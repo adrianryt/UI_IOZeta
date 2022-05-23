@@ -8,7 +8,7 @@ const Sessions = () => {
     const [sessions, setSessions] = useState([])
     useEffect(() => {
         axios({
-            url: `http://localhost:8080/sessions/all?lecturer_id=${CookieService.getCookie("lecturer_id")}`,
+            url: `http://localhost:8080/sessions/active-sessions?lecturer_id=${CookieService.getCookie("lecturer_id")}`,
             method: 'GET',
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
@@ -20,15 +20,18 @@ const Sessions = () => {
             })
     }, [])
     return (
-        <>
-            <div className="m-lg-3">
+        <div>
+            <div className="fs-1 d-flex justify-content-center">
+                {sessions.length !== 0 ? "Sessions created from this topic:" : "No sessions created from this topic yet"}
+            </div>
+            <div className="m-lg-3 d-flex justify-content-center flex-wrap">
                 {sessions.map(
                     (session: any) =>
                         <SessionComponent key={session.id+"session"} session={session} />
                 )}
             </div>
 
-        </>
+        </div>
     );
 
 }

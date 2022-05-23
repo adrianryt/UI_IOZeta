@@ -22,6 +22,10 @@ const StudentPage = (props: any) => {
         }
         const session_id = CookieService.getCookie("session_id");
         const student_id = CookieService.getCookie("student_id");
+
+        console.log(session_id);
+        console.log(student_id);
+
         axios
             .get(GET_SESSION_URL, {params: {session_id: session_id, student_id: student_id}})
             .then((response) => {
