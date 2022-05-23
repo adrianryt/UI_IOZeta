@@ -79,9 +79,9 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                     },
                     data: loginParams
                 }).then((response) => {
-                    setCookie("access_token", response.data.access_token, {maxAge: 60*60, path: "/", secure: true});
-                    setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: true});
-                    setCookie("username", nickname, {maxAge: 60*60, path: "/", secure: true});
+                    setCookie("access_token", response.data.access_token, {maxAge: 60*60, path: "/", secure: false});
+                    setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: false});
+                    setCookie("username", nickname, {maxAge: 60*60, path: "/", secure: false});
                     props.setUserLogin(nickname);
                     navigate("/teacher")
 

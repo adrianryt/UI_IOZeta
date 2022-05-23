@@ -48,10 +48,10 @@ export default class SignUpValidator extends Validator{
             this._nicknameError = "Nickname cannot be longer than 100 characters"
             return false;
         }
-        if(!this.stringContainsOnlyAlphaNumeric(nickname)){
-            this._nicknameError = "Nickname should contains only letters and numbers"
-            return false;
-        }
+        // if(!this.stringContainsOnlyAlphaNumeric(nickname)){
+        //     this._nicknameError = "Nickname should contains only letters and numbers"
+        //     return false;
+        // }
         return true;
     }
 
