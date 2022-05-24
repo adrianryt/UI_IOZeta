@@ -62,19 +62,21 @@ const SubjectForm = () => {
     }
 
     return(
-        <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 m-lg-3 p-3 bg-light">
-            <h2>Subjects  <Badge bg="secondary">New</Badge> </h2>
-            {showSuccessAlert ? <Alert variant="success">Subject Added Successfully</Alert> : null }
-            {showFailAlert ? <Alert variant="danger">An error occurred while adding subject</Alert> : null }
-            <form onSubmit={handleFormSubmit}>
-                <FormGroup>
-                    <label htmlFor="NameSubjectForm" >Subject</label>
-                    <FormControl id="NameSubjectForm" placeholder="Enter Name" value={name} onChange={handleNameChange} />
-                    <FormText className="text-danger me-5">{nameError}</FormText>
-                </FormGroup>
-                <input className="btn btn-primary" type="submit" value="Create" />
-            </form>
-        </Card>
+        <div className="d-flex justify-content-center">
+            <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 m-lg-3 p-3 bg-light">
+                <h2>Subjects  <Badge bg="secondary">New</Badge> </h2>
+                {showSuccessAlert ? <Alert variant="success">Subject Added Successfully</Alert> : null }
+                {showFailAlert ? <Alert variant="danger">An error occurred while adding subject</Alert> : null }
+                <form onSubmit={handleFormSubmit}>
+                    <FormGroup>
+                        <label htmlFor="NameSubjectForm" >Subject</label>
+                        <FormControl id="NameSubjectForm" placeholder="Enter Name" value={name} onChange={handleNameChange} />
+                        <FormText className="text-danger me-5">{nameError}</FormText>
+                    </FormGroup>
+                    <input className="btn btn-primary" type="submit" value="Create" />
+                </form>
+            </Card>
+        </div>
     )
 }
 

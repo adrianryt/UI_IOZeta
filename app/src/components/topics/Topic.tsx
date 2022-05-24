@@ -58,7 +58,9 @@ const Topic = (props: propsType) => {
                     <FormGroup>
                         <FormControl value={sessionName} onChange={handleSetSessionName} className="mt-3 mb-3" placeholder="enter session name"></FormControl>
                     </FormGroup>
-                    <input className="btn btn-primary" type="submit" value="Create Session"/>
+                    <div className="d-flex justify-content-center">
+                        <input className="btn btn-primary col-sm-10 col-md-8 col-lg-6" type="submit" value="Create Session"/>
+                    </div>
                 </form>
             </Card.Body>
         </Card>

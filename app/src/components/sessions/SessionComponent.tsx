@@ -73,10 +73,12 @@ const SessionComponent = ({ session }: propsType) => {
                     <div className="mb-2">
                         {studentsShow}
                     </div>
-                    {!sessionActive && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-2">Open session</Link>}
-                    {sessionActive && <Button className="btn btn-primary" onClick={handleCloseSession}>Close session</Button>}
-                    {sessionActive && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-3">Resume session</Link>}
-                    {/* <Link to={"/dashboard/" + session.id} className="btn btn-primary">Open session</Link> */}
+                    <div className="d-flex flex-column align-items-center">
+                    {!sessionActive && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-2 col-12 col-sm-10 col-md-8 col-lg-6">Open session</Link>}
+                    {sessionActive && <Button className="btn btn-primary col-12 col-sm-10 col-md-8 col-lg-6" onClick={handleCloseSession}>Close session</Button>}
+                    {sessionActive && <Link to={"/dashboard/" + session.id} className="btn btn-primary mt-3 col-12 col-sm-10 col-md-8 col-lg-6">Resume session</Link>}
+                   </div>
+                        {/* <Link to={"/dashboard/" + session.id} className="btn btn-primary">Open session</Link> */}
                     {/* ^getting certain session data */}
                 </div>
             </Card.Body>

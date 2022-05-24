@@ -55,8 +55,8 @@ const TopicSingle = () => {
             <div className="">
                 {topic !== undefined ? <Topic fetchSessions={fetchSessions} topic={topic} /> : null }
             </div>
-            <div className="mt-5 mb-1 fs-1 d-flex justify-content-center">
-                {sessions.length !== 0 ? "Sessions created from this topic:" : "No sessions created from this topic yet" }
+            <div className="mt-5 mb-1 fs-1 d-flex justify-content-center ">
+                <div> {sessions.length !== 0 ? "Sessions created from this topic:" : "No sessions created from this topic yet" } </div>
             </div>
             <div className="d-flex justify-content-center flex-wrap">
                 {sessionComponents}

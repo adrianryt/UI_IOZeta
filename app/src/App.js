@@ -42,6 +42,7 @@ function App() {
   return (
     <BrowserRouter>
         <NavMenu loggedUserName={loggedUserName} setLoggedUser={setLoggedUserName}/>
+
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={userShouldNotBeLoggedIn(<Login setUserLogin={setLoggedUserName} />)} />
