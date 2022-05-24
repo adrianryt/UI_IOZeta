@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import CookieService from "../../objects/services/CookieService";
+import SessionCodeModal from "./SessionCodeModal";
+import "./SessionComponent.css"
 
 type propsType = {
     session: any
@@ -12,6 +14,10 @@ type propsType = {
 const SessionComponent = ({ session }: propsType) => {
     const [sessionActive, setSessionActive] = useState<boolean>(false);
     const [students, setStudents] = useState<any[]>([]);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         setSessionActive(session.active)
@@ -55,8 +61,11 @@ const SessionComponent = ({ session }: propsType) => {
                 <div >
                     <p>Join code:</p>
                     <div className="d-flex justify-content-center">
-                        <div className= {sessionActive ? "fs-1" : "fs-6" } > {session.accessCode}</div>
+                        <div className= {sessionActive ? "fs-1 session-code" : "fs-6 session-code" } onClick={handleShow}>
+                            {session.accessCode}
+                        </div>
                     </div>
+                    <SessionCodeModal show={show} handleShow={handleShow} handleClose={handleClose} sessionCode={session.accessCode}/>
                     <br/>
                     <div className="mb-2">
                         Students joined:

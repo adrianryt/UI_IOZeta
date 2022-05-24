@@ -1,0 +1,13 @@
+.session-code:hover{
+    cursor: pointer;
+    background-color: #e7f6fa;
+
+    transition: linear 0.3s;
+    border-radius: 3px;
+
+}
+
+.session-code{
+    padding: 3px;
+    transition: linear 0.3s;
+}
