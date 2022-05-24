@@ -15,7 +15,10 @@ const NavMenu = (props: {loggedUserName: string | null, setLoggedUser: (name: st
 
     const handleLoginState = () => {
         if(props.loggedUserName !== "" && props.loggedUserName !== undefined && props.loggedUserName !== null){
-            return <Button className="btn btn-secondary d-block" onClick={handleLogoutClick}>Logout</Button>
+            return( <div className="d-flex ">
+                        <Link className="btn btn-primary d-block me-4" to={"/teacher"}>{props.loggedUserName}</Link>
+                        <Button className="btn btn-secondary d-block" onClick={handleLogoutClick}>Logout</Button>
+                    </div>);
         }
         else{
             return <Link className="btn btn-secondary d-block" to={"/login"}>Login</Link>
@@ -25,10 +28,10 @@ const NavMenu = (props: {loggedUserName: string | null, setLoggedUser: (name: st
     return(
         <nav className="my-3">
             <div className="d-flex flex-row flex-wrap justify-content-between px-3">
-                <div className="col-12 col-md-1">
+                <div className="">
                         <Link className="btn btn-primary d-block" to={"/"}>Home</Link>
                 </div>
-                <div id="login-button-wrapper" className="col-12 col-md-1">
+                <div id="login-button-wrapper" className="">
                     {handleLoginState()}
                 </div>
             </div>
