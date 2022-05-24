@@ -7,7 +7,8 @@ import CookieService from "../../objects/services/CookieService";
 import {useNavigate} from "react-router-dom";
 
 type propsType = {
-    topic: TopicObject
+    topic: TopicObject,
+    fetchSessions?: () => void
 }
 
 const Topic = (props: propsType) => {
@@ -33,8 +34,11 @@ const Topic = (props: propsType) => {
                 }
             })
                 .then((response) => {
-                navigate("/sessions");
-            })
+                    if(props.fetchSessions !== undefined){
+                        props.fetchSessions()
+                    }
+                    navigate("/topic/"+props.topic.id)
+                })
         }
         else{
             setShowSessionInvalid(true);
