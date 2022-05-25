@@ -139,7 +139,7 @@ const TopicForm = () => {
                     'subject': subject,
                     'repositoryName': repoName,
                     'lecturerGitNick': CookieService.getCookie('username'),
-                    'checkpointsContent': checkpoints
+                    'checkpointsContent': checkpoints.slice(0, checkpointsNumber)
                 }
             }).then((response) => {
                 if (response.status === 200) {
