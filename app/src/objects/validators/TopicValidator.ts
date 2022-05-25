@@ -56,10 +56,10 @@ export default class TopicValidator extends Validator{
 
     public validateReadmeLink(repoName: string){
         if(!this.stringNotEmpty(repoName)){
-            this._repoNameError = "Repository link cannot be empty";
+            this._repoLinkError = "Repository link cannot be empty";
             return false;
         }
-        this._repoNameError = "";
+        this._repoLinkError = "";
         return true;
     }
 

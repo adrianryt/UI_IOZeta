@@ -10,7 +10,7 @@ import { BsFillInfoSquareFill } from "react-icons/bs";
 
 const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
     const navigate = useNavigate();
-    const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username']);
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username', 'lecturer_id']);
 
     const [firstName, setFirstName] = useState<string>("");
     const [surname, setSurname] = useState<string>("");
@@ -83,6 +83,21 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                     setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: false});
                     setCookie("username", nickname, {maxAge: 60*60, path: "/", secure: false});
                     props.setUserLogin(nickname);
+                    axios({
+                        url: "http://localhost:8080/api/lecturers",
+                        method: "get",
+                        headers: {
+                            "authorization": `Bearer ${response.data.access_token}`
+                        }
+                    }).then((response) => {
+                        const listOfLecturers: Array<any> = response.data
+                        // @ts-ignore
+                        const id = listOfLecturers.filter((element: Dict<any>, _N, _A) => {
+                            return element['gitNick'] === nickname
+                        }).pop()['id']
+                        setCookie("lecturer_id", id, {maxAge: 60*60, path: "/", secure: false});
+                    })
+
                     navigate("/teacher")
 
                 }).catch((e) => {

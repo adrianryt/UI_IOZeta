@@ -58,7 +58,7 @@ const TopicForm = () => {
     const [readmeLink, setReadmeLink] = useState<string>("");
 
     const [checkpointsNumber, setCheckpointsNumber] = useState<undefined | number>(undefined)
-    const [checkpoints, setCheckpoints] = useState<(Checkpoint | undefined)[]>([]);
+    const [checkpoints, setCheckpoints] = useState<Checkpoint[]>([]);
 
     const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
     const [showFailAlert, setShowFailAlert] = useState<boolean>(false);
@@ -70,14 +70,27 @@ const TopicForm = () => {
     const handleReadmeLinkChange = (e:React.ChangeEvent<HTMLInputElement>) => setReadmeLink(e.target.value);
 
     const handleCheckpointNumberChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-        let currentValue = parseInt(e.target.value, 10);
-        if (!checkpoints|| currentValue > checkpoints.length) {
-            setCheckpoints([
-                ...checkpoints,
-                ...new Array(currentValue - checkpoints.length),
-            ]);
+        if(e.target.value !== "" && !isNaN(Number(e.target.value)) && parseInt(e.target.value, 10) >= 0 && parseInt(e.target.value, 10) <= 50){
+            const currentValue = parseInt(e.target.value, 10);
+            if (currentValue > checkpoints.length) {
+                let newArray = [
+                    ...checkpoints,
+                    ...new Array(currentValue - checkpoints.length),
+                ].map(element => {
+                    if(element === undefined){
+                        return {}
+                    }
+                    else{
+                        return element;
+                    }
+                })
+                setCheckpoints(newArray);
+            }
+            setCheckpointsNumber(currentValue);
         }
-        setCheckpointsNumber(currentValue);
+        else{
+            setCheckpointsNumber(undefined);
+        }
     };
 
     const handleRequestSucceed = () => {
@@ -177,18 +190,17 @@ const TopicForm = () => {
                         <FormText className="text-danger me-5">{subjectError}</FormText>
                     </FormGroup>
                     <FormGroup>
-                        <label htmlFor="checkpointsNumber">Number of checkpoints</label>
-                        <FormControl id="checkpointsNumber" placeholder="Enter number of checkpoints" value={checkpointsNumber} onChange={handleCheckpointNumberChange} />
+                        <label htmlFor="checkpointsNumber">Number of checkpoints (1 - 50)</label>
+                        <FormControl id="checkpointsNumber" type="number" placeholder="Enter number of checkpoints" value={checkpointsNumber} onChange={handleCheckpointNumberChange} />
                     </FormGroup>
-                    {!!checkpointsNumber &&
-                        checkpoints.slice(0, checkpointsNumber).map((el, id) => (
+                    {checkpoints.slice(0, checkpointsNumber ? checkpointsNumber : 0).map((el, id) => (
                             <div key={id}>
                                 <FormGroup>
                                     {id + 1}{" "}
                                     <FormControl  id="checkpointsTitle"
                                                   className="mb-2"
                                                   placeholder="Enter checkpoint title"
-                                                  value={el?.title}
+                                                  value={el.title}
                                                   onChange={(e) => {
                                                       const arr = [...checkpoints];
                                                       arr[id] = {
@@ -200,7 +212,7 @@ const TopicForm = () => {
                                     <FormControl id="checkpointsDescription"
                                                  className="mb-2"
                                                  placeholder="Enter checkpoint description"
-                                                 value={el?.description}
+                                                 value={el.description}
                                                  onChange={(e) => {
                                                      const arr = [...checkpoints];
                                                      arr[id] = {
