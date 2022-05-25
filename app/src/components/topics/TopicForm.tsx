@@ -73,10 +73,14 @@ const TopicForm = () => {
         if(e.target.value !== "" && !isNaN(Number(e.target.value)) && parseInt(e.target.value, 10) >= 0 && parseInt(e.target.value, 10) <= 50){
             const currentValue = parseInt(e.target.value, 10);
             if (currentValue > checkpoints.length) {
+                const checkPointsTitleErrorsNewArray: string[] = []
+                const checkPointsDescriptionErrorsNewArray: string[] = []
                 let newArray = [
                     ...checkpoints,
                     ...new Array(currentValue - checkpoints.length),
                 ].map(element => {
+                    checkPointsDescriptionErrorsNewArray.push("")
+                    checkPointsTitleErrorsNewArray.push("")
                     if(element === undefined){
                         return {}
                     }
@@ -84,6 +88,8 @@ const TopicForm = () => {
                         return element;
                     }
                 })
+                setCheckPointTitleErrors(checkPointsTitleErrorsNewArray)
+                setCheckPointDescriptionErrors(checkPointsDescriptionErrorsNewArray)
                 setCheckpoints(newArray);
             }
             setCheckpointsNumber(currentValue);
@@ -116,7 +122,10 @@ const TopicForm = () => {
         if(topicValidator.validateTitle(title) &&
             topicValidator.validateSubject(subject) &&
             topicValidator.validateRepoName(repoName) &&
-            topicValidator.validateReadmeLink(readmeLink)){
+            topicValidator.validateReadmeLink(readmeLink) &&
+            topicValidator.validateCheckPointNumber(checkpointsNumber) &&
+            topicValidator.validateCheckPointTitles(checkpoints.map(checkpoint => checkpoint.title ? checkpoint.title : "")) &&
+            topicValidator.validateCheckPointDescription(checkpoints.map(checkpoint => checkpoint.description ? checkpoint.description : ""))){
 
             axios({
                 url: "http://localhost:8080/task/add",
@@ -152,12 +161,18 @@ const TopicForm = () => {
         setTitleError(topicValidator.titleError);
         setRepoNameError(topicValidator.repoNameError);
         setReadmeLinkError(topicValidator.readmeLinkError);
+        setCheckPointNumberError(topicValidator.checkPointNumberError);
+        setCheckPointDescriptionErrors(topicValidator.checkPointDescriptionErrors);
+        setCheckPointTitleErrors(topicValidator.checkPointTitleErrors);
     }
 
     const [titleError, setTitleError] = useState<string>("");
     const [subjectError, setSubjectError] = useState<string>("");
     const [repoNameError, setRepoNameError] = useState<string>("");
     const [readmeLinkError, setReadmeLinkError] = useState<string>("");
+    const [checkPointNumberError, setCheckPointNumberError] = useState<string>("");
+    const [checkPointTitleErrors, setCheckPointTitleErrors] = useState<string[]>([]);
+    const [checkPointDescriptionErrors, setCheckPointDescriptionErrors] = useState<string[]>([]);
 
     return(
         <div className="d-flex justify-content-center">
@@ -192,6 +207,7 @@ const TopicForm = () => {
                     <FormGroup>
                         <label htmlFor="checkpointsNumber">Number of checkpoints (1 - 50)</label>
                         <FormControl id="checkpointsNumber" type="number" placeholder="Enter number of checkpoints" value={checkpointsNumber} onChange={handleCheckpointNumberChange} />
+                        <FormText className="text-danger me-5">{checkPointNumberError}</FormText>
                     </FormGroup>
                     {checkpoints.slice(0, checkpointsNumber ? checkpointsNumber : 0).map((el, id) => (
                             <div key={id}>
@@ -209,6 +225,7 @@ const TopicForm = () => {
                                                       }
                                                       setCheckpoints(arr);
                                                     }}/>
+                                    <FormText className="text-danger me-5">{checkPointTitleErrors[id]}</FormText>
                                     <FormControl id="checkpointsDescription"
                                                  className="mb-2"
                                                  placeholder="Enter checkpoint description"
@@ -221,12 +238,13 @@ const TopicForm = () => {
                                                      }
                                                      setCheckpoints(arr);
                                                  }}/>
+                                    <FormText className="text-danger me-5">{checkPointDescriptionErrors[id]}</FormText>
                                 </FormGroup>
                             </div>
 
                         ))}
 
-                    <input className="btn btn-primary" type="submit" value="Create" />
+                    <input className="btn btn-primary mt-4" type="submit" value="Create" />
                 </form>
             </Card>
         </div>

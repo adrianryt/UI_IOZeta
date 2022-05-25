@@ -1,11 +1,26 @@
 import Validator from "./Validator";
 
 export default class TopicValidator extends Validator{
+    get checkPointNumberError(): string {
+        return this._checkPointNumberError;
+    }
+
+    get checkPointTitleErrors(): string[] {
+        return this._checkPointTitleErrors;
+    }
+
+    get checkPointDescriptionErrors(): string[] {
+        return this._checkPointDescriptionErrors;
+    }
+
     private _titleError: string = "";
     private _subjectError: string = "";
     private _repoNameError: string = "";
     private _githubUsernameError: string = "";
     private _repoLinkError: string = "";
+    private _checkPointNumberError: string = "";
+    private _checkPointTitleErrors: string[] = [];
+    private _checkPointDescriptionErrors: string[] = [];
 
     get repoNameError(): string{
         return this._repoNameError;
@@ -61,6 +76,49 @@ export default class TopicValidator extends Validator{
         }
         this._repoLinkError = "";
         return true;
+    }
+
+    public validateCheckPointNumber(checkPointNumber: number|undefined){
+        if(checkPointNumber === undefined || checkPointNumber === 0){
+            this._checkPointNumberError = "The number of checkpoints should be higher than 0";
+            return false;
+        }
+
+        return true;
+    }
+
+    public validateCheckPointTitles(checkPointTitles: string[]){
+        let succeed = true
+        this._checkPointTitleErrors = []
+        checkPointTitles.forEach(checkPointTitle => {
+            if(!this.stringNotEmpty(checkPointTitle)){
+                this._checkPointTitleErrors.push("checkpoint title cannot be empty")
+                succeed = false;
+            }
+            else if(!this.stringHasLengthBetween(checkPointTitle, 1, 100)){
+                this._checkPointTitleErrors.push("checkpoint title should contain between 1 and 100 characters")
+                succeed = false;
+            }
+            this._checkPointTitleErrors.push("")
+        })
+        return succeed;
+    }
+
+    public validateCheckPointDescription(checkPointDescriptions: string[]){
+        let succeed = true
+        this._checkPointDescriptionErrors = []
+        checkPointDescriptions.forEach(checkPointDescription => {
+            if(!this.stringNotEmpty(checkPointDescription)){
+                this._checkPointDescriptionErrors.push("checkpoint description cannot be empty")
+                succeed = false;
+            }
+            else if(!this.stringHasLengthBetween(checkPointDescription, 1, 5000)){
+                this._checkPointDescriptionErrors.push("checkpoint description should contain between 1 and 5000 characters")
+                succeed = false;
+            }
+            this._checkPointDescriptionErrors.push("")
+        })
+        return succeed;
     }
 
     public validateGithubUsername(githubUsername: string) {
