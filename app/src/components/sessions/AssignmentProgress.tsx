@@ -33,7 +33,7 @@ const AssignmentProgress = () => {
     const params = useParams();
     const [progress, setProgress] = useState(new SessionDataObject([], []));
     useEffect(() => {
-        axios.get("http://localhost:8080/session/session-details&session_id=" + params.sessionID, {
+        axios.get("http://localhost:8080/sessions/session-details?session_id=" + params.sessionID, {
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
             }
