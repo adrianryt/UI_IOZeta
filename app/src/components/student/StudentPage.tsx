@@ -47,11 +47,11 @@ const StudentPage = (props: any) => {
 
 
     return (
-        <div className="row">
-            <div id="readme" className='d-flex justify-content-center col-lg-9 scrollbar-primary'>
+        <div className="row me-1">
+            <div id="readme" className='d-flex justify-content-center col-lg-8 scrollbar-primary'>
                 <Readme topicName={topicName} readmeUrl={readmeUrl}  />
             </div>
-            <div id="checkpoints" className='d-flex justify-content-center col-lg-3'>
+            <div id="checkpoints" className='col-lg-4'>
                 <Checkpoints checkpoints={checkpoints} />
             </div>
         </div >
