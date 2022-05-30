@@ -3,25 +3,9 @@ import { Table } from "react-bootstrap";
 import CheckpointObject from "../../objects/CheckpointObject";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import SessionDataObject from "../../objects/SessionDataObject";
 import CookieService from "../../objects/services/CookieService";
-
-function translate(status: number) {
-    switch (status) {
-        case 0:
-            return "-"
-        case 1:
-            return "awaiting review"
-        case 2:
-            return "corrections needed"
-        case 3:
-            return "accepted"
-        default:
-            return "-"
-    }
-
-}
 
 function orderCommits(sData: SessionDataObject) {
     sData.students.forEach(element => {
@@ -68,7 +52,14 @@ const AssignmentProgress = () => {
                         <tr>
                             <th scope="row" >{checkpoint.name}</th>
                             {checkpoint.commits.map((commit: any) =>
-                                <th scope="row" key={commit.url}><a href={commit.url}>{translate(commit.stat)}</a></th>
+                                <th scope="row" key={commit.url}>
+                                    {commit.url === "" ? "No commit yet" :
+                                        <a href={"https://www." + commit.url} target="_blank" >
+                                            Link to commit
+                                        </a>
+                                    }
+
+                                </th>
                             )}
                         </tr>
 
