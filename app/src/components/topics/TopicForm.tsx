@@ -52,7 +52,6 @@ const TopicForm = () => {
     const [message, setMessage] = useState<string>("");
 
     const [title, setTitle] = useState<string>("");
-    const [githubUsername, setGithubUsername] = useState<string>("");
     const [subject, setSubject] = useState<string>("");
     const [repoName, setRepoName] = useState<string>("");
 
@@ -65,7 +64,6 @@ const TopicForm = () => {
     const [addFilesLink, setAddFilesLink] = useState<string>("");
 
     const handleTitleChange = (e:React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
-    const handleGithubUsernameChange= (e:React.ChangeEvent<HTMLInputElement>) => setGithubUsername(e.target.value);
     const handleSubjectChange = (e:React.ChangeEvent<HTMLSelectElement>) => setSubject(e.target.value);
     const handleRepoNameChange = (e:React.ChangeEvent<HTMLInputElement>) => setRepoName(e.target.value);
 
@@ -101,7 +99,7 @@ const TopicForm = () => {
 
     const handleRequestSucceed = () => {
         setShowSuccessAlert(true);
-        const link = "https://github.com/" + githubUsername + "/" + repoName + "/upload/main"
+        const link = "https://github.com/" + CookieService.getCookie('username') + "/" + repoName + "/upload/main"
         setAddFilesLink(link);
         setTimeout(() => {
             setShowSuccessAlert(false);
@@ -124,7 +122,6 @@ const TopicForm = () => {
         if(topicValidator.validateTitle(title) &&
             topicValidator.validateSubject(subject) &&
             topicValidator.validateRepoName(repoName) &&
-            topicValidator.validateGithubUsername(githubUsername)){
             topicValidator.validateCheckPointNumber(checkpointsNumber) &&
             topicValidator.validateCheckPointTitles(checkpoints.map(checkpoint => checkpoint.title ? checkpoint.title : "")) &&
             topicValidator.validateCheckPointDescription(checkpoints.map(checkpoint => checkpoint.description ? checkpoint.description : ""))){
