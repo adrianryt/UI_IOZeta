@@ -3,6 +3,7 @@ export default class CheckpointObject {
     private _description: string;
     private _commands: string[];
     private _progressCheckBox: boolean;
+    private _number: number;
 
     get title(): string {
         return this._title;
@@ -37,10 +38,19 @@ export default class CheckpointObject {
         this._progressCheckBox = value;
     }
 
-    constructor(tile: string, description: string, commands: string[]) {
+    get number(): number {
+        return this._number;
+    }
+
+    set number(value: number) {
+        this._number = value;
+    }
+
+    constructor(tile: string, description: string, commands: string[], progressCheckBox: boolean, number: number) {
         this._title = tile;
         this._description = description;
         this._commands = commands;
-        this._progressCheckBox = false;
+        this._progressCheckBox = progressCheckBox;
+        this._number = number;
     }
 }

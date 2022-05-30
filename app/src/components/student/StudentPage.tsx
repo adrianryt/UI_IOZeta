@@ -12,7 +12,7 @@ const StudentPage = (props: any) => {
     const GET_SESSION_URL = "http://localhost:8080/sessions/student/session-info";
     const navigate = useNavigate();
 
-    const [checkpoints, setCheckpoints] = useState([new CheckpointObject("", "", [])]);
+    const [checkpoints, setCheckpoints] = useState([new CheckpointObject("", "", [], false, 0)]);
     const [readmeUrl, setReadmeUrl] = useState("")
     const [topicName, setTopicName] = useState("");
 

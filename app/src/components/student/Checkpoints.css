@@ -1,7 +1,10 @@
 #progress-checkbox {
-
+    width: 20px;
+    height: 20px;
 }
 
 #progress-checkbox:hover {
+    width: 20px;
+    height: 20px;
     cursor: pointer;
 }
