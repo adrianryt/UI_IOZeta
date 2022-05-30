@@ -10,7 +10,7 @@ import { BsFillInfoSquareFill } from "react-icons/bs";
 
 const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
     const navigate = useNavigate();
-    const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username']);
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username', 'lecturer_id']);
 
     const [firstName, setFirstName] = useState<string>("");
     const [surname, setSurname] = useState<string>("");
@@ -83,6 +83,21 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                     setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: false});
                     setCookie("username", nickname, {maxAge: 60*60, path: "/", secure: false});
                     props.setUserLogin(nickname);
+                    axios({
+                        url: "http://localhost:8080/api/lecturers",
+                        method: "get",
+                        headers: {
+                            "authorization": `Bearer ${response.data.access_token}`
+                        }
+                    }).then((response) => {
+                        const listOfLecturers: Array<any> = response.data
+                        // @ts-ignore
+                        const id = listOfLecturers.filter((element: Dict<any>, _N, _A) => {
+                            return element['gitNick'] === nickname
+                        }).pop()['id']
+                        setCookie("lecturer_id", id, {maxAge: 60*60, path: "/", secure: false});
+                    })
+
                     navigate("/teacher")
 
                 }).catch((e) => {
@@ -105,29 +120,29 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
 
     return(
         <div className=" d-flex justify-content-center">
-            <Card className="mt-5">
+            <Card className="mt-5 col-11 col-sm-9 col-md-7 col-lg-5 col-xl-3 col-xxl-2">
                 <Card.Header>Sign up as lecturer</Card.Header>
                 <Card.Body>
                     <form className="" onSubmit={handleFormSubmit}>
                         <FormGroup>
                             <label>
                                 First name:
-                                <input name="firstName" className="form-control" type="text" value={firstName} onChange={handleFirstNameChange}/>
                             </label>
+                            <input name="firstName" className="form-control" type="text" value={firstName} onChange={handleFirstNameChange}/>
                             <FormText className="text-danger mb-4 row">{firstNameError}</FormText>
                         </FormGroup>
                         <FormGroup>
                             <label>
                                 Surname:
-                                <input name="surname" className="form-control" type="text" value={surname} onChange={handleSurnameChange}/>
                             </label>
+                            <input name="surname" className="form-control" type="text" value={surname} onChange={handleSurnameChange}/>
                             <FormText className="text-danger mb-4 row">{surnameError}</FormText>
                         </FormGroup>
                         <FormGroup>
                             <label>
                                 Github nickname:
-                                <input name="nickname" className="form-control" type="text" value={nickname} onChange={handleNicknameChange}/>
                             </label>
+                            <input name="nickname" className="form-control" type="text" value={nickname} onChange={handleNicknameChange}/>
                             <FormText className="text-danger mb-4 row">{nicknameError}</FormText>
                             <OverlayTrigger
                                 placement="right"
@@ -139,8 +154,8 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                         <FormGroup>
                             <label>
                                 Github token:
-                                <input name="token" className="form-control" type="text" value={token} onChange={handleTokenChange}/>
                             </label>
+                            <input name="token" className="form-control" type="text" value={token} onChange={handleTokenChange}/>
                             <FormText className="text-danger mb-4 row">{tokenError}</FormText>
                             <OverlayTrigger
                                 placement="right"
@@ -152,8 +167,8 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                         <FormGroup>
                             <label>
                                 Password:
-                                <input name="password" className="form-control mb-3" type="password" value={password} onChange={handlePasswordChange}/>
                             </label>
+                            <input name="password" className="form-control mb-3" type="password" value={password} onChange={handlePasswordChange}/>
                             <FormText className="text-danger mb-4 row">{passwordError}</FormText>
                         </FormGroup>
                         <input className="btn btn-outline-dark" type="submit" value="Create account"/>

@@ -4,12 +4,13 @@ import {Link} from "react-router-dom";
 import {useCookies} from "react-cookie";
 
 const NavMenu = (props: {loggedUserName: string | null, setLoggedUser: (name: string) => void}) => {
-    const [, , removeCookie] = useCookies(['access_token', 'refresh_token', 'username']);
+    const [, , removeCookie] = useCookies(['access_token', 'refresh_token', 'username', 'lecturer_id']);
 
     const handleLogoutClick = () => {
         removeCookie("username");
         removeCookie("refresh_token");
         removeCookie("access_token");
+        removeCookie("lecturer_id")
         props.setLoggedUser("");
     }
 
