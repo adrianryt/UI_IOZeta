@@ -58,7 +58,6 @@ const AssignmentProgress = () => {
                                             Link to commit
                                         </a>
                                     }
-
                                 </th>
                             )}
                         </tr>
