@@ -123,8 +123,8 @@ const TopicForm = () => {
             topicValidator.validateSubject(subject) &&
             topicValidator.validateRepoName(repoName) &&
             topicValidator.validateCheckPointNumber(checkpointsNumber) &&
-            topicValidator.validateCheckPointTitles(checkpoints.map(checkpoint => checkpoint.title ? checkpoint.title : "")) &&
-            topicValidator.validateCheckPointDescription(checkpoints.map(checkpoint => checkpoint.description ? checkpoint.description : ""))){
+            topicValidator.validateCheckPointTitles(checkpoints.slice(0, checkpointsNumber).map(checkpoint => checkpoint.title ? checkpoint.title : "")) &&
+            topicValidator.validateCheckPointDescription(checkpoints.slice(0, checkpointsNumber).map(checkpoint => checkpoint.description ? checkpoint.description : ""))){
 
             axios({
                 url: "http://localhost:8080/task/add",
