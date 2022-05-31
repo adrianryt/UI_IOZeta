@@ -4,7 +4,8 @@ import TopicObject from "../../objects/TopicObject";
 import {useState} from "react";
 import axios from "axios";
 import CookieService from "../../objects/services/CookieService";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import Readme from "../student/Readme";
 
 type propsType = {
     topic: TopicObject,
@@ -24,6 +25,18 @@ const Topic = (props: propsType) => {
             setShowSessionInvalid(false);
         }, 2000);
     }
+
+    const username: string = CookieService.getCookie("username");
+
+    const readmeUrl = () =>{
+        // return "https://api.github.com/repos/youngdashu/Investments-overview/contents/README.MD";
+        return "https://api.github.com/repos/" + username + "/" + props.topic.repoName + "/contents/README.md";
+    }
+
+    const repoLink = () => {
+        return "https://github.com/" + username + "/" + props.topic.repoName
+    }
+
 
     const handleSetSessionName = (e: React.ChangeEvent<HTMLInputElement>) => setSessionName(e.target.value);
     const handleCreateSessionSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,7 +73,15 @@ const Topic = (props: propsType) => {
             <Card.Header className="bg bg-info">{props.topic.title} | {props.topic.subject}</Card.Header>
             {showSessionInvalid ? <Alert variant="danger">Invalid session name: {sessionInvalidInfo}</Alert> : null}
             <Card.Body>
-                <div className="mb-3">repository name: {props.topic.repoName}</div>
+                <div className="">
+                    <div className="mb-3">
+                        {"repository name: "}
+                        <a href={repoLink()} target="_blank">{props.topic.repoName}</a>
+                    </div>
+                    <div id="readme" className='d-flex justify-content-center scrollbar-primary'>
+                        <Readme topicName={""} readmeUrl={readmeUrl()}  />
+                    </div>
+                </div>
                 <form onSubmit={handleCreateSessionSubmit}>
                     <FormGroup>
                         <FormControl value={sessionName} onChange={handleSetSessionName} className="mt-3 mb-3" placeholder="enter session name"></FormControl>
