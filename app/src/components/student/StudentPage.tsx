@@ -12,7 +12,7 @@ const StudentPage = (props: any) => {
     const GET_SESSION_URL = "http://localhost:8080/sessions/student/session-info";
     const navigate = useNavigate();
 
-    const [checkpoints, setCheckpoints] = useState([new CheckpointObject("", "", [])]);
+    const [checkpoints, setCheckpoints] = useState([new CheckpointObject("", "", [], false, 0)]);
     const [readmeUrl, setReadmeUrl] = useState("")
     const [topicName, setTopicName] = useState("");
 
@@ -47,11 +47,11 @@ const StudentPage = (props: any) => {
 
 
     return (
-        <div className="row">
-            <div id="readme" className='d-flex justify-content-center col-lg-9 scrollbar-primary'>
+        <div className="row me-1">
+            <div id="readme" className='d-flex justify-content-center col-lg-8 scrollbar-primary'>
                 <Readme topicName={topicName} readmeUrl={readmeUrl}  />
             </div>
-            <div id="checkpoints" className='d-flex justify-content-center col-lg-3'>
+            <div id="checkpoints" className='col-lg-4'>
                 <Checkpoints checkpoints={checkpoints} />
             </div>
         </div >

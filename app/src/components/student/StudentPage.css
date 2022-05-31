@@ -1,5 +1,5 @@
 .row>#readme, #checkpoints {
-    padding: 48px;
+    /*padding: 48px;*/
 }
 
 #readme, #checkpoints>ol {
@@ -11,6 +11,7 @@
 #checkpoints ol, #readme .card-body {
     height: 100%;
     overflow: auto;
+    padding: 0;
 }
 
 #checkpoints .checkpoint .card-body :not(p) {
