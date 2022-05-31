@@ -14,7 +14,16 @@ type propsType = {
 const Topic = (props: propsType) => {
     const [sessionName, setSessionName] = useState<string>("");
     const [showSessionInvalid, setShowSessionInvalid] = useState<boolean>(false);
+    const [sessionInvalidInfo, setSessionInvalidInfo] = useState<string>("");
     const navigate = useNavigate();
+
+    const showSessionError = (info: string) => {
+        setShowSessionInvalid(true);
+        setSessionInvalidInfo(info)
+        setTimeout(() => {
+            setShowSessionInvalid(false);
+        }, 2000);
+    }
 
     const handleSetSessionName = (e: React.ChangeEvent<HTMLInputElement>) => setSessionName(e.target.value);
     const handleCreateSessionSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,26 +41,24 @@ const Topic = (props: propsType) => {
                         id: props.topic.id
                     }
                 }
-            })
-                .then((response) => {
+            }).then((response) => {
                     if(props.fetchSessions !== undefined){
                         props.fetchSessions()
                     }
                     navigate("/topic/"+props.topic.id)
-                })
+                }).catch((e) => {
+                    showSessionError("session name is taken");
+            });
         }
         else{
-            setShowSessionInvalid(true);
-            setTimeout(() => {
-                setShowSessionInvalid(false);
-            }, 2000);
+            showSessionError("name has wrong length");
         }
     }
 
     return(
         <Card className="my-3 mx-auto border-3 col-sm-10 col-md-8 col-lg-6 col-11">
             <Card.Header className="bg bg-info">{props.topic.title} | {props.topic.subject}</Card.Header>
-            {showSessionInvalid ? <Alert variant="danger">Session name is invalid</Alert> : null}
+            {showSessionInvalid ? <Alert variant="danger">Invalid session name: {sessionInvalidInfo}</Alert> : null}
             <Card.Body>
                 <div className="mb-3">repository name: {props.topic.repoName}</div>
                 <form onSubmit={handleCreateSessionSubmit}>
