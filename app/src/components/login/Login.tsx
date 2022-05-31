@@ -78,20 +78,20 @@ const Login = (props: {setUserLogin: (name: string) => string}) =>{
                 <Card.Body>
                     <form className="" onSubmit={handleFormSubmit}>
                         <FormGroup>
-                            <label>
+                            <label >
                                 github nickname:
                                 <input name="username" className="form-control mb-2" type="text" value={login} onChange={handleLoginChange}/>
                             </label>
-                            <FormText className="text-danger mb-4 row">{loginError}</FormText>
+                            <FormText className="text-danger row position-absolute">{loginError}</FormText>
                         </FormGroup>
                         <FormGroup>
-                            <label>
+                            <label className="mt-4">
                                 password:
-                                <input name="password" className="form-control mb-3" type="password" value={password} onChange={handlePasswordChange}/>
+                                <input name="password" className="form-control mb-2" type="password" value={password} onChange={handlePasswordChange}/>
                             </label>
-                            <FormText className="text-danger mb-4 row">{passwordError}</FormText>
+                            <FormText className="text-danger row position-absolute">{passwordError}</FormText>
                         </FormGroup>
-                        <input className="btn btn-primary w-100" type="submit" value="Login"/>
+                        <input className="btn btn-primary w-100 mt-5" type="submit" value="Login"/>
                         <Link className="btn btn-secondary d-block mt-4" to={"/signup"}>Sign up</Link>
 
                     </form>

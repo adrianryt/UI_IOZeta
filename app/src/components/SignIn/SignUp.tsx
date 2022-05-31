@@ -1,14 +1,14 @@
 import * as React from "react";
 
-import {Card, FormGroup, FormText, OverlayTrigger, Popover, Button} from "react-bootstrap";
-import {useNavigate, Link} from "react-router-dom";
-import {useState, FormEvent} from "react";
-import axios, {AxiosResponse} from "axios";
-import {useCookies} from "react-cookie";
+import { Card, FormGroup, FormText, OverlayTrigger, Popover, Button } from "react-bootstrap";
+import { useNavigate, Link } from "react-router-dom";
+import { useState, FormEvent } from "react";
+import axios, { AxiosResponse } from "axios";
+import { useCookies } from "react-cookie";
 import SignUpValidator from "../../objects/validators/SignUpValidator";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 
-const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
+const SignUp = (props: { setUserLogin: (name: string) => string }) => {
     const navigate = useNavigate();
     const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'refresh_token', 'username', 'lecturer_id']);
 
@@ -51,7 +51,7 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
     const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => setToken(e.target.value)
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
 
-    const handleFormSubmit = (e: React.FormEvent) =>{
+    const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setFirstNameError("");
         setSurnameError("");
@@ -59,8 +59,8 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
         setTokenError("");
         setPasswordError("");
         const signUpValidator = new SignUpValidator();
-        if(signUpValidator.validateFirstName(firstName) && signUpValidator.validateSurname(surname) && signUpValidator.validateNickname(nickname) &&
-            signUpValidator.validateGitToken(token) && signUpValidator.validatePassword(password)){
+        if (signUpValidator.validateFirstName(firstName) && signUpValidator.validateSurname(surname) && signUpValidator.validateNickname(nickname) &&
+            signUpValidator.validateGitToken(token) && signUpValidator.validatePassword(password)) {
             axios({
                 url: "http://localhost:8080/api/lecturer/save",
                 method: "POST",
@@ -79,9 +79,9 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                     },
                     data: loginParams
                 }).then((response) => {
-                    setCookie("access_token", response.data.access_token, {maxAge: 60*60, path: "/", secure: false});
-                    setCookie("refresh_token", response.data.refresh_token, {maxAge: 60*60*24, path: "/", secure: false});
-                    setCookie("username", nickname, {maxAge: 60*60, path: "/", secure: false});
+                    setCookie("access_token", response.data.access_token, { maxAge: 60 * 60, path: "/", secure: false });
+                    setCookie("refresh_token", response.data.refresh_token, { maxAge: 60 * 60 * 24, path: "/", secure: false });
+                    setCookie("username", nickname, { maxAge: 60 * 60, path: "/", secure: false });
                     props.setUserLogin(nickname);
                     axios({
                         url: "http://localhost:8080/api/lecturers",
@@ -101,14 +101,14 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                     navigate("/teacher")
 
                 }).catch((e) => {
-                    console.error("cannot login user: "+e);
+                    console.error("cannot login user: " + e);
                 })
 
             }).catch((e) => {
-                console.error("cannot register user: "+e);
+                console.error("cannot register user: " + e);
             })
         }
-        else{
+        else {
             setFirstNameError(signUpValidator.firstNameError);
             setSurnameError(signUpValidator.surnameError);
             setNicknameError(signUpValidator.nicknameError);
@@ -118,7 +118,7 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
 
     }
 
-    return(
+    return (
         <div className=" d-flex justify-content-center">
             <Card className="mt-5 col-11 col-sm-9 col-md-7 col-lg-5 col-xl-3 col-xxl-2">
                 <Card.Header>Sign up as lecturer</Card.Header>
@@ -128,50 +128,59 @@ const SignUp = (props: {setUserLogin: (name: string) => string}) =>{
                             <label>
                                 First name:
                             </label>
-                            <input name="firstName" className="form-control" type="text" value={firstName} onChange={handleFirstNameChange}/>
-                            <FormText className="text-danger mb-4 row">{firstNameError}</FormText>
+                                <input name="firstName" className="form-control" type="text" value={firstName} onChange={handleFirstNameChange} />
+
+                            <FormText className="text-danger mb-4 row position-absolute">{firstNameError}</FormText>
+
                         </FormGroup>
                         <FormGroup>
-                            <label>
+                            <label className="mt-4">
                                 Surname:
                             </label>
-                            <input name="surname" className="form-control" type="text" value={surname} onChange={handleSurnameChange}/>
-                            <FormText className="text-danger mb-4 row">{surnameError}</FormText>
+                                <input name="surname" className="form-control" type="text" value={surname} onChange={handleSurnameChange} />
+
+                            <FormText className="text-danger mb-4 row position-absolute">{surnameError}</FormText>
+
                         </FormGroup>
                         <FormGroup>
-                            <label>
+                            <label className="mt-4">
                                 Github nickname:
                             </label>
-                            <input name="nickname" className="form-control" type="text" value={nickname} onChange={handleNicknameChange}/>
-                            <FormText className="text-danger mb-4 row">{nicknameError}</FormText>
+                                <input name="nickname" className="form-control" type="text" value={nickname} onChange={handleNicknameChange} />
+                           
+                            <FormText className="text-danger mb-4 row position-absolute">{nicknameError}</FormText>
+
                             <OverlayTrigger
                                 placement="right"
                                 overlay={usernamePopover}
                             >
-                                <div className="d-inline ms-2"><BsFillInfoSquareFill className="fs-4"/></div>
+                                <div className="d-inline ms-2"><BsFillInfoSquareFill className="fs-4" /></div>
                             </OverlayTrigger>
                         </FormGroup>
                         <FormGroup>
-                            <label>
+                            <label className="mt-4">
                                 Github token:
-                            </label>
-                            <input name="token" className="form-control" type="text" value={token} onChange={handleTokenChange}/>
-                            <FormText className="text-danger mb-4 row">{tokenError}</FormText>
+                           </label>
+                                <input name="token" className="form-control" type="text" value={token} onChange={handleTokenChange} />
+                           
+                            <FormText className="text-danger mb-4 row position-absolute">{tokenError}</FormText>
+
                             <OverlayTrigger
                                 placement="right"
                                 overlay={tokenPopover}
                             >
-                                <div className="d-inline ms-2"><BsFillInfoSquareFill className="fs-4"/></div>
+                                <div className="d-inline ms-2"><BsFillInfoSquareFill className="fs-4" /></div>
                             </OverlayTrigger>
                         </FormGroup>
                         <FormGroup>
-                            <label>
+                            <label className="mt-4">
                                 Password:
+                                <input name="password" className="form-control" type="password" value={password} onChange={handlePasswordChange} />
                             </label>
-                            <input name="password" className="form-control mb-3" type="password" value={password} onChange={handlePasswordChange}/>
-                            <FormText className="text-danger mb-4 row">{passwordError}</FormText>
+                            <FormText className="text-danger row position-absolute">{passwordError}</FormText>
+
                         </FormGroup>
-                        <input className="btn btn-outline-dark" type="submit" value="Create account"/>
+                        <input className="btn btn-outline-dark mt-5" type="submit" value="Create account" />
                     </form>
                 </Card.Body>
             </Card>
