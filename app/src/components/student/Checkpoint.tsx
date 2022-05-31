@@ -64,7 +64,7 @@ const Checkpoint = (props: {checkpoint: CheckpointObject}) => {
                     <Button onClick={() => {
                         navigator.clipboard.writeText(checkpoint.commands.join(" & "));  //copy git command
                     }
-                    }>Skopiuj</Button>
+                    }>Copy</Button>
                 </Card.Body>
             </Card>
         </div>
