@@ -158,6 +158,7 @@ const TopicForm = () => {
                     setRepoNameError("Repo name is already taken")
                 }
                 setMessage("Error while adding topic")
+                handleRequestFailed();
             });
         }
         else{
