@@ -52,10 +52,8 @@ const TopicForm = () => {
     const [message, setMessage] = useState<string>("");
 
     const [title, setTitle] = useState<string>("");
-    const [githubUsername, setGithubUsername] = useState<string>("");
     const [subject, setSubject] = useState<string>("");
     const [repoName, setRepoName] = useState<string>("");
-    const [readmeLink, setReadmeLink] = useState<string>("");
 
     const [checkpointsNumber, setCheckpointsNumber] = useState<undefined | number>(undefined)
     const [checkpoints, setCheckpoints] = useState<Checkpoint[]>([]);
@@ -63,11 +61,11 @@ const TopicForm = () => {
     const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
     const [showFailAlert, setShowFailAlert] = useState<boolean>(false);
 
+    const [addFilesLink, setAddFilesLink] = useState<string>("");
+
     const handleTitleChange = (e:React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
-    const handleGithubUsernameChange= (e:React.ChangeEvent<HTMLInputElement>) => setGithubUsername(e.target.value);
     const handleSubjectChange = (e:React.ChangeEvent<HTMLSelectElement>) => setSubject(e.target.value);
     const handleRepoNameChange = (e:React.ChangeEvent<HTMLInputElement>) => setRepoName(e.target.value);
-    const handleReadmeLinkChange = (e:React.ChangeEvent<HTMLInputElement>) => setReadmeLink(e.target.value);
 
     const handleCheckpointNumberChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.value !== "" && !isNaN(Number(e.target.value)) && parseInt(e.target.value, 10) >= 0 && parseInt(e.target.value, 10) <= 50){
@@ -101,11 +99,13 @@ const TopicForm = () => {
 
     const handleRequestSucceed = () => {
         setShowSuccessAlert(true);
+        const link = "https://github.com/" + CookieService.getCookie('username') + "/" + repoName + "/upload/main"
+        setAddFilesLink(link);
         setTimeout(() => {
             setShowSuccessAlert(false);
-        }, 3000)
+        }, 5000)
         setTitle("");
-        setSubject(subjects.length > 0 ? subjects[0].id.toString() : "");
+        setSubject(subjects.length > 0 ? subjects[0].name.toString() : "");
         setRepoName("");
     }
 
@@ -122,7 +122,6 @@ const TopicForm = () => {
         if(topicValidator.validateTitle(title) &&
             topicValidator.validateSubject(subject) &&
             topicValidator.validateRepoName(repoName) &&
-            topicValidator.validateReadmeLink(readmeLink) &&
             topicValidator.validateCheckPointNumber(checkpointsNumber) &&
             topicValidator.validateCheckPointTitles(checkpoints.map(checkpoint => checkpoint.title ? checkpoint.title : "")) &&
             topicValidator.validateCheckPointDescription(checkpoints.map(checkpoint => checkpoint.description ? checkpoint.description : ""))){
@@ -135,7 +134,6 @@ const TopicForm = () => {
                 },
                 data: {
                     'taskName': title,
-                    'readmeLink': readmeLink,
                     'subject': subject,
                     'repositoryName': repoName,
                     'lecturerGitNick': CookieService.getCookie('username'),
@@ -143,7 +141,7 @@ const TopicForm = () => {
                 }
             }).then((response) => {
                 if (response.status === 200) {
-                    setMessage("Topic added");
+                    setMessage("");
                     handleRequestSucceed();
                 } else {
                     setMessage("Error while adding topic");
@@ -151,8 +149,6 @@ const TopicForm = () => {
                 }
             })
                 .catch(() => setMessage("Error while adding topic"));
-
-
         }
         else{
             handleRequestFailed();
@@ -160,7 +156,6 @@ const TopicForm = () => {
         setSubjectError(topicValidator.subjectError);
         setTitleError(topicValidator.titleError);
         setRepoNameError(topicValidator.repoNameError);
-        setReadmeLinkError(topicValidator.readmeLinkError);
         setCheckPointNumberError(topicValidator.checkPointNumberError);
         setCheckPointDescriptionErrors(topicValidator.checkPointDescriptionErrors);
         setCheckPointTitleErrors(topicValidator.checkPointTitleErrors);
@@ -175,27 +170,34 @@ const TopicForm = () => {
     const [checkPointDescriptionErrors, setCheckPointDescriptionErrors] = useState<string[]>([]);
 
     return(
-        <div className="d-flex justify-content-center">
-            <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 m-lg-3 p-3 bg-light">
-                {!!message && <div>{message} </div>}
-                <h2>Topics  <Badge bg="secondary">New</Badge> </h2>
-                {showSuccessAlert ? <Alert variant="success">Topic Added Successfully</Alert> : null }
-                {showFailAlert ? <Alert variant="danger">An error occurred while adding topic</Alert> : null }
-                <form onSubmit={handleFormSubmit}>
-                    <FormGroup>
-                        <label htmlFor="titleTopicForm">Title</label>
-                        <FormControl id="titleTopicForm" placeholder="Enter title" value={title} onChange={handleTitleChange} />
-                        <FormText className="text-danger me-5">{titleError}</FormText>
-                    </FormGroup>
-                    <FormGroup>
-                        <label htmlFor="repoNameForm">Repository Name</label>
-                        <FormControl id="repoNameForm" placeholder="Enter repository name" value={repoName} onChange={handleRepoNameChange} />
-                        <FormText className="text-danger me-5">{repoNameError}</FormText>
-                    </FormGroup>
-                    <FormGroup>
-                        <label htmlFor="ReadMeLinkForm">README Link</label>
-                        <FormControl id="ReamMeLinkForm" placeholder="Enter README link" value={readmeLink} onChange={handleReadmeLinkChange} />
-                        <FormText className="text-danger me-5">{readmeLinkError}</FormText>
+    <div className="d-flex justify-content-center">
+        <Card className="col-md-8 col-lg-6 col-11 ms-2 mt-2 m-lg-3 p-3 bg-light">
+            {!!message && <div>{message}</div>}
+            <h2>Topics  <Badge bg="secondary">New</Badge> </h2>
+            {showSuccessAlert ? <Alert variant="success">Topic Added Successfully</Alert> : null }
+            {showFailAlert ? <Alert variant="danger">An error occurred while adding topic</Alert> : null }
+            {!!addFilesLink && <Card.Header className="mt-3">
+                <p><strong>To add your project please visit this website:</strong></p>
+                <a href={addFilesLink} target="_blank">{addFilesLink}</a>
+                <p className="mt-2"><strong>If you're new to github, please follow steps described below: </strong></p>
+                <ul>
+                    <li>1. Drag folder with your code to "Drag files area"</li>
+                    <li>2. Write your commit name in "Add files via upload" label ex. "Add base code"</li>
+                    <li>3. Optional - You can describe your commit in "Add an optional extended description label"</li>
+                    <li>4. Click green "Commit changes" button</li>
+                    <li>5. That's all! </li>
+                </ul>
+            </Card.Header>}
+            <form onSubmit={handleFormSubmit}>
+                <FormGroup>
+                    <label htmlFor="titleTopicForm">Title</label>
+                    <FormControl id="titleTopicForm" placeholder="Enter title" value={title} onChange={handleTitleChange} />
+                    <FormText className="text-danger me-5">{titleError}</FormText>
+                </FormGroup>
+                <FormGroup>
+                    <label  htmlFor="repoNameForm">Repository Name</label>
+                    <FormControl id="repoNameForm" placeholder="Enter repository name" value={repoName} onChange={handleRepoNameChange} />
+                    <FormText className="text-danger me-5">{repoNameError}</FormText>
                     </FormGroup>
                     <FormGroup>
                         <label htmlFor="subjectTopicForm">Subject</label>

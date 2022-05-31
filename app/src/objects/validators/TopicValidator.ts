@@ -17,7 +17,6 @@ export default class TopicValidator extends Validator{
     private _subjectError: string = "";
     private _repoNameError: string = "";
     private _githubUsernameError: string = "";
-    private _repoLinkError: string = "";
     private _checkPointNumberError: string = "";
     private _checkPointTitleErrors: string[] = [];
     private _checkPointDescriptionErrors: string[] = [];
@@ -26,9 +25,6 @@ export default class TopicValidator extends Validator{
         return this._repoNameError;
     }
 
-    get readmeLinkError(): string {
-        return this._repoLinkError;
-    }
 
     get githubUsernameError(): string {
         return this._githubUsernameError;
@@ -66,15 +62,6 @@ export default class TopicValidator extends Validator{
             return false;
         }
         this._repoNameError = "";
-        return true;
-    }
-
-    public validateReadmeLink(repoName: string){
-        if(!this.stringNotEmpty(repoName)){
-            this._repoLinkError = "Repository link cannot be empty";
-            return false;
-        }
-        this._repoLinkError = "";
         return true;
     }
 
