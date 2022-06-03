@@ -55,8 +55,13 @@ const TopicForm = () => {
     const [subject, setSubject] = useState<string>("");
     const [repoName, setRepoName] = useState<string>("");
 
-    const [checkpointsNumber, setCheckpointsNumber] = useState<undefined | number>(undefined)
-    const [checkpoints, setCheckpoints] = useState<Checkpoint[]>([]);
+    const [checkpointsNumber, setCheckpointsNumber] = useState<undefined | number>(1)
+    const [checkpoints, setCheckpoints] = useState<Checkpoint[]>([
+        {
+            title:"Topic completion",
+            description:"Complete instructions according to readme"
+        }
+    ]);
 
     const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
     const [showFailAlert, setShowFailAlert] = useState<boolean>(false);
