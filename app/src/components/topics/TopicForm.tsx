@@ -73,7 +73,7 @@ const TopicForm = () => {
     const handleRepoNameChange = (e:React.ChangeEvent<HTMLInputElement>) => setRepoName(e.target.value);
 
     const handleCheckpointNumberChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.value !== "" && !isNaN(Number(e.target.value)) && parseInt(e.target.value, 10) >= 0 && parseInt(e.target.value, 10) <= 50){
+        if(e.target.value !== "" && !isNaN(Number(e.target.value)) && parseInt(e.target.value, 10) > 0 && parseInt(e.target.value, 10) <= 50){
             const currentValue = parseInt(e.target.value, 10);
             if (currentValue > checkpoints.length) {
                 const checkPointsTitleErrorsNewArray: string[] = []
@@ -96,6 +96,12 @@ const TopicForm = () => {
                 setCheckpoints(newArray);
             }
             setCheckpointsNumber(currentValue);
+        }
+        else if(parseInt(e.target.value, 10) <= 0 || isNaN(Number(e.target.value))){
+            setCheckpointsNumber(1);
+        }
+        else if(parseInt(e.target.value, 10) > 50){
+            setCheckpointsNumber(50);
         }
         else{
             setCheckpointsNumber(undefined);
@@ -128,8 +134,8 @@ const TopicForm = () => {
             topicValidator.validateSubject(subject) &&
             topicValidator.validateRepoName(repoName) &&
             topicValidator.validateCheckPointNumber(checkpointsNumber) &&
-            topicValidator.validateCheckPointTitles(checkpoints.map(checkpoint => checkpoint.title ? checkpoint.title : "")) &&
-            topicValidator.validateCheckPointDescription(checkpoints.map(checkpoint => checkpoint.description ? checkpoint.description : ""))){
+            topicValidator.validateCheckPointTitles(checkpoints.slice(0, checkpointsNumber).map(checkpoint => checkpoint.title ? checkpoint.title : "")) &&
+            topicValidator.validateCheckPointDescription(checkpoints.slice(0, checkpointsNumber).map(checkpoint => checkpoint.description ? checkpoint.description : ""))){
 
             axios({
                 url: "http://localhost:8080/task/add",
@@ -152,8 +158,13 @@ const TopicForm = () => {
                     setMessage("Error while adding topic");
                     handleRequestFailed();
                 }
-            })
-                .catch(() => setMessage("Error while adding topic"));
+            }).catch((e) => {
+                if(e.response?.data?.message === "Error while adding new task. Error creating repo on github"){
+                    setRepoNameError("Repo name is already taken")
+                }
+                setMessage("Error while adding topic")
+                handleRequestFailed();
+            });
         }
         else{
             handleRequestFailed();
@@ -213,7 +224,7 @@ const TopicForm = () => {
                     </FormGroup>
                     <FormGroup>
                         <label htmlFor="checkpointsNumber">Number of checkpoints (1 - 50)</label>
-                        <FormControl id="checkpointsNumber" type="number" placeholder="Enter number of checkpoints" value={checkpointsNumber} onChange={handleCheckpointNumberChange} />
+                        <FormControl id="checkpointsNumber" type="number" placeholder="Enter number of checkpoints" value={checkpointsNumber} onInput={handleCheckpointNumberChange} />
                         <FormText className="text-danger me-5">{checkPointNumberError}</FormText>
                     </FormGroup>
                     {checkpoints.slice(0, checkpointsNumber ? checkpointsNumber : 0).map((el, id) => (

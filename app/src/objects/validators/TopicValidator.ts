@@ -67,7 +67,7 @@ export default class TopicValidator extends Validator{
 
     public validateCheckPointNumber(checkPointNumber: number|undefined){
         if(checkPointNumber === undefined || checkPointNumber === 0){
-            this._checkPointNumberError = "The number of checkpoints should be higher than 0";
+            this._checkPointNumberError = "The number of checkpoints should be higher than 0 and cannot be empty";
             return false;
         }
 
