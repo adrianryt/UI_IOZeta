@@ -19,7 +19,7 @@ const TopicForm = () => {
 
     useEffect(() => {
         if(searchParams.get("chosen_subject") !== null){
-            axios.get("http://localhost:8080/subjects/"+searchParams.get("chosen_subject"), {
+            axios.get("https://io-spring-demo.herokuapp.com/subjects/"+searchParams.get("chosen_subject"), {
                 headers: {
                     "authorization": `Bearer ${CookieService.getCookie("access_token")}`
                 }
@@ -31,7 +31,7 @@ const TopicForm = () => {
             })
         }
         else{
-            axios.get("http://localhost:8080/subjects/all?username=" + CookieService.getCookie("username"),
+            axios.get("https://io-spring-demo.herokuapp.com/subjects/all?username=" + CookieService.getCookie("username"),
                 {
                 headers: {
                     "authorization": `Bearer ${CookieService.getCookie("access_token")}`
@@ -138,7 +138,7 @@ const TopicForm = () => {
             topicValidator.validateCheckPointDescription(checkpoints.slice(0, checkpointsNumber).map(checkpoint => checkpoint.description ? checkpoint.description : ""))){
 
             axios({
-                url: "http://localhost:8080/task/add",
+                url: "https://io-spring-demo.herokuapp.com/task/add",
                 method: "post",
                 headers: {
                     "Authorization": `Bearer ${CookieService.getCookie("access_token")}`

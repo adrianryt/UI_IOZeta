@@ -62,7 +62,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
         if (signUpValidator.validateFirstName(firstName) && signUpValidator.validateSurname(surname) && signUpValidator.validateNickname(nickname) &&
             signUpValidator.validateGitToken(token) && signUpValidator.validatePassword(password)) {
             axios({
-                url: "http://localhost:8080/api/lecturer/save",
+                url: "https://io-spring-demo.herokuapp.com/api/lecturer/save",
                 method: "POST",
                 data: {
                     password, surname, name: firstName, gitNick: nickname, gitToken: token
@@ -72,7 +72,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                 loginParams.append('username', nickname)
                 loginParams.append('password', password)
                 axios({
-                    url: "http://localhost:8080/api/login",
+                    url: "https://io-spring-demo.herokuapp.com/api/login",
                     method: "POST",
                     headers: {
                         "content-type": "application/x-www-form-urlencoded"
@@ -84,7 +84,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                     setCookie("username", nickname, { maxAge: 60 * 60, path: "/", secure: false });
                     props.setUserLogin(nickname);
                     axios({
-                        url: "http://localhost:8080/api/lecturers",
+                        url: "https://io-spring-demo.herokuapp.com/api/lecturers",
                         method: "get",
                         headers: {
                             "authorization": `Bearer ${response.data.access_token}`

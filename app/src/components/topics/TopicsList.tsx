@@ -15,7 +15,7 @@ const TopicsList = () => {
     const [topicsComponents, setTopicsComponent] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/task/all", {
+        axios.get("https://io-spring-demo.herokuapp.com/task/all", {
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
             }

@@ -30,7 +30,7 @@ const Checkpoint = (props: {checkpoint: CheckpointObject}) => {
 
       axios({
           method: "post",
-          url: "http://localhost:8080/progress/update",
+          url: "https://io-spring-demo.herokuapp.com/progress/update",
           data: {
               "student_id": student_id,
               "session_id": session_id,

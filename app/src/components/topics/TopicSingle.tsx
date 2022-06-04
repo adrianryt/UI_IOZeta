@@ -16,7 +16,7 @@ const TopicSingle = () => {
     const params = useParams();
 
     const fetchSessions = () => {
-        axios.get("http://localhost:8080/sessions?task_id=" + params.topicID, {
+        axios.get("https://io-spring-demo.herokuapp.com/sessions?task_id=" + params.topicID, {
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
             }
@@ -29,7 +29,7 @@ const TopicSingle = () => {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8080/task/id?task_id="+params.topicID, {
+        axios.get("https://io-spring-demo.herokuapp.com/task/id?task_id="+params.topicID, {
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
             }

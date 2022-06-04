@@ -9,7 +9,7 @@ import CookieService from "../../objects/services/CookieService";
 import {useNavigate} from "react-router-dom";
 
 const StudentPage = (props: any) => {
-    const GET_SESSION_URL = "http://localhost:8080/sessions/student/session-info";
+    const GET_SESSION_URL = "https://io-spring-demo.herokuapp.com/sessions/student/session-info";
     const navigate = useNavigate();
 
     const [checkpoints, setCheckpoints] = useState([new CheckpointObject("", "", [], false, 0)]);
