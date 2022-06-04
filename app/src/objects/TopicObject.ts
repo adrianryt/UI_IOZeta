@@ -3,6 +3,7 @@ export default class TopicObject {
     private _subject: string;
     private _repoName: string;
     private _id: number;
+    private _readmeLink: string;
 
     get id(): number {
         return this._id;
@@ -20,7 +21,6 @@ export default class TopicObject {
         this._title = value;
     }
 
-
     get subject(): string {
         return this._subject;
     }
@@ -37,9 +37,18 @@ export default class TopicObject {
         this._repoName = value;
     }
 
-    constructor(tile: string, subject: string, repoName: string) {
+    get readmeLink(): string {
+        return this._readmeLink;
+    }
+
+    set readmeLink(value: string) {
+        this._readmeLink = value;
+    }
+
+    constructor(tile: string, subject: string, repoName: string, readmeLink: string) {
         this._title = tile;
         this._subject = subject;
         this._repoName = repoName
+        this._readmeLink = readmeLink;
     }
 }

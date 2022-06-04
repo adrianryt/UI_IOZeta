@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Button, Card } from "react-bootstrap";
 import CheckpointObject from "../../objects/CheckpointObject";
 import Checkpoint from "./Checkpoint";
 
