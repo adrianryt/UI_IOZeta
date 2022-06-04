@@ -32,7 +32,7 @@ const Login = (props: {setUserLogin: (name: string) => string}) =>{
             loginParams.append('username', login)
             loginParams.append('password', password)
             axios({
-                url: "http://localhost:8080/api/login",
+                url: "https://io-spring-demo.herokuapp.com/api/login",
                 method: "POST",
                 headers: {
                     "content-type": "application/x-www-form-urlencoded"
@@ -45,7 +45,7 @@ const Login = (props: {setUserLogin: (name: string) => string}) =>{
                 props.setUserLogin(login);
 
                 axios({
-                    url: "http://localhost:8080/api/lecturers",
+                    url: "https://io-spring-demo.herokuapp.com/api/lecturers",
                     method: "get",
                     headers: {
                         "authorization": `Bearer ${response.data.access_token}`

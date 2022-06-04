@@ -14,7 +14,7 @@ import {Button} from "react-bootstrap";
 
 
 const StudentPage = (props: any) => {
-    const GET_SESSION_URL = "http://localhost:8080/sessions/student/session-info";
+    const GET_SESSION_URL = "https://io-spring-demo.herokuapp.com/sessions/student/session-info";
     const navigate = useNavigate();
     const { setIsOpen } = useTour();
     const openTour=() => setIsOpen(true)

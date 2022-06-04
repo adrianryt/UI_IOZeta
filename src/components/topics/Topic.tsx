@@ -38,7 +38,7 @@ const Topic = (props: propsType) => {
         e.preventDefault();
         if(sessionName.length > 0 && sessionName.length < 100){
             axios( {
-                url: "http://localhost:8080/sessions/create",
+                url: "https://io-spring-demo.herokuapp.com/sessions/create",
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${CookieService.getCookie("access_token")}`

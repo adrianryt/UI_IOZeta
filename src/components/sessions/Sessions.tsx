@@ -13,7 +13,7 @@ const Sessions = ({sessionsPresentMessage="Active sessions:", noSessionsMessage=
     const [sessions, setSessions] = useState([])
     useEffect(() => {
         axios({
-            url: `http://localhost:8080/sessions/active-sessions?lecturer_id=${CookieService.getCookie("lecturer_id")}`,
+            url: `https://io-spring-demo.herokuapp.com/sessions/active-sessions?lecturer_id=${CookieService.getCookie("lecturer_id")}`,
             method: 'GET',
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`

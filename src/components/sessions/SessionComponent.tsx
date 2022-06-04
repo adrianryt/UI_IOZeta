@@ -23,7 +23,7 @@ const SessionComponent = ({ session }: propsType) => {
         setSessionActive(session.active)
         if(session.id){
             axios({
-                url: `http://localhost:8080/sessions/connected-students?session_id=${session.id}`,
+                url: `https://io-spring-demo.herokuapp.com/sessions/connected-students?session_id=${session.id}`,
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
@@ -37,7 +37,7 @@ const SessionComponent = ({ session }: propsType) => {
 
     const handleCloseSession = (e: any) => {
         axios({
-            url: "http://localhost:8080/sessions/deactivate",
+            url: "https://io-spring-demo.herokuapp.com/sessions/deactivate",
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`

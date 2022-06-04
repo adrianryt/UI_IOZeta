@@ -37,7 +37,7 @@ const SubjectForm = () => {
         if(subjectValidator.validateName(name)){
 
             axios({
-                url: "http://localhost:8080/subjects/save",
+                url: "https://io-spring-demo.herokuapp.com/subjects/save",
                 method: "post",
                 headers: {
                     "Authorization": `Bearer ${CookieService.getCookie("access_token")}`

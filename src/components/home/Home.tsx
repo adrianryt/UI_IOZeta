@@ -10,7 +10,7 @@ import {useCookies} from "react-cookie";
 
 const Home = () => {
 
-    const ADD_STUDENT_URL = "http://localhost:8080/student/add-to-session";
+    const ADD_STUDENT_URL = "https://io-spring-demo.herokuapp.com/student/add-to-session";
     const navigate = useNavigate();
 
     const [message, setMessage] = useState<string>("");

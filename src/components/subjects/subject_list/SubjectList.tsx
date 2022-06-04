@@ -14,7 +14,7 @@ const SubjectList = () => {
 
     useEffect( () => {
          axios({
-            url: "http://localhost:8080/subjects/all?username=" + cookies['username'],
+            url: "https://io-spring-demo.herokuapp.com/subjects/all?username=" + cookies['username'],
             method: "get",
             headers: {
                 "Authorization": `Bearer ${CookieService.getCookie("access_token")}`
