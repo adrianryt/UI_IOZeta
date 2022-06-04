@@ -1,10 +1,10 @@
 import * as React from "react";
-import {Alert, Button, Card, FormControl, FormGroup} from "react-bootstrap";
+import {Alert, Card, FormControl, FormGroup} from "react-bootstrap";
 import TopicObject from "../../objects/TopicObject";
 import {useState} from "react";
 import axios from "axios";
 import CookieService from "../../objects/services/CookieService";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Readme from "../student/Readme";
 
 type propsType = {
@@ -27,11 +27,6 @@ const Topic = (props: propsType) => {
     }
 
     const username: string = CookieService.getCookie("username");
-
-    const readmeUrl = () =>{
-        // return "https://api.github.com/repos/youngdashu/Investments-overview/contents/README.MD";
-        return "https://api.github.com/repos/" + username + "/" + props.topic.repoName + "/contents/README.md";
-    }
 
     const repoLink = () => {
         return "https://github.com/" + username + "/" + props.topic.repoName
@@ -79,7 +74,7 @@ const Topic = (props: propsType) => {
                         <a href={repoLink()} target="_blank">{props.topic.repoName}</a>
                     </div>
                     <div id="readme" className='d-flex justify-content-center scrollbar-primary'>
-                        <Readme topicName={""} readmeUrl={readmeUrl()}  />
+                        <Readme topicName={""} readmeUrl={props.topic.readmeLink}  />
                     </div>
                 </div>
                 <form onSubmit={handleCreateSessionSubmit}>
