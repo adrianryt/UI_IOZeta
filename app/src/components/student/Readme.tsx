@@ -36,7 +36,7 @@ const Readme = (props: propsType) => {
     }, [props.readmeUrl, props.topicName])
 
     return (
-        <Card id="readme" className="w-80 m-auto">
+        <Card id="readme" className="w-80">
             {topicName === "" ?
                 <div/>
                 :
@@ -44,7 +44,7 @@ const Readme = (props: propsType) => {
                     {topicName}
                 </Card.Header>
             }
-            <Card.Body>
+            <Card.Body >
                 <Markdown>
                     {readmeText}
                 </Markdown>
