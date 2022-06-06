@@ -4,7 +4,12 @@ import axios from "axios";
 import SessionComponent from "./SessionComponent";
 import CookieService from "../../objects/services/CookieService";
 
-const Sessions = () => {
+type propsType = {
+    sessionsPresentMessage: string,
+    noSessionsMessage: string
+}
+
+const Sessions = ({sessionsPresentMessage="Active sessions:", noSessionsMessage="No sessions active"}: propsType) => {
     const [sessions, setSessions] = useState([])
     useEffect(() => {
         axios({
@@ -22,7 +27,7 @@ const Sessions = () => {
     return (
         <div>
             <div className="fs-1 d-flex justify-content-center">
-                {sessions.length !== 0 ? "Sessions created from this topic:" : "No sessions created from this topic yet"}
+                {sessions.length !== 0 ? sessionsPresentMessage : noSessionsMessage }
             </div>
             <div className="m-lg-3 d-flex justify-content-center flex-wrap">
                 {sessions.map(
