@@ -61,7 +61,7 @@ export default class TopicValidator extends Validator{
             this._repoNameError = "Repository name cannot be empty";
             return false;
         }
-        if(!/^[A-Za-z\d_.-]$/.test(repoName)){
+        if(!/^[A-Za-z\d_.-]+$/.test(repoName)){
             this._repoNameError = "Illegal repo name. Github only allows these characters: [A-Za-z0-9_.-]"
             return false;
         }
