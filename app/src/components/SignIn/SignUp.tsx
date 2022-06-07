@@ -45,6 +45,8 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
     const [tokenError, setTokenError] = useState<string>("");
     const [passwordError, setPasswordError] = useState<string>("");
 
+    const [backendError, setBackendError] = useState<string>("");
+
     const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)
     const handleSurnameChange = (e: React.ChangeEvent<HTMLInputElement>) => setSurname(e.target.value)
     const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => setNickname(e.target.value)
@@ -58,6 +60,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
         setNicknameError("");
         setTokenError("");
         setPasswordError("");
+        setBackendError("");
         const signUpValidator = new SignUpValidator();
         if (signUpValidator.validateFirstName(firstName) && signUpValidator.validateSurname(surname) && signUpValidator.validateNickname(nickname) &&
             signUpValidator.validateGitToken(token) && signUpValidator.validatePassword(password)) {
@@ -105,6 +108,9 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                 })
 
             }).catch((e) => {
+                if(e.response && e.response.data === "Github username already in use"){
+                    setBackendError(e.response.data);
+                }
                 console.error("cannot register user: " + e);
             })
         }
@@ -123,6 +129,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
             <Card className="mt-5 col-11 col-sm-9 col-md-7 col-lg-5 col-xl-3 col-xxl-2">
                 <Card.Header>Sign up as lecturer</Card.Header>
                 <Card.Body>
+                    {backendError !== "" ? <p className="text-danger mb-4 row"> {backendError} </p> : null}
                     <form className="" onSubmit={handleFormSubmit}>
                         <FormGroup>
                             <label>
