@@ -53,7 +53,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
     const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => setToken(e.target.value)
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setFirstNameError("");
         setSurnameError("");
@@ -62,7 +62,9 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
         setPasswordError("");
         setBackendError("");
         const signUpValidator = new SignUpValidator();
-        if (signUpValidator.validateFirstName(firstName) && signUpValidator.validateSurname(surname) && signUpValidator.validateNickname(nickname) &&
+        if (signUpValidator.validateFirstName(firstName) && signUpValidator.validateSurname(surname) && await signUpValidator.validateNickname(nickname).then((res) => {
+                return res
+            }) &&
             signUpValidator.validateGitToken(token) && signUpValidator.validatePassword(password)) {
             axios({
                 url: "http://localhost:8080/api/lecturer/save",
@@ -82,9 +84,13 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                     },
                     data: loginParams
                 }).then((response) => {
-                    setCookie("access_token", response.data.access_token, { maxAge: 60 * 60, path: "/", secure: false });
-                    setCookie("refresh_token", response.data.refresh_token, { maxAge: 60 * 60 * 24, path: "/", secure: false });
-                    setCookie("username", nickname, { maxAge: 60 * 60, path: "/", secure: false });
+                    setCookie("access_token", response.data.access_token, {maxAge: 60 * 60, path: "/", secure: false});
+                    setCookie("refresh_token", response.data.refresh_token, {
+                        maxAge: 60 * 60 * 24,
+                        path: "/",
+                        secure: false
+                    });
+                    setCookie("username", nickname, {maxAge: 60 * 60, path: "/", secure: false});
                     props.setUserLogin(nickname);
                     axios({
                         url: "http://localhost:8080/api/lecturers",
@@ -98,7 +104,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                         const id = listOfLecturers.filter((element: Dict<any>, _N, _A) => {
                             return element['gitNick'] === nickname
                         }).pop()['id']
-                        setCookie("lecturer_id", id, {maxAge: 60*60, path: "/", secure: false});
+                        setCookie("lecturer_id", id, {maxAge: 60 * 60, path: "/", secure: false});
                     })
 
                     navigate("/teacher")
@@ -108,13 +114,12 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                 })
 
             }).catch((e) => {
-                if(e.response && e.response.data === "Github username already in use"){
+                if (e.response){
                     setBackendError(e.response.data);
                 }
                 console.error("cannot register user: " + e);
             })
-        }
-        else {
+        } else {
             setFirstNameError(signUpValidator.firstNameError);
             setSurnameError(signUpValidator.surnameError);
             setNicknameError(signUpValidator.nicknameError);
