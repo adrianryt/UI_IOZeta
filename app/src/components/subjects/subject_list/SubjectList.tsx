@@ -38,12 +38,6 @@ const SubjectList = () => {
                     <Link to="/subjects/new" className="btn btn-secondary h-100">Add new Subject</Link>
 
                 </div>
-
-
-                <div className="col-12 col-md-2">
-                    <Link to="/topics" className="btn btn-secondary h-100">Show all topics</Link>
-
-                </div>
             </div>
             <h1 className="mx-auto text-center">Subjects</h1>
             <div id="subjectsContainer">

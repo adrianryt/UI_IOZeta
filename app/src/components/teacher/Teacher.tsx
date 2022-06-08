@@ -19,7 +19,7 @@ const Teacher = () => {
                 </div>
 
                 <div className="mb-3 d-flex justify-content-center">
-                    <Link to="/subjects/new" className="btn btn-outline-dark m-0 col-xxl-3 col-xl-4 col-lg-6 col-md-8 col-sm-9 col-10 d-block">Add new subjects</Link>
+                    <Link to="/subjects/new" className="btn btn-outline-dark m-0 col-xxl-3 col-xl-4 col-lg-6 col-md-8 col-sm-9 col-10 d-block">Add new subject</Link>
                 </div>
 
                 <div className="mb-3 d-flex justify-content-center">
