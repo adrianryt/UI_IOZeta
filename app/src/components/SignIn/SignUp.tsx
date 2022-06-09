@@ -163,6 +163,8 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                             <FormText className="text-danger mb-4 row position-absolute">{nicknameError}</FormText>
 
                             <OverlayTrigger
+                                rootClose
+                                trigger="click"
                                 placement="right"
                                 overlay={usernamePopover}
                             >
@@ -178,6 +180,8 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                             <FormText className="text-danger mb-4 row position-absolute">{tokenError}</FormText>
 
                             <OverlayTrigger
+                                rootClose
+                                trigger="click"
                                 placement="right"
                                 overlay={tokenPopover}
                             >
