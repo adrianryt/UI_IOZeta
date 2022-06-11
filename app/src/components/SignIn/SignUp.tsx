@@ -29,10 +29,10 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
         <Popover id="popover-basic">
             <Popover.Body className="text-light bg-dark">
                 <p>
-                    You can create token <a href="https://github.com/settings/tokens">here</a>. Permits needed:
+                    You can create token <a href="https://github.com/settings/tokens" target="_blank">here</a>. Scopes needed:
                     <ul>
-                        <li>first</li>
-                        <li>second</li>
+                        <li>Token should have no time limit</li>
+                        <li>Whole 'repo' scope</li>
                     </ul>
                 </p>
             </Popover.Body>
