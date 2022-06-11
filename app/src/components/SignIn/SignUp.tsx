@@ -29,10 +29,10 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
         <Popover id="popover-basic">
             <Popover.Body className="text-light bg-dark">
                 <p>
-                    You can create token <a href="https://github.com/settings/tokens">here</a>. Permits needed:
+                    You can create token <a href="https://github.com/settings/tokens" target="_blank">here</a>. Scopes needed:
                     <ul>
-                        <li>first</li>
-                        <li>second</li>
+                        <li>Token should have no time limit</li>
+                        <li>Whole 'repo' scope</li>
                     </ul>
                 </p>
             </Popover.Body>
@@ -45,21 +45,26 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
     const [tokenError, setTokenError] = useState<string>("");
     const [passwordError, setPasswordError] = useState<string>("");
 
+    const [backendError, setBackendError] = useState<string>("");
+
     const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)
     const handleSurnameChange = (e: React.ChangeEvent<HTMLInputElement>) => setSurname(e.target.value)
     const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => setNickname(e.target.value)
     const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => setToken(e.target.value)
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setFirstNameError("");
         setSurnameError("");
         setNicknameError("");
         setTokenError("");
         setPasswordError("");
+        setBackendError("");
         const signUpValidator = new SignUpValidator();
-        if (signUpValidator.validateFirstName(firstName) && signUpValidator.validateSurname(surname) && signUpValidator.validateNickname(nickname) &&
+        if (signUpValidator.validateFirstName(firstName) && signUpValidator.validateSurname(surname) && await signUpValidator.validateNickname(nickname).then((res) => {
+                return res
+            }) &&
             signUpValidator.validateGitToken(token) && signUpValidator.validatePassword(password)) {
             axios({
                 url: "http://localhost:8080/api/lecturer/save",
@@ -79,9 +84,13 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                     },
                     data: loginParams
                 }).then((response) => {
-                    setCookie("access_token", response.data.access_token, { maxAge: 60 * 60, path: "/", secure: false });
-                    setCookie("refresh_token", response.data.refresh_token, { maxAge: 60 * 60 * 24, path: "/", secure: false });
-                    setCookie("username", nickname, { maxAge: 60 * 60, path: "/", secure: false });
+                    setCookie("access_token", response.data.access_token, {maxAge: 60 * 60, path: "/", secure: false});
+                    setCookie("refresh_token", response.data.refresh_token, {
+                        maxAge: 60 * 60 * 24,
+                        path: "/",
+                        secure: false
+                    });
+                    setCookie("username", nickname, {maxAge: 60 * 60, path: "/", secure: false});
                     props.setUserLogin(nickname);
                     axios({
                         url: "http://localhost:8080/api/lecturers",
@@ -95,7 +104,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                         const id = listOfLecturers.filter((element: Dict<any>, _N, _A) => {
                             return element['gitNick'] === nickname
                         }).pop()['id']
-                        setCookie("lecturer_id", id, {maxAge: 60*60, path: "/", secure: false});
+                        setCookie("lecturer_id", id, {maxAge: 60 * 60, path: "/", secure: false});
                     })
 
                     navigate("/teacher")
@@ -105,10 +114,12 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                 })
 
             }).catch((e) => {
+                if (e.response){
+                    setBackendError(e.response.data);
+                }
                 console.error("cannot register user: " + e);
             })
-        }
-        else {
+        } else {
             setFirstNameError(signUpValidator.firstNameError);
             setSurnameError(signUpValidator.surnameError);
             setNicknameError(signUpValidator.nicknameError);
@@ -123,6 +134,7 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
             <Card className="mt-5 col-11 col-sm-9 col-md-7 col-lg-5 col-xl-3 col-xxl-2">
                 <Card.Header>Sign up as lecturer</Card.Header>
                 <Card.Body>
+                    {backendError !== "" ? <p className="text-danger mb-4 row"> {backendError} </p> : null}
                     <form className="" onSubmit={handleFormSubmit}>
                         <FormGroup>
                             <label>
@@ -151,6 +163,8 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                             <FormText className="text-danger mb-4 row position-absolute">{nicknameError}</FormText>
 
                             <OverlayTrigger
+                                rootClose
+                                trigger="click"
                                 placement="right"
                                 overlay={usernamePopover}
                             >
@@ -166,6 +180,8 @@ const SignUp = (props: { setUserLogin: (name: string) => string }) => {
                             <FormText className="text-danger mb-4 row position-absolute">{tokenError}</FormText>
 
                             <OverlayTrigger
+                                rootClose
+                                trigger="click"
                                 placement="right"
                                 overlay={tokenPopover}
                             >

@@ -1,4 +1,5 @@
 import Validator from "./Validator";
+import axios from "axios";
 
 export default class SignUpValidator extends Validator{
     private _firstNameError: string;
@@ -39,12 +40,12 @@ export default class SignUpValidator extends Validator{
         return true;
     }
 
-    public validateNickname(nickname: string): boolean{
+    public async validateNickname(nickname: string): Promise<boolean> {
         if(!this.stringNotEmpty(nickname)){
             this._nicknameError = "Nickname cannot be empty"
             return false;
         }
-        if(!this.stringHasLengthBetween(nickname,1, 100)){
+        if(!this.stringHasLengthBetween(nickname, 1, 100)){
             this._nicknameError = "Nickname cannot be longer than 100 characters"
             return false;
         }
@@ -52,7 +53,25 @@ export default class SignUpValidator extends Validator{
         //     this._nicknameError = "Nickname should contains only letters and numbers"
         //     return false;
         // }
-        return true;
+        console.log("axios nickname")
+        let isUsernameValid = true;
+        await axios({
+            url: "https://api.github.com/users/" + nickname,
+            method: "get"
+        }).then((response) => {
+            console.log(response)
+            if (response.status === 404) {
+                console.log("bledny nickname");
+                this._nicknameError = "This github username doesn't exist";
+                isUsernameValid = false;
+            }
+        }).catch((e) => {
+            console.log(e)
+            this._nicknameError = "This github username doesn't exist";
+            isUsernameValid = false;
+        })
+        console.log("nickname return " + isUsernameValid);
+        return isUsernameValid;
     }
 
     public validateGitToken(token: string): boolean{

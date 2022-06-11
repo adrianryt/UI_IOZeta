@@ -6,7 +6,9 @@
     max-height: 80vh;
 }
 
-
+#readme img{
+    max-width: 100%;
+}
 
 #checkpoints ol, #readme .card-body {
     height: 100%;
