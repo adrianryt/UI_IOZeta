@@ -3,7 +3,6 @@ import { BrowserRouter, Navigate } from "react-router-dom";
 import { Route, Routes } from "react-router";
 import React, {useEffect, useState} from "react";
 import Home from "./components/home/Home.tsx"
-import TopicsMain from "./components/topics/TopicsMain";
 import TopicForm from "./components/topics/TopicForm";
 import SubjectList from "./components/subjects/subject_list/SubjectList";
 import TopicSingle from "./components/topics/TopicSingle";
@@ -48,7 +47,6 @@ function App() {
             <Route path="/login" element={userShouldNotBeLoggedIn(<Login setUserLogin={setLoggedUserName} />)} />
             <Route path="/signup" element={userShouldNotBeLoggedIn(<SignUp setUserLogin={setLoggedUserName} />)} />
             <Route path="/teacher" element={loggedUserName !== null ? userShouldBeLoggedIn(<Teacher/>) : null} />
-            <Route path="/topics" element={loggedUserName !== null ? userShouldBeLoggedIn(<TopicsMain/>) : null} />
             <Route path="/topics/new" element={loggedUserName !== null ? userShouldBeLoggedIn(<TopicForm />) : null} />
             <Route path="/subjects" element={loggedUserName !== null ? userShouldBeLoggedIn(<SubjectList />) : null} />
             <Route path="/subjects/new" element={loggedUserName !== null ? userShouldBeLoggedIn(<SubjectForm />) : null} />
