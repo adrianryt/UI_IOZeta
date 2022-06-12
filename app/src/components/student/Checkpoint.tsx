@@ -6,7 +6,7 @@ import axios from "axios";
 import CookieService from "../../objects/services/CookieService";
 import "./Checkpoints.css"
 
-const Checkpoint = (props: {checkpoint: CheckpointObject}) => {
+const Checkpoint = (props: {checkpoint: CheckpointObject, idNumber: number}) => {
 
     const checkpoint = props.checkpoint;
 
@@ -40,7 +40,7 @@ const Checkpoint = (props: {checkpoint: CheckpointObject}) => {
 
     return(
 
-        <div id="checkpoint" className="">
+        <div id={"checkpoint_"+props.idNumber} className="">
 
             <Card className="checkpoint" key={checkpoint.title + ':' + checkpoint.description}>
                 <Card.Header>
@@ -58,7 +58,7 @@ const Checkpoint = (props: {checkpoint: CheckpointObject}) => {
                 </Card.Header>
                 <Card.Body>
                     <p>{checkpoint.description}</p>
-                    <textarea className={"git-comands"} readOnly rows={checkpoint.commands.length}
+                    <textarea className={"git-commands"} readOnly rows={checkpoint.commands.length}
                               value={checkpoint.commands.join("\n")}>
                                 </textarea><br />
                     <Button onClick={() => {

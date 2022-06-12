@@ -7,7 +7,7 @@ import "./StudentPage.css"
 import CheckpointObject from '../../objects/CheckpointObject';
 import CookieService from "../../objects/services/CookieService";
 import {useNavigate} from "react-router-dom";
-import BranchCloneComand from "./BranchCloneComand";
+import BranchCloneCommand from "./BranchCloneCommand";
 import Branch from "../../objects/Branch";
 import { useTour } from "@reactour/tour";
 import {Button} from "react-bootstrap";
@@ -21,8 +21,11 @@ const StudentPage = (props: any) => {
 
 
     const [checkpoints, setCheckpoints] = useState([new CheckpointObject("", "", [], false, 0)]);
-    const [readmeUrl, setReadmeUrl] = useState("")
+    const [readmeUrl, setReadmeUrl] = useState("");
     const [topicName, setTopicName] = useState("");
+    const [lecturerNickname, setLecturerNickname] = useState("");
+    const [repoName, setRepoName] = useState("");
+    const [branchName, setBranchName] = useState("");
 
     useEffect(() => {
         if (CookieService.getCookie("session_id") === null || CookieService.getCookie("session_id") === "") {
@@ -38,10 +41,13 @@ const StudentPage = (props: any) => {
             .get(GET_SESSION_URL, {params: {session_id: session_id, student_id: student_id}})
             .then((response) => {
                 if (response.status === 200) {
+                    console.log(response.data);
                     setCheckpoints(response.data.checkpoints);
                     setReadmeUrl(response.data.readmeUrl);
                     setTopicName(response.data.topicName);
-                    console.log(response.data);
+                    setBranchName(response.data.branchName);
+                    setRepoName(response.data.repoName);
+                    setLecturerNickname(response.data.lecturerNickname);
                 } else {
                     console.error("cannot get session data");
                     navigate("/");
@@ -59,8 +65,8 @@ const StudentPage = (props: any) => {
                     <Readme topicName={topicName} readmeUrl={readmeUrl}/>
                 </div>
                 <div id="checkpoints" className='col-lg-4'>
-                    <Button onClick={openTour} >Tutorial po stronie</Button>
-                    <BranchCloneComand branch={new Branch("nazwa", "repo")}/>
+                    <Button onClick={openTour} >Tutorial</Button>
+                    <BranchCloneCommand branch={new Branch(branchName, repoName, lecturerNickname)}/>
                     <Checkpoints checkpoints={checkpoints}/>
                 </div>
             </div>

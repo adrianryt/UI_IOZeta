@@ -13,7 +13,6 @@
 #checkpoints ol, #readme .card-body {
     height: 100%;
     overflow: auto;
-    padding: 0 1em;
 }
 
 #checkpoints .checkpoint .card-body :not(p) {
