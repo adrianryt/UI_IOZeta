@@ -59,7 +59,7 @@ const Readme = (props: propsType) => {
     }, [props.readmeUrl, props.topicName])
 
     return (
-        <Card id="readme" className="w-80">
+        <Card id="readme-body" className="w-80">
             {topicName === "" ?
                 <div />
                 :

@@ -12,7 +12,7 @@ const Checkpoints = (props: propsType) => {
 
     return (
 
-        < ol >
+        < ol id="checkPointList">
             {
                 props.checkpoints.map((checkpoint: CheckpointObject) =>
                     <Checkpoint checkpoint={checkpoint}></Checkpoint>

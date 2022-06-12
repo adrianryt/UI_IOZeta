@@ -58,7 +58,7 @@ const Checkpoint = (props: {checkpoint: CheckpointObject}) => {
                 </Card.Header>
                 <Card.Body>
                     <p>{checkpoint.description}</p>
-                    <textarea readOnly rows={checkpoint.commands.length}
+                    <textarea className={"git-comands"} readOnly rows={checkpoint.commands.length}
                               value={checkpoint.commands.join("\n")}>
                                 </textarea><br />
                     <Button onClick={() => {
