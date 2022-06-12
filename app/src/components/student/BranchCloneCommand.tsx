@@ -7,7 +7,7 @@ import CookieService from "../../objects/services/CookieService";
 import "./Checkpoints.css"
 import Branch from "../../objects/Branch";
 
-const BranchCloneComand = (props: {branch: Branch}) => {
+const BranchCloneCommand = (props: {branch: Branch}) => {
 
     const branch = props.branch;
 
@@ -17,15 +17,15 @@ const BranchCloneComand = (props: {branch: Branch}) => {
 
             <Card className="checkpoint">
                 <Card.Header>
-                    {"TYTUł"}
+                    Commands to clone the project
                 </Card.Header>
                 <Card.Body>
-                    <p>{"OPIS"}</p>
+
                     <textarea readOnly rows={1}
-                              value={"KOMENDA DO SKOPIOWANIA BRANCHA"}>
+                              value={branch.getCommand()}>
                                 </textarea><br />
                     <Button onClick={() => {
-                        navigator.clipboard.writeText("KOMENDA DO SKOPIOWANIA BRANCHA");  //copy git command
+                        navigator.clipboard.writeText(branch.getCommand());  //copy git command
                     }
                     }>Copy</Button>
                 </Card.Body>
@@ -35,4 +35,4 @@ const BranchCloneComand = (props: {branch: Branch}) => {
 
 }
 
-export default BranchCloneComand;
+export default BranchCloneCommand;

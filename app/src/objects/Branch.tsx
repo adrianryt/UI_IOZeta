@@ -1,10 +1,12 @@
 export default class Branch {
     private _name: string;
     private _repoName: string;
+    private _lecturerNickname: string
 
-    constructor(name: string, repoName: string) {
+    constructor(name: string, repoName: string, lecturerNickname: string) {
         this._name = name;
         this._repoName = repoName;
+        this._lecturerNickname = lecturerNickname;
     }
 
     get name(): string {
@@ -22,4 +24,21 @@ export default class Branch {
     set repoName(value: string) {
         this._repoName = value;
     }
+
+
+    get lecturerNickname(): string {
+        return this._lecturerNickname;
+    }
+
+    set lecturerNickname(value: string) {
+        this._lecturerNickname = value;
+    }
+
+    public getCommand(): string{
+
+        return  "git clone https://github.com/"+ this.lecturerNickname +"/" + this.repoName +".git" + "\n" +
+            "git checkout " + this.name;
+
+    }
+
 }
