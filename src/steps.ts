@@ -9,11 +9,11 @@ export default [
         content: `You can use this to copy project onto your computer`
     },
     {
-        selector: '#checkPointList',
+        selector: '#checkPointListWrapper',
         content: `These are checkpoints to do.`
     },
     {
-        selector: '.git-commands',
+        selector: '#checkpoint_0',
         content: `These are commands to submit a finished checkpoint.`
     },
     {

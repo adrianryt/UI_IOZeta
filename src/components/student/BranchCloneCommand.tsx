@@ -21,7 +21,7 @@ const BranchCloneCommand = (props: {branch: Branch}) => {
                 </Card.Header>
                 <Card.Body>
 
-                    <textarea readOnly rows={1}
+                    <textarea readOnly rows={3}
                               value={branch.getCommand()}>
                                 </textarea><br />
                     <Button onClick={() => {
