@@ -37,6 +37,7 @@ export default class Branch {
     public getCommand(): string{
 
         return  "git clone https://github.com/"+ this.lecturerNickname +"/" + this.repoName +".git" + "\n" +
+            "cd " + this.repoName + "\n" +
             "git checkout " + this.name;
 
     }
