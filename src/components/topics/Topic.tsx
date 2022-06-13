@@ -36,6 +36,10 @@ const Topic = (props: propsType) => {
     const handleSetSessionName = (e: React.ChangeEvent<HTMLInputElement>) => setSessionName(e.target.value);
     const handleCreateSessionSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if(!/^[A-Za-z\d_.]+$/.test(sessionName)){
+            showSessionError("Name contains illegal characters. Legal characters: A-Za-z0-9_.");
+            return;
+        }
         if(sessionName.length > 0 && sessionName.length < 100){
             axios( {
                 url: "https://io-spring-demo.herokuapp.com/sessions/create",
@@ -66,7 +70,6 @@ const Topic = (props: propsType) => {
     return(
         <Card className="my-3 mx-auto border-3 col-sm-10 col-md-8 col-lg-6 col-11">
             <Card.Header className="bg bg-info">{props.topic.title} | {props.topic.subject}</Card.Header>
-            {showSessionInvalid ? <Alert variant="danger">Invalid session name: {sessionInvalidInfo}</Alert> : null}
             <Card.Body>
                 <div className="">
                     <div className="mb-3">
@@ -77,6 +80,7 @@ const Topic = (props: propsType) => {
                         <Readme topicName={""} readmeUrl={props.topic.readmeLink}  />
                     </div>
                 </div>
+                {showSessionInvalid ? <Alert variant="danger">Invalid session name: {sessionInvalidInfo}</Alert> : null}
                 <form onSubmit={handleCreateSessionSubmit}>
                     <FormGroup>
                         <FormControl value={sessionName} onChange={handleSetSessionName} className="mt-3 mb-3" placeholder="enter session name"></FormControl>
