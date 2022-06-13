@@ -11,7 +11,7 @@ type propsType = {
 const Checkpoints = (props: propsType) => {
 
     return (
-
+        <div id="checkPointListWrapper">
         < ol id="checkPointList" >
             {
                 props.checkpoints.map((checkpoint: CheckpointObject, index) =>
@@ -19,8 +19,7 @@ const Checkpoints = (props: propsType) => {
                 )
             }
         </ol >
-
-    )
+        </div>    )
 
 }
 
