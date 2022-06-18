@@ -68,3 +68,27 @@ The app requires user token in order to create repositories and branches. Instru
 Enter a secure password for your account.
 
 If data provided is invalid, warnings will appear on what is incorrect. Otherwise, your account will be created and you will be redirected to teacher page.
+
+## /teacher
+
+This is a subpage for teachers. From here you can go to subjects list, add a new subject, or manage sessions.
+
+## /topics/new
+
+![topic](https://user-images.githubusercontent.com/19930849/174447749-69fbb911-b049-4e3a-994a-d3c6313d7475.png)
+
+### 1. Topic title
+
+Topic title, also visible to students
+### 2. Repository name
+
+Repository dedicated to the topic will have this name. If it does not exist, it will be created
+### 3. Subject
+
+Subject, to which the topic belongs
+### 4. Number of checkpoints
+
+Determines how many checkpoints will the topic have. A checkpoint is meant to be a _milestone_ or a small task; it is preferred if checkpoints can be rated separately
+### 5. Checkpoint details
+
+For every checkpoint, you can define a title and a description. Title should be brief, description should inform students what needs to be done 
