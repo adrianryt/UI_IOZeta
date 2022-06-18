@@ -2,6 +2,10 @@
 
 In the project directory, you can run:
 
+### `npm install`
+
+Provided you have NodeJS installed, it will download and install every necessary package the app uses.
+
 ### `npm start`
 
 Runs the app in the development mode.\
