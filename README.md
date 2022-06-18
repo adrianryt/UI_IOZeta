@@ -23,8 +23,6 @@ Your app is ready to be deployed!
 
 ## /
 
-This is the main page
-
 ![logged](https://user-images.githubusercontent.com/19930849/174438113-8a089bb6-8f4a-44dd-89e2-f029012125d2.png)
 
 ### 1. Navbar
@@ -35,4 +33,34 @@ It's universal for every subpage. "Home" button leads to `/`. If you're logged i
 In order to join the session, you need to provide your GitHub uername. It will be needed to create branches and generate certain commands to execute later.
 ### 3. Session code
 
-Type code of the session you want to join and join session when you're ready
+Type code of the session you want to join, and join session when you're ready
+
+## /login
+
+![login](https://user-images.githubusercontent.com/19930849/174438509-58a0d3e3-fa0c-45d1-871c-2e5b8833a1f6.png)
+
+### 1. GitHub username
+
+Type your GitHub username you registered under
+### 2. Password
+
+Provide password for your account. Logging in will transfer you to teacher page.
+
+## /signup
+
+![signup](https://user-images.githubusercontent.com/19930849/174438786-635dd66f-b2fd-4080-a104-95c29e60266c.png)
+
+### 1. Full name
+
+Provide your name and surname
+### 2. GitHub nickname
+
+Provide your Github nickname, without "github.com/" prefix
+### 3. GitHub token
+
+The app requires user token in order to create repositories and branches. Instructions on how to obtain one are displayed when you click on "_i_" tooltip below
+### 4. Password
+
+Enter a secure password for your account.
+
+If data provided is invalid, warnings will appear on what is incorrect. Otherwise, your account will be created and you will be redirected to teacher page.
