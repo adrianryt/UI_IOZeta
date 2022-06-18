@@ -22,7 +22,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-
+---
 # Usage
 
 ## /
@@ -39,6 +39,24 @@ In order to join the session, you need to provide your GitHub uername. It will b
 
 Type code of the session you want to join, and join session when you're ready
 
+---
+## /student
+
+![student](https://user-images.githubusercontent.com/19930849/174450279-41cf000d-ab20-4b45-896b-a2a5172607cb.png)
+
+### 1. Readme
+
+This is readme of the topic repository. It should contain info helpful or relevant to the topic.
+
+### 2. "Checkpoint zero"
+
+Clicking on "Tutorial" button will teach you how to use checkpoints system. The "checkpoint zero" contains commands necessary to set up a workflow.
+
+### 3. Checkpoints
+
+When you completed a task stated in checkpoint description, you can commit your changes. The easiest way to do it is to click "Copy" and paste commands to the terminal in topic directory on your machine. Once you do that, check the box next to checkpoint name, so that the teacher knows it's done. Repeat for every checkpoint
+
+---
 ## /login
 
 ![login](https://user-images.githubusercontent.com/19930849/174438509-58a0d3e3-fa0c-45d1-871c-2e5b8833a1f6.png)
@@ -50,6 +68,7 @@ Type your GitHub username you registered under
 
 Provide password for your account. Logging in will transfer you to teacher page.
 
+---
 ## /signup
 
 ![signup](https://user-images.githubusercontent.com/19930849/174438786-635dd66f-b2fd-4080-a104-95c29e60266c.png)
@@ -69,10 +88,12 @@ Enter a secure password for your account.
 
 If data provided is invalid, warnings will appear on what is incorrect. Otherwise, your account will be created and you will be redirected to teacher page.
 
+---
 ## /teacher
 
 This is a subpage for teachers. From here you can go to subjects list, add a new subject, or manage sessions.
 
+---
 ## /topics/new
 
 ![topic](https://user-images.githubusercontent.com/19930849/174447749-69fbb911-b049-4e3a-994a-d3c6313d7475.png)
@@ -95,6 +116,7 @@ For every checkpoint, you can define a title and a description. Title should be 
 
 After successfully adding a topic, a short guide will appear with instructions on how to upload files to repository, including README
 
+---
 ## /topic/\[topic id\]
 
 ![session](https://user-images.githubusercontent.com/19930849/174449157-e08305b0-2d40-487d-89dd-7391504d486b.png)
@@ -117,6 +139,7 @@ Closing session prevents anyone from joining it. You can always reopen it later
 
 "Session details" will redirect you to session dashboard
 
+---
 ## /dashboard/\[session id\]
 
 ![obraz](https://user-images.githubusercontent.com/19930849/174449505-cb7dd2b9-5349-47e1-a8b2-59d9f8499bb1.png)
