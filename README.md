@@ -92,3 +92,34 @@ Determines how many checkpoints will the topic have. A checkpoint is meant to be
 ### 5. Checkpoint details
 
 For every checkpoint, you can define a title and a description. Title should be brief, description should inform students what needs to be done 
+
+After successfully adding a topic, a short guide will appear with instructions on how to upload files to repository, including README
+
+## /topic/\[topic id\]
+
+![session](https://user-images.githubusercontent.com/19930849/174449157-e08305b0-2d40-487d-89dd-7391504d486b.png)
+
+### 1. Topic info
+
+Topic name, subjects it belongs to, and hyperlink to repository on GitHub
+### 2. Session name
+
+You can give session a dedicated name, a current date for instance. Creating a session automatically opens it.
+### 3. Session info
+
+Session name and state (active/inactive)
+### 4. Session code
+
+Code necessary to join a session. Click on it in order to make it larger
+### 5. Managing session
+
+Closing session prevents anyone from joining it. You can always reopen it later
+
+"Session details" will redirect you to session dashboard
+
+## /dashboard/\[session id\]
+
+![obraz](https://user-images.githubusercontent.com/19930849/174449505-cb7dd2b9-5349-47e1-a8b2-59d9f8499bb1.png)
+
+This is a table with students' progress. First column contains usernames, others represent checkpoints. When student completes a checkpoint, a hyperlink to commit will be put in appropriate field
+
