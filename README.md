@@ -1,10 +1,10 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+# Getting Started
 
 In the project directory, you can run:
+
+### `npm install`
+
+Provided you have NodeJS installed, it will download and install every necessary package the app uses.
 
 ### `npm start`
 
@@ -14,11 +14,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -27,44 +22,127 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
+# Usage
 
-### `npm run eject`
+## /
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![logged](https://user-images.githubusercontent.com/19930849/174438113-8a089bb6-8f4a-44dd-89e2-f029012125d2.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. Navbar
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+It's universal for every subpage. "Home" button leads to `/`. If you're logged in, clicking on your username will lead to teacher main page and "Logout" will log you out. Otherwise, "Login" button will lead to login subpage.
+### 2. Username
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+In order to join the session, you need to provide your GitHub uername. It will be needed to create branches and generate certain commands to execute later.
+### 3. Session code
 
-## Learn More
+Type code of the session you want to join, and join session when you're ready
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
+## /student
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![student](https://user-images.githubusercontent.com/19930849/174450279-41cf000d-ab20-4b45-896b-a2a5172607cb.png)
 
-### Code Splitting
+### 1. Readme
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This is readme of the topic repository. It should contain info helpful or relevant to the topic.
 
-### Analyzing the Bundle Size
+### 2. "Checkpoint zero"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Clicking on "Tutorial" button will teach you how to use checkpoints system. The "checkpoint zero" contains commands necessary to set up a workflow.
 
-### Making a Progressive Web App
+### 3. Checkpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+When you completed a task stated in checkpoint description, you can commit your changes. The easiest way to do it is to click "Copy" and paste commands to the terminal in topic directory on your machine. Once you do that, check the box next to checkpoint name, so that the teacher knows it's done. Repeat for every checkpoint
 
-### Advanced Configuration
+---
+## /login
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![login](https://user-images.githubusercontent.com/19930849/174438509-58a0d3e3-fa0c-45d1-871c-2e5b8833a1f6.png)
 
-### Deployment
+### 1. GitHub username
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Type your GitHub username you registered under
+### 2. Password
 
-### `npm run build` fails to minify
+Provide password for your account. Logging in will transfer you to teacher page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+## /signup
+
+![signup](https://user-images.githubusercontent.com/19930849/174438786-635dd66f-b2fd-4080-a104-95c29e60266c.png)
+
+### 1. Full name
+
+Provide your name and surname
+### 2. GitHub nickname
+
+Provide your Github nickname, without "github.com/" prefix
+### 3. GitHub token
+
+The app requires user token in order to create repositories and branches. Instructions on how to obtain one are displayed when you click on "_i_" tooltip below
+### 4. Password
+
+Enter a secure password for your account.
+
+If data provided is invalid, warnings will appear on what is incorrect. Otherwise, your account will be created and you will be redirected to teacher page.
+
+---
+## /teacher
+
+This is a subpage for teachers. From here you can go to subjects list, add a new subject, or manage sessions.
+
+---
+## /topics/new
+
+![topic](https://user-images.githubusercontent.com/19930849/174447749-69fbb911-b049-4e3a-994a-d3c6313d7475.png)
+
+### 1. Topic title
+
+Topic title, also visible to students
+### 2. Repository name
+
+Repository dedicated to the topic will have this name. If it does not exist, it will be created
+### 3. Subject
+
+Subject, to which the topic belongs
+### 4. Number of checkpoints
+
+Determines how many checkpoints will the topic have. A checkpoint is meant to be a _milestone_ or a small task; it is preferred if checkpoints can be rated separately
+### 5. Checkpoint details
+
+For every checkpoint, you can define a title and a description. Title should be brief, description should inform students what needs to be done 
+
+After successfully adding a topic, a short guide will appear with instructions on how to upload files to repository, including README
+
+---
+## /topic/\[topic id\]
+
+![session](https://user-images.githubusercontent.com/19930849/174449157-e08305b0-2d40-487d-89dd-7391504d486b.png)
+
+### 1. Topic info
+
+Topic name, subjects it belongs to, and hyperlink to repository on GitHub
+### 2. Session name
+
+You can give session a dedicated name, a current date for instance. Creating a session automatically opens it.
+### 3. Session info
+
+Session name and state (active/inactive)
+### 4. Session code
+
+Code necessary to join a session. Click on it in order to make it larger
+### 5. Managing session
+
+Closing session prevents anyone from joining it. You can always reopen it later
+
+"Session details" will redirect you to session dashboard
+
+---
+## /dashboard/\[session id\]
+
+![obraz](https://user-images.githubusercontent.com/19930849/174449505-cb7dd2b9-5349-47e1-a8b2-59d9f8499bb1.png)
+
+This is a table with students' progress. First column contains usernames, others represent checkpoints. When student completes a checkpoint, a hyperlink to commit will be put in appropriate field
+
